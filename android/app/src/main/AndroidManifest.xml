@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.moony.moony_app">
    <application
-        android:label="moony_app"
+        android:label="Moony"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
