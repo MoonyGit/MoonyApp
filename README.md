@@ -15,3 +15,8 @@ pub global activate dartdoc
 
 Go to directory and execute:
 dartdoc
+
+## Native configuration
+
+Execute command:
+- to generate launcher icons: flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
