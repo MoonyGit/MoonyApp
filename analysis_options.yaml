@@ -27,5 +27,5 @@ linter:
     # Back to the 80s
     lines_longer_than_80_chars: true
 
-    # Sorting is good, but too much
+    # Sorting is good, but too much is bad
     sort_pub_dependencies: false
