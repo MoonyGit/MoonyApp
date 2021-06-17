@@ -4,13 +4,13 @@ import 'dart:async';
 abstract class ILocalStorage {
 
   /// Saves a [value] to persistent storage in the background.
-  Future<void> add(String key, String value);
+  Future<void> add(String key, dynamic value);
 
   /// Reads a value of any type from persistent storage.
-  Future<String?> get(String key);
+  T? get<T>(String key);
 
   /// Reads all value of any type from persistent storage.
-  Future<Map<String, String>> getAll();
+  T? getAll<T>();
 
   /// Removes an entry from persistent storage.
   Future<void> remove(String key);

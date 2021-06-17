@@ -1,8 +1,9 @@
 import 'package:connectivity/connectivity.dart';
-import 'package:moony_app/infrastructure/services/connectivity/connectivity.dart';
+
+import 'connectivity.dart';
 
 /// Wrapper class to provide connectivity status
-class ConnectivityService extends IConnectivity {
+class ConnectivityService implements IConnectivity {
 
   /// Provide connectivity status as a stream
   @override
