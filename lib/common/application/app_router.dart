@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:moony_app/features/authentication/internal/presentation/login_controller.dart';
 import 'package:moony_app/features/authentication/internal/presentation/login_page.dart';
+import 'package:moony_app/features/authentication/internal/presentation/phone/set_phone_controller.dart';
+import 'package:moony_app/features/authentication/internal/presentation/phone/set_phone_page.dart';
+import 'package:moony_app/features/authentication/internal/presentation/phone/sms_otp_controller.dart';
+import 'package:moony_app/features/authentication/internal/presentation/phone/sms_otp_page.dart';
 import 'package:moony_app/features/startup/splash_controller.dart';
 import 'package:moony_app/features/startup/splash_page.dart';
 
@@ -44,6 +48,11 @@ class Navigation {
       name: login,
       page: () => LoginPage(),
         binding: LoginBindings()
+    ),
+    GetPage<dynamic>(
+        name: loginPhone,
+        page: () => SetPhonePage(),
+        binding: SetPhoneBindings()
     ),
   ];
 }
