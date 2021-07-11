@@ -54,5 +54,10 @@ class Navigation {
         page: () => SetPhonePage(),
         binding: SetPhoneBindings()
     ),
+    GetPage<dynamic>(
+        name: loginPhoneOtp,
+        page: () => SmsOtpPage(),
+        binding: SmsOtpBindings()
+    ),
   ];
 }
