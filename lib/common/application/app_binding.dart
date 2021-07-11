@@ -12,7 +12,12 @@ import 'package:moony_app/features/authentication/internal/infrastructure/authen
 import 'package:moony_app/features/authentication/internal/infrastructure/authentication_firebase.dart';
 import 'package:moony_app/features/authentication/internal/infrastructure/authentication_repository_impl.dart';
 import 'package:moony_app/features/authentication/internal/usecase/get_auth_state.dart';
+import 'package:moony_app/features/authentication/internal/usecase/login_with_apple.dart';
+import 'package:moony_app/features/authentication/internal/usecase/login_with_email.dart';
+import 'package:moony_app/features/authentication/internal/usecase/login_with_facebook.dart';
+import 'package:moony_app/features/authentication/internal/usecase/login_with_google.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
+import 'package:moony_app/features/authentication/internal/usecase/sign_out.dart';
 
 /// Application global dependencies
 class AppBinding extends Bindings {
@@ -42,14 +47,38 @@ class AppBinding extends Bindings {
     Get.lazyPut<IAuthStateRepository>(
         () => Get.find<AuthenticationRepositoryImpl>(),
         fenix: true);
+    Get.lazyPut<ISignOutRepository>(
+        () => Get.find<AuthenticationRepositoryImpl>(),
+        fenix: true);
     Get.lazyPut<IPhoneAuthRepository>(
+        () => Get.find<AuthenticationRepositoryImpl>(),
+        fenix: true);
+    Get.lazyPut<IEmailAuthRepository>(
+        () => Get.find<AuthenticationRepositoryImpl>(),
+        fenix: true);
+    Get.lazyPut<IFacebookAuthRepository>(
+        () => Get.find<AuthenticationRepositoryImpl>(),
+        fenix: true);
+    Get.lazyPut<IGoogleAuthRepository>(
+        () => Get.find<AuthenticationRepositoryImpl>(),
+        fenix: true);
+    Get.lazyPut<IAppleAuthRepository>(
         () => Get.find<AuthenticationRepositoryImpl>(),
         fenix: true);
 
     Get.lazyPut<GetAuthStateUseCase>(() => GetAuthStateUseCase(Get.find()),
         fenix: true);
+    Get.lazyPut<AppleAuthUseCase>(() => AppleAuthUseCase(Get.find()),
+        fenix: true);
+    Get.lazyPut<EmailAuthUseCase>(() => EmailAuthUseCase(Get.find()),
+        fenix: true);
+    Get.lazyPut<FacebookAuthUseCase>(() => FacebookAuthUseCase(Get.find()),
+        fenix: true);
+    Get.lazyPut<GoogleAuthUseCase>(() => GoogleAuthUseCase(Get.find()),
+        fenix: true);
     Get.lazyPut<PhoneAuthUseCase>(() => PhoneAuthUseCase(Get.find()),
         fenix: true);
+    Get.lazyPut<SignOutUseCase>(() => SignOutUseCase(Get.find()), fenix: true);
 
     Get.lazyPut<AuthenticationApi>(() => AuthenticationApi(Get.find()),
         fenix: true);

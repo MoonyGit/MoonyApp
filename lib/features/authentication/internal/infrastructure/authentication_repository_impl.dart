@@ -9,8 +9,13 @@ import 'authentication_data_source.dart';
 /// Authentication repository
 class AuthenticationRepositoryImpl
     implements
+        ISignOutRepository,
         IAuthStateRepository,
-        IPhoneAuthRepository {
+        IPhoneAuthRepository,
+        IEmailAuthRepository,
+        IFacebookAuthRepository,
+        IAppleAuthRepository,
+        IGoogleAuthRepository {
   /// Constructor
   AuthenticationRepositoryImpl(this._authDataSource);
 
@@ -28,6 +33,30 @@ class AuthenticationRepositoryImpl
     return _authDataSource
         .getUserAuthStateChanges()
         .map((UserDataSource? event) => event != null);
+  }
+
+  @override
+  Future<AuthenticationState> registerWithEmailAndPassword(
+      {required String emailAddress, required String password}) {
+    return _authDataSource
+        .registerWithEmailAndPassword(
+            emailAddress: emailAddress, password: password)
+        .then((Either<AuthFailureDataSource, UserDataSource> value) =>
+            value.fold(
+                (AuthFailureDataSource failure) => AuthenticationFailure(
+                    status: failure.maybeWhen(
+                        credentialsAlreadyUsed: (String? message) =>
+                            const CredentialsAlreadyUsed(),
+                        serverError: (String? message) =>
+                            ServerError(message: message),
+                        badCredentials: (String? message) =>
+                            BadCredentials(message: message),
+                        unknown: (String? message) => Unknown(message: message),
+                        cancelled: (String? message) => const Cancelled(),
+                        orElse: () => const Unknown().also((Unknown it) =>
+                            Logger.e("Unexpected failure: $failure")))),
+                (UserDataSource data) =>
+                    const Authenticated(status: SignedIn())));
   }
 
   @override
@@ -57,5 +86,36 @@ class AuthenticationRepositoryImpl
                     orElse: () => const Unknown().also((Unknown it) =>
                         Logger.e("Unexpected failure: $failure")))),
             (UserDataSource data) => const Authenticated(status: SignedIn())));
+  }
+
+  @override
+  Future<AuthenticationState> signInWithEmailAndPassword(
+      {required String emailAddress, required String password}) {
+    // TODO: implement signInWithEmailAndPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AuthenticationState> signInWithFacebook() {
+    // TODO: implement signInWithFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AuthenticationState> signInWithGoogle() {
+    // TODO: implement signInWithGoogle
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AuthenticationState> signInWithApple() {
+    // TODO: implement signInWithApple
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<AuthenticationState> signOut() {
+    return _authDataSource.signOut().then(
+            (void _) => const UnAuthenticated(status: SignedOut()));
   }
 }

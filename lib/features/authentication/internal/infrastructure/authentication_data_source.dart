@@ -18,6 +18,32 @@ abstract class AuthDataSource {
   /// verify phone otp
   Future<Either<AuthFailureDataSource, UserDataSource>> verifyPhoneOtp(
       {required String code});
+
+  /// sign up user by email
+  Future<Either<AuthFailureDataSource, UserDataSource>>
+      registerWithEmailAndPassword({
+    required String emailAddress,
+    required String password,
+  });
+
+  /// sign in user by email
+  Future<Either<AuthFailureDataSource, UserDataSource>>
+      signInWithEmailAndPassword({
+    required String emailAddress,
+    required String password,
+  });
+
+  /// sign in user with google
+  Future<Either<AuthFailureDataSource, UserDataSource>> signInWithGoogle();
+
+  /// sign in user with facebook
+  Future<Either<AuthFailureDataSource, UserDataSource>> signInWithFacebook();
+
+  /// sign in user with apple
+  Future<Either<AuthFailureDataSource, UserDataSource>> signInWithApple();
+
+  /// sign out user
+  Future<void> signOut();
 }
 
 /// User data source Model
