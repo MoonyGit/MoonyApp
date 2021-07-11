@@ -1,5 +1,4 @@
 /// Indicate connectivity status
-// ignore: public_member_api_docs
 enum ConnectivityStatus { online, offline }
 
 /// Wrapper class to provide connectivity status

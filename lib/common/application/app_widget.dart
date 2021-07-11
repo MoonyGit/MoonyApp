@@ -8,11 +8,10 @@ import 'app_router.dart';
 
 /// The Moony application widget setup
 class MoonyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: AppStrings.appTitle.tr,
+      title: AppStrings.translate(message: AppStrings.appTitle),
       debugShowCheckedModeBanner: false,
       initialRoute: Navigation.initial,
       getPages: Navigation.routes,
