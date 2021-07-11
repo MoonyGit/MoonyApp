@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "280149698854",
+    "project_id": "moonyapp-9996c",
+    "storage_bucket": "moonyapp-9996c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280149698854:android:32e71017003bfd1d2a79e7",
+        "android_client_info": {
+          "package_name": "com.moony.moony_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280149698854-i29fb835vsbhc69t5v3t2niq90l6l72l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moony.moony_app",
+            "certificate_hash": "a1f075517be392ab5cf095636390fbc32d97a562"
+          }
+        },
+        {
+          "client_id": "280149698854-oieohd0jtn0m6alg5o0dd77u9q8jj0bn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWflcZMulzk4sXaRDGXvKg37IJJe_UjUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280149698854-oieohd0jtn0m6alg5o0dd77u9q8jj0bn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "280149698854-nlipnbm9dr78f26ovnibjps1fisob1an.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.moony.moonyApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
