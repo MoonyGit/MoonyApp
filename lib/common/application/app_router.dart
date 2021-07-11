@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:moony_app/common/application/middleware.dart';
-import 'package:moony_app/features/authentication/internal/presentation/login_page.dart';
-import 'package:moony_app/features/startup/splash_bindings.dart';
+import 'package:moony_app/features/startup/splash_controller.dart';
 import 'package:moony_app/features/startup/splash_page.dart';
 
 
@@ -22,5 +20,10 @@ class Navigation {
 
   /// The list of routes
   static final List<GetPage<dynamic>> routes = [
+    GetPage<dynamic>(
+        name: splash,
+        page: () => SplashPage(),
+        binding: SplashBindings()
+    ),
   ];
 }
