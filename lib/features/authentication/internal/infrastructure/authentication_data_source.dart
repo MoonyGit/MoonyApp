@@ -6,98 +6,102 @@ part 'authentication_data_source.freezed.dart';
 /// The authentication data source contract
 abstract class AuthDataSource {
   /// get the sign in user
-  Future<UserDataSource?> getSignedInUser();
+  Future<AuthUserDataSourceModel?> getSignedInUser();
 
   /// get the sign in user by stream
-  Stream<UserDataSource?> getUserAuthStateChanges();
+  Stream<AuthUserDataSourceModel?> getUserAuthStateChanges();
 
   /// try sign in with phone number (send otp)
-  Future<VerifyPhoneStateDataSource> signInWithPhoneNumber(
+  Future<VerifyPhoneStateDataSourceEvent> signInWithPhoneNumber(
       {required String phoneNumber});
 
   /// verify phone otp
-  Future<Either<AuthFailureDataSource, UserDataSource>> verifyPhoneOtp(
-      {required String code});
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      verifyPhoneOtp({required String code});
 
   /// sign up user by email
-  Future<Either<AuthFailureDataSource, UserDataSource>>
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
       registerWithEmailAndPassword({
     required String emailAddress,
     required String password,
   });
 
   /// sign in user by email
-  Future<Either<AuthFailureDataSource, UserDataSource>>
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
       signInWithEmailAndPassword({
     required String emailAddress,
     required String password,
   });
 
   /// sign in user with google
-  Future<Either<AuthFailureDataSource, UserDataSource>> signInWithGoogle();
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithGoogle();
 
   /// sign in user with facebook
-  Future<Either<AuthFailureDataSource, UserDataSource>> signInWithFacebook();
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithFacebook();
 
   /// sign in user with apple
-  Future<Either<AuthFailureDataSource, UserDataSource>> signInWithApple();
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithApple();
 
   /// sign out user
   Future<void> signOut();
 }
 
 /// User data source Model
-class UserDataSource {
+class AuthUserDataSourceModel {
   /// Constructor
-  UserDataSource({required this.id});
+  AuthUserDataSourceModel({required this.id});
+
   /// id of user
   String id;
 }
 
+/// VerifyPhoneState data source sealed class class VerifyPhoneStateDataSource
 @freezed
-/// VerifyPhoneState data source sealed class
-class VerifyPhoneStateDataSource with _$VerifyPhoneStateDataSource {
+class VerifyPhoneStateDataSourceEvent with _$VerifyPhoneStateDataSourceEvent {
   /// auto login by phone
-  const factory VerifyPhoneStateDataSource.autoLogin(
+  const factory VerifyPhoneStateDataSourceEvent.autoLogin(
       {required String smsCode}) = VerifyPhoneAutoLoginDataSource;
 
   /// error during phone login
-  const factory VerifyPhoneStateDataSource.error({String? message}) =
+  const factory VerifyPhoneStateDataSourceEvent.error({String? message}) =
       VerifyPhoneErrorDataSource;
 
   /// phone otp sent
-  const factory VerifyPhoneStateDataSource.otpSent() =
+  const factory VerifyPhoneStateDataSourceEvent.otpSent() =
       VerifyPhoneOtpSentDataSource;
 }
 
+/// AuthFailure data source sealed class class AuthFailureDataSource
 @freezed
-/// AuthFailure data source sealed class
-class AuthFailureDataSource with _$AuthFailureDataSource {
+class AuthFailureDataSourceEvent with _$AuthFailureDataSourceEvent {
   /// credentials already used
-  const factory AuthFailureDataSource.credentialsAlreadyUsed(
+  const factory AuthFailureDataSourceEvent.credentialsAlreadyUsed(
       {@Default(null) String? message}) = AuthCredentialsAlreadyUsedDataSource;
 
   /// credentials already used
-  const factory AuthFailureDataSource.serverError(
+  const factory AuthFailureDataSourceEvent.serverError(
       {@Default(null) String? message}) = AuthServerErrorDataSource;
 
   /// bad credentials provided
-  const factory AuthFailureDataSource.badCredentials(
+  const factory AuthFailureDataSourceEvent.badCredentials(
       {@Default(null) String? message}) = AuthBadCredentialsDataSource;
 
   /// unknown or unhandled behavior
-  const factory AuthFailureDataSource.unknown(
+  const factory AuthFailureDataSourceEvent.unknown(
       {@Default(null) String? message}) = AuthUnknownDataSource;
 
   /// cancelled by user
-  const factory AuthFailureDataSource.cancelled(
+  const factory AuthFailureDataSourceEvent.cancelled(
       {@Default(null) String? message}) = AuthCancelledDataSource;
 
   /// otp expired
-  const factory AuthFailureDataSource.otpExpired(
+  const factory AuthFailureDataSourceEvent.otpExpired(
       {@Default(null) String? message}) = AuthOtpExpiredDataSource;
 
   /// bad otp provided
-  const factory AuthFailureDataSource.badOtp({@Default(null) String? message}) =
-      AuthBadOtpDataSource;
+  const factory AuthFailureDataSourceEvent.badOtp(
+      {@Default(null) String? message}) = AuthBadOtpDataSource;
 }

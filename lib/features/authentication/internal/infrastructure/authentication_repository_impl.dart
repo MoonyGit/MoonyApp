@@ -25,14 +25,14 @@ class AuthenticationRepositoryImpl
   Future<bool> isAuthenticated() {
     return _authDataSource
         .getSignedInUser()
-        .then((UserDataSource? value) => value != null);
+        .then((AuthUserDataSourceModel? value) => value != null);
   }
 
   @override
   Stream<bool> isAuthenticatedStream() {
     return _authDataSource
         .getUserAuthStateChanges()
-        .map((UserDataSource? event) => event != null);
+        .map((AuthUserDataSourceModel? event) => event != null);
   }
 
   @override
@@ -41,9 +41,9 @@ class AuthenticationRepositoryImpl
     return _authDataSource
         .registerWithEmailAndPassword(
             emailAddress: emailAddress, password: password)
-        .then((Either<AuthFailureDataSource, UserDataSource> value) =>
+        .then((Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel> value) =>
             value.fold(
-                (AuthFailureDataSource failure) => AuthenticationFailure(
+                (AuthFailureDataSourceEvent failure) => AuthenticationFailure(
                     status: failure.maybeWhen(
                         credentialsAlreadyUsed: (String? message) =>
                             const CredentialsAlreadyUsed(),
@@ -55,7 +55,7 @@ class AuthenticationRepositoryImpl
                         cancelled: (String? message) => const Cancelled(),
                         orElse: () => const Unknown().also((Unknown it) =>
                             Logger.e("Unexpected failure: $failure")))),
-                (UserDataSource data) =>
+                (AuthUserDataSourceModel data) =>
                     const Authenticated(status: SignedIn())));
   }
 
@@ -63,7 +63,7 @@ class AuthenticationRepositoryImpl
   Future<AuthenticationState> signInWithPhoneNumber(
       {required String phoneNumber}) {
     return _authDataSource.signInWithPhoneNumber(phoneNumber: phoneNumber).then(
-        (VerifyPhoneStateDataSource value) => value.when(
+        (VerifyPhoneStateDataSourceEvent value) => value.when(
             autoLogin: (String smsCode) =>
                 AuthenticationLoading(status: PhoneAutoLogin(smsCode: smsCode)),
             error: (String? message) =>
@@ -74,8 +74,8 @@ class AuthenticationRepositoryImpl
   @override
   Future<AuthenticationState> verifyPhoneOtp({required String code}) {
     return _authDataSource.verifyPhoneOtp(code: code).then(
-        (Either<AuthFailureDataSource, UserDataSource> value) => value.fold(
-            (AuthFailureDataSource failure) => AuthenticationFailure(
+        (Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel> value) => value.fold(
+            (AuthFailureDataSourceEvent failure) => AuthenticationFailure(
                 status: failure.maybeWhen(
                     serverError: (String? message) =>
                         ServerError(message: message),
@@ -85,7 +85,7 @@ class AuthenticationRepositoryImpl
                     cancelled: (String? message) => const Cancelled(),
                     orElse: () => const Unknown().also((Unknown it) =>
                         Logger.e("Unexpected failure: $failure")))),
-            (UserDataSource data) => const Authenticated(status: SignedIn())));
+            (AuthUserDataSourceModel data) => const Authenticated(status: SignedIn())));
   }
 
   @override

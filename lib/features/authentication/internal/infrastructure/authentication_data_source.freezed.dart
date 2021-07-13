@@ -13,8 +13,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$VerifyPhoneStateDataSourceTearOff {
-  const _$VerifyPhoneStateDataSourceTearOff();
+class _$VerifyPhoneStateDataSourceEventTearOff {
+  const _$VerifyPhoneStateDataSourceEventTearOff();
 
   VerifyPhoneAutoLoginDataSource autoLogin({required String smsCode}) {
     return VerifyPhoneAutoLoginDataSource(
@@ -34,10 +34,11 @@ class _$VerifyPhoneStateDataSourceTearOff {
 }
 
 /// @nodoc
-const $VerifyPhoneStateDataSource = _$VerifyPhoneStateDataSourceTearOff();
+const $VerifyPhoneStateDataSourceEvent =
+    _$VerifyPhoneStateDataSourceEventTearOff();
 
 /// @nodoc
-mixin _$VerifyPhoneStateDataSource {
+mixin _$VerifyPhoneStateDataSourceEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String smsCode) autoLogin,
@@ -71,20 +72,21 @@ mixin _$VerifyPhoneStateDataSource {
 }
 
 /// @nodoc
-abstract class $VerifyPhoneStateDataSourceCopyWith<$Res> {
-  factory $VerifyPhoneStateDataSourceCopyWith(VerifyPhoneStateDataSource value,
-          $Res Function(VerifyPhoneStateDataSource) then) =
-      _$VerifyPhoneStateDataSourceCopyWithImpl<$Res>;
+abstract class $VerifyPhoneStateDataSourceEventCopyWith<$Res> {
+  factory $VerifyPhoneStateDataSourceEventCopyWith(
+          VerifyPhoneStateDataSourceEvent value,
+          $Res Function(VerifyPhoneStateDataSourceEvent) then) =
+      _$VerifyPhoneStateDataSourceEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$VerifyPhoneStateDataSourceCopyWithImpl<$Res>
-    implements $VerifyPhoneStateDataSourceCopyWith<$Res> {
-  _$VerifyPhoneStateDataSourceCopyWithImpl(this._value, this._then);
+class _$VerifyPhoneStateDataSourceEventCopyWithImpl<$Res>
+    implements $VerifyPhoneStateDataSourceEventCopyWith<$Res> {
+  _$VerifyPhoneStateDataSourceEventCopyWithImpl(this._value, this._then);
 
-  final VerifyPhoneStateDataSource _value;
+  final VerifyPhoneStateDataSourceEvent _value;
   // ignore: unused_field
-  final $Res Function(VerifyPhoneStateDataSource) _then;
+  final $Res Function(VerifyPhoneStateDataSourceEvent) _then;
 }
 
 /// @nodoc
@@ -98,7 +100,7 @@ abstract class $VerifyPhoneAutoLoginDataSourceCopyWith<$Res> {
 
 /// @nodoc
 class _$VerifyPhoneAutoLoginDataSourceCopyWithImpl<$Res>
-    extends _$VerifyPhoneStateDataSourceCopyWithImpl<$Res>
+    extends _$VerifyPhoneStateDataSourceEventCopyWithImpl<$Res>
     implements $VerifyPhoneAutoLoginDataSourceCopyWith<$Res> {
   _$VerifyPhoneAutoLoginDataSourceCopyWithImpl(
       VerifyPhoneAutoLoginDataSource _value,
@@ -133,7 +135,7 @@ class _$VerifyPhoneAutoLoginDataSource
 
   @override
   String toString() {
-    return 'VerifyPhoneStateDataSource.autoLogin(smsCode: $smsCode)';
+    return 'VerifyPhoneStateDataSourceEvent.autoLogin(smsCode: $smsCode)';
   }
 
   @override
@@ -204,7 +206,7 @@ class _$VerifyPhoneAutoLoginDataSource
 }
 
 abstract class VerifyPhoneAutoLoginDataSource
-    implements VerifyPhoneStateDataSource {
+    implements VerifyPhoneStateDataSourceEvent {
   const factory VerifyPhoneAutoLoginDataSource({required String smsCode}) =
       _$VerifyPhoneAutoLoginDataSource;
 
@@ -224,7 +226,7 @@ abstract class $VerifyPhoneErrorDataSourceCopyWith<$Res> {
 
 /// @nodoc
 class _$VerifyPhoneErrorDataSourceCopyWithImpl<$Res>
-    extends _$VerifyPhoneStateDataSourceCopyWithImpl<$Res>
+    extends _$VerifyPhoneStateDataSourceEventCopyWithImpl<$Res>
     implements $VerifyPhoneErrorDataSourceCopyWith<$Res> {
   _$VerifyPhoneErrorDataSourceCopyWithImpl(VerifyPhoneErrorDataSource _value,
       $Res Function(VerifyPhoneErrorDataSource) _then)
@@ -257,7 +259,7 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
 
   @override
   String toString() {
-    return 'VerifyPhoneStateDataSource.error(message: $message)';
+    return 'VerifyPhoneStateDataSourceEvent.error(message: $message)';
   }
 
   @override
@@ -329,7 +331,7 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
 }
 
 abstract class VerifyPhoneErrorDataSource
-    implements VerifyPhoneStateDataSource {
+    implements VerifyPhoneStateDataSourceEvent {
   const factory VerifyPhoneErrorDataSource({String? message}) =
       _$VerifyPhoneErrorDataSource;
 
@@ -349,7 +351,7 @@ abstract class $VerifyPhoneOtpSentDataSourceCopyWith<$Res> {
 
 /// @nodoc
 class _$VerifyPhoneOtpSentDataSourceCopyWithImpl<$Res>
-    extends _$VerifyPhoneStateDataSourceCopyWithImpl<$Res>
+    extends _$VerifyPhoneStateDataSourceEventCopyWithImpl<$Res>
     implements $VerifyPhoneOtpSentDataSourceCopyWith<$Res> {
   _$VerifyPhoneOtpSentDataSourceCopyWithImpl(
       VerifyPhoneOtpSentDataSource _value,
@@ -368,7 +370,7 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
 
   @override
   String toString() {
-    return 'VerifyPhoneStateDataSource.otpSent()';
+    return 'VerifyPhoneStateDataSourceEvent.otpSent()';
   }
 
   @override
@@ -429,13 +431,13 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
 }
 
 abstract class VerifyPhoneOtpSentDataSource
-    implements VerifyPhoneStateDataSource {
+    implements VerifyPhoneStateDataSourceEvent {
   const factory VerifyPhoneOtpSentDataSource() = _$VerifyPhoneOtpSentDataSource;
 }
 
 /// @nodoc
-class _$AuthFailureDataSourceTearOff {
-  const _$AuthFailureDataSourceTearOff();
+class _$AuthFailureDataSourceEventTearOff {
+  const _$AuthFailureDataSourceEventTearOff();
 
   AuthCredentialsAlreadyUsedDataSource credentialsAlreadyUsed(
       {String? message = null}) {
@@ -482,10 +484,10 @@ class _$AuthFailureDataSourceTearOff {
 }
 
 /// @nodoc
-const $AuthFailureDataSource = _$AuthFailureDataSourceTearOff();
+const $AuthFailureDataSourceEvent = _$AuthFailureDataSourceEventTearOff();
 
 /// @nodoc
-mixin _$AuthFailureDataSource {
+mixin _$AuthFailureDataSourceEvent {
   String? get message => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
@@ -539,26 +541,26 @@ mixin _$AuthFailureDataSource {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AuthFailureDataSourceCopyWith<AuthFailureDataSource> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthFailureDataSourceEventCopyWith<AuthFailureDataSourceEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthFailureDataSourceCopyWith<$Res> {
-  factory $AuthFailureDataSourceCopyWith(AuthFailureDataSource value,
-          $Res Function(AuthFailureDataSource) then) =
-      _$AuthFailureDataSourceCopyWithImpl<$Res>;
+abstract class $AuthFailureDataSourceEventCopyWith<$Res> {
+  factory $AuthFailureDataSourceEventCopyWith(AuthFailureDataSourceEvent value,
+          $Res Function(AuthFailureDataSourceEvent) then) =
+      _$AuthFailureDataSourceEventCopyWithImpl<$Res>;
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$AuthFailureDataSourceCopyWithImpl<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
-  _$AuthFailureDataSourceCopyWithImpl(this._value, this._then);
+class _$AuthFailureDataSourceEventCopyWithImpl<$Res>
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
+  _$AuthFailureDataSourceEventCopyWithImpl(this._value, this._then);
 
-  final AuthFailureDataSource _value;
+  final AuthFailureDataSourceEvent _value;
   // ignore: unused_field
-  final $Res Function(AuthFailureDataSource) _then;
+  final $Res Function(AuthFailureDataSourceEvent) _then;
 
   @override
   $Res call({
@@ -575,7 +577,7 @@ class _$AuthFailureDataSourceCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $AuthCredentialsAlreadyUsedDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthCredentialsAlreadyUsedDataSourceCopyWith(
           AuthCredentialsAlreadyUsedDataSource value,
           $Res Function(AuthCredentialsAlreadyUsedDataSource) then) =
@@ -586,7 +588,7 @@ abstract class $AuthCredentialsAlreadyUsedDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthCredentialsAlreadyUsedDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthCredentialsAlreadyUsedDataSourceCopyWith<$Res> {
   _$AuthCredentialsAlreadyUsedDataSourceCopyWithImpl(
       AuthCredentialsAlreadyUsedDataSource _value,
@@ -622,7 +624,7 @@ class _$AuthCredentialsAlreadyUsedDataSource
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.credentialsAlreadyUsed(message: $message)';
+    return 'AuthFailureDataSourceEvent.credentialsAlreadyUsed(message: $message)';
   }
 
   @override
@@ -713,7 +715,7 @@ class _$AuthCredentialsAlreadyUsedDataSource
 }
 
 abstract class AuthCredentialsAlreadyUsedDataSource
-    implements AuthFailureDataSource {
+    implements AuthFailureDataSourceEvent {
   const factory AuthCredentialsAlreadyUsedDataSource({String? message}) =
       _$AuthCredentialsAlreadyUsedDataSource;
 
@@ -728,7 +730,7 @@ abstract class AuthCredentialsAlreadyUsedDataSource
 
 /// @nodoc
 abstract class $AuthServerErrorDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthServerErrorDataSourceCopyWith(AuthServerErrorDataSource value,
           $Res Function(AuthServerErrorDataSource) then) =
       _$AuthServerErrorDataSourceCopyWithImpl<$Res>;
@@ -738,7 +740,7 @@ abstract class $AuthServerErrorDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthServerErrorDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthServerErrorDataSourceCopyWith<$Res> {
   _$AuthServerErrorDataSourceCopyWithImpl(AuthServerErrorDataSource _value,
       $Res Function(AuthServerErrorDataSource) _then)
@@ -772,7 +774,7 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.serverError(message: $message)';
+    return 'AuthFailureDataSourceEvent.serverError(message: $message)';
   }
 
   @override
@@ -861,7 +863,7 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
   }
 }
 
-abstract class AuthServerErrorDataSource implements AuthFailureDataSource {
+abstract class AuthServerErrorDataSource implements AuthFailureDataSourceEvent {
   const factory AuthServerErrorDataSource({String? message}) =
       _$AuthServerErrorDataSource;
 
@@ -875,7 +877,7 @@ abstract class AuthServerErrorDataSource implements AuthFailureDataSource {
 
 /// @nodoc
 abstract class $AuthBadCredentialsDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthBadCredentialsDataSourceCopyWith(
           AuthBadCredentialsDataSource value,
           $Res Function(AuthBadCredentialsDataSource) then) =
@@ -886,7 +888,7 @@ abstract class $AuthBadCredentialsDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthBadCredentialsDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthBadCredentialsDataSourceCopyWith<$Res> {
   _$AuthBadCredentialsDataSourceCopyWithImpl(
       AuthBadCredentialsDataSource _value,
@@ -921,7 +923,7 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.badCredentials(message: $message)';
+    return 'AuthFailureDataSourceEvent.badCredentials(message: $message)';
   }
 
   @override
@@ -1010,7 +1012,8 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
   }
 }
 
-abstract class AuthBadCredentialsDataSource implements AuthFailureDataSource {
+abstract class AuthBadCredentialsDataSource
+    implements AuthFailureDataSourceEvent {
   const factory AuthBadCredentialsDataSource({String? message}) =
       _$AuthBadCredentialsDataSource;
 
@@ -1024,7 +1027,7 @@ abstract class AuthBadCredentialsDataSource implements AuthFailureDataSource {
 
 /// @nodoc
 abstract class $AuthUnknownDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthUnknownDataSourceCopyWith(AuthUnknownDataSource value,
           $Res Function(AuthUnknownDataSource) then) =
       _$AuthUnknownDataSourceCopyWithImpl<$Res>;
@@ -1034,7 +1037,7 @@ abstract class $AuthUnknownDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthUnknownDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthUnknownDataSourceCopyWith<$Res> {
   _$AuthUnknownDataSourceCopyWithImpl(
       AuthUnknownDataSource _value, $Res Function(AuthUnknownDataSource) _then)
@@ -1067,7 +1070,7 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.unknown(message: $message)';
+    return 'AuthFailureDataSourceEvent.unknown(message: $message)';
   }
 
   @override
@@ -1156,7 +1159,7 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
   }
 }
 
-abstract class AuthUnknownDataSource implements AuthFailureDataSource {
+abstract class AuthUnknownDataSource implements AuthFailureDataSourceEvent {
   const factory AuthUnknownDataSource({String? message}) =
       _$AuthUnknownDataSource;
 
@@ -1170,7 +1173,7 @@ abstract class AuthUnknownDataSource implements AuthFailureDataSource {
 
 /// @nodoc
 abstract class $AuthCancelledDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthCancelledDataSourceCopyWith(AuthCancelledDataSource value,
           $Res Function(AuthCancelledDataSource) then) =
       _$AuthCancelledDataSourceCopyWithImpl<$Res>;
@@ -1180,7 +1183,7 @@ abstract class $AuthCancelledDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthCancelledDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthCancelledDataSourceCopyWith<$Res> {
   _$AuthCancelledDataSourceCopyWithImpl(AuthCancelledDataSource _value,
       $Res Function(AuthCancelledDataSource) _then)
@@ -1213,7 +1216,7 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.cancelled(message: $message)';
+    return 'AuthFailureDataSourceEvent.cancelled(message: $message)';
   }
 
   @override
@@ -1302,7 +1305,7 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
   }
 }
 
-abstract class AuthCancelledDataSource implements AuthFailureDataSource {
+abstract class AuthCancelledDataSource implements AuthFailureDataSourceEvent {
   const factory AuthCancelledDataSource({String? message}) =
       _$AuthCancelledDataSource;
 
@@ -1316,7 +1319,7 @@ abstract class AuthCancelledDataSource implements AuthFailureDataSource {
 
 /// @nodoc
 abstract class $AuthOtpExpiredDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthOtpExpiredDataSourceCopyWith(AuthOtpExpiredDataSource value,
           $Res Function(AuthOtpExpiredDataSource) then) =
       _$AuthOtpExpiredDataSourceCopyWithImpl<$Res>;
@@ -1326,7 +1329,7 @@ abstract class $AuthOtpExpiredDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthOtpExpiredDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthOtpExpiredDataSourceCopyWith<$Res> {
   _$AuthOtpExpiredDataSourceCopyWithImpl(AuthOtpExpiredDataSource _value,
       $Res Function(AuthOtpExpiredDataSource) _then)
@@ -1360,7 +1363,7 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.otpExpired(message: $message)';
+    return 'AuthFailureDataSourceEvent.otpExpired(message: $message)';
   }
 
   @override
@@ -1449,7 +1452,7 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
   }
 }
 
-abstract class AuthOtpExpiredDataSource implements AuthFailureDataSource {
+abstract class AuthOtpExpiredDataSource implements AuthFailureDataSourceEvent {
   const factory AuthOtpExpiredDataSource({String? message}) =
       _$AuthOtpExpiredDataSource;
 
@@ -1463,7 +1466,7 @@ abstract class AuthOtpExpiredDataSource implements AuthFailureDataSource {
 
 /// @nodoc
 abstract class $AuthBadOtpDataSourceCopyWith<$Res>
-    implements $AuthFailureDataSourceCopyWith<$Res> {
+    implements $AuthFailureDataSourceEventCopyWith<$Res> {
   factory $AuthBadOtpDataSourceCopyWith(AuthBadOtpDataSource value,
           $Res Function(AuthBadOtpDataSource) then) =
       _$AuthBadOtpDataSourceCopyWithImpl<$Res>;
@@ -1473,7 +1476,7 @@ abstract class $AuthBadOtpDataSourceCopyWith<$Res>
 
 /// @nodoc
 class _$AuthBadOtpDataSourceCopyWithImpl<$Res>
-    extends _$AuthFailureDataSourceCopyWithImpl<$Res>
+    extends _$AuthFailureDataSourceEventCopyWithImpl<$Res>
     implements $AuthBadOtpDataSourceCopyWith<$Res> {
   _$AuthBadOtpDataSourceCopyWithImpl(
       AuthBadOtpDataSource _value, $Res Function(AuthBadOtpDataSource) _then)
@@ -1506,7 +1509,7 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
 
   @override
   String toString() {
-    return 'AuthFailureDataSource.badOtp(message: $message)';
+    return 'AuthFailureDataSourceEvent.badOtp(message: $message)';
   }
 
   @override
@@ -1595,7 +1598,7 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
   }
 }
 
-abstract class AuthBadOtpDataSource implements AuthFailureDataSource {
+abstract class AuthBadOtpDataSource implements AuthFailureDataSourceEvent {
   const factory AuthBadOtpDataSource({String? message}) =
       _$AuthBadOtpDataSource;
 
