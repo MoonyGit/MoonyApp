@@ -60,9 +60,13 @@ class AuthenticationRepositoryImpl
   }
 
   @override
-  Future<AuthenticationState> signInWithPhoneNumber(
-      {required String phoneNumber}) {
-    return _authDataSource.signInWithPhoneNumber(phoneNumber: phoneNumber).then(
+  void signInWithPhoneNumber({required String phoneNumber}) {
+    _authDataSource.signInWithPhoneNumber(phoneNumber: phoneNumber);
+  }
+
+  @override
+  Stream<AuthenticationState> getPhoneNumberAuthenticationState() {
+    return _authDataSource.getPhoneNumberAuthenticationState().map(
         (VerifyPhoneStateDataSourceEvent value) => value.when(
             autoLogin: (String smsCode) =>
                 AuthenticationLoading(status: PhoneAutoLogin(smsCode: smsCode)),
@@ -74,18 +78,21 @@ class AuthenticationRepositoryImpl
   @override
   Future<AuthenticationState> verifyPhoneOtp({required String code}) {
     return _authDataSource.verifyPhoneOtp(code: code).then(
-        (Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel> value) => value.fold(
-            (AuthFailureDataSourceEvent failure) => AuthenticationFailure(
-                status: failure.maybeWhen(
-                    serverError: (String? message) =>
-                        ServerError(message: message),
-                    badOtp: (String? message) => BadOtp(message: message),
-                    otpExpired: (String? message) => BadOtp(message: message),
-                    unknown: (String? message) => Unknown(message: message),
-                    cancelled: (String? message) => const Cancelled(),
-                    orElse: () => const Unknown().also((Unknown it) =>
-                        Logger.e("Unexpected failure: $failure")))),
-            (AuthUserDataSourceModel data) => const Authenticated(status: SignedIn())));
+        (Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel> value) =>
+            value.fold(
+                (AuthFailureDataSourceEvent failure) => AuthenticationFailure(
+                    status: failure.maybeWhen(
+                        serverError: (String? message) =>
+                            ServerError(message: message),
+                        badOtp: (String? message) => BadOtp(message: message),
+                        otpExpired: (String? message) =>
+                            BadOtp(message: message),
+                        unknown: (String? message) => Unknown(message: message),
+                        cancelled: (String? message) => const Cancelled(),
+                        orElse: () => const Unknown().also((Unknown it) =>
+                            Logger.e("Unexpected failure: $failure")))),
+                (AuthUserDataSourceModel data) =>
+                    const Authenticated(status: SignedIn())));
   }
 
   @override
@@ -115,7 +122,8 @@ class AuthenticationRepositoryImpl
 
   @override
   Future<AuthenticationState> signOut() {
-    return _authDataSource.signOut().then(
-            (void _) => const UnAuthenticated(status: SignedOut()));
+    return _authDataSource
+        .signOut()
+        .then((void _) => const UnAuthenticated(status: SignedOut()));
   }
 }

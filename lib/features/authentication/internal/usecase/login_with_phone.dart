@@ -19,12 +19,20 @@ class PhoneAuthUseCase {
 
   /// try sign in with phone number
   /// (generate a phone otp sent to the user by sms)
-  Future<AuthenticationState> signInWithPhoneNumber(
+  AuthenticationState signInWithPhoneNumber(
       {required String? phoneNumber}) {
     return PhoneNumber(input: phoneNumber).value.fold(
-        (PhoneNumberFailure failure) => Future<AuthenticationState>(() =>
-            AuthenticationFailure(
-                status: BadCredentials(message: failure.message))),
-        (String phone) => _authRepo.signInWithPhoneNumber(phoneNumber: phone));
+        (PhoneNumberFailure failure) => AuthenticationFailure(
+                status: BadCredentials(message: failure.message)),
+        (String phone) {
+          _authRepo.signInWithPhoneNumber(phoneNumber: phone);
+          return const AuthenticationLoading(status: InProgress());
+        });
+  }
+
+  /// get phone number auth state as a stream, provide results of
+  /// void signInWithPhoneNumber({required String phoneNumber}) method
+  Stream<AuthenticationState> getPhoneNumberAuthenticationState() {
+    return _authRepo.getPhoneNumberAuthenticationState();
   }
 }

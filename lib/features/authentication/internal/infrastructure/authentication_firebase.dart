@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart' hide User, PhoneCodeSent;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:rxdart/rxdart.dart';
 
 import './firebase_user_mapper.dart';
 import 'authentication_data_source.dart';
@@ -12,8 +13,8 @@ import 'authentication_data_source.dart';
 /// Firebase authentication data source
 class FirebaseAuthFacade implements AuthDataSource {
   /// Constructor
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn,
-      this._facebookSignIn);
+  FirebaseAuthFacade(
+      this._firebaseAuth, this._googleSignIn, this._facebookSignIn);
 
   static const String _errorEmailAlreadyInUse = 'email-already-in-use';
   static const String _errorWrongPassword = 'wrong-password';
@@ -29,6 +30,11 @@ class FirebaseAuthFacade implements AuthDataSource {
   final FacebookAuth _facebookSignIn;
 
   String? _phoneVerificationId;
+  PhoneAuthCredential? _phoneAutoRetrieveCredential;
+
+  final StreamController<VerifyPhoneStateDataSourceEvent>
+      _phoneAuthenticationState =
+      BehaviorSubject<VerifyPhoneStateDataSourceEvent>();
 
   /// No need local storage as firebase handle the persistance
   @override
@@ -43,58 +49,65 @@ class FirebaseAuthFacade implements AuthDataSource {
   }
 
   @override
-  Future<VerifyPhoneStateDataSourceEvent> signInWithPhoneNumber(
-      {required String phoneNumber}) async {
-    final Completer<VerifyPhoneStateDataSourceEvent> completer =
-        Completer<VerifyPhoneStateDataSourceEvent>();
-
-    await _firebaseAuth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        // await _firebaseAuth.signInWithCredential(credential);
-        _phoneVerificationId = credential.verificationId;
-        completer.complete(
-            VerifyPhoneStateDataSourceEvent.autoLogin(smsCode: credential.smsCode!));
-      },
-      timeout: _phoneVerificationTimeoutInSeconds,
-      verificationFailed: (FirebaseAuthException e) {
-        completer
-            .complete(VerifyPhoneStateDataSourceEvent.error(message: e.message));
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        _phoneVerificationId = verificationId;
-        completer.complete(const VerifyPhoneStateDataSourceEvent.otpSent());
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
-    return completer.future;
+  Stream<VerifyPhoneStateDataSourceEvent> getPhoneNumberAuthenticationState() {
+    return _phoneAuthenticationState.stream;
   }
 
   @override
-  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>> verifyPhoneOtp(
-      {required String code}) async {
+  void signInWithPhoneNumber({required String phoneNumber}) {
+    _firebaseAuth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        // await _firebaseAuth.signInWithCredential(credential);
+        _phoneAutoRetrieveCredential = credential;
+        _phoneAuthenticationState.add(VerifyPhoneStateDataSourceEvent.autoLogin(
+            smsCode: credential.smsCode!));
+      },
+      timeout: _phoneVerificationTimeoutInSeconds,
+      verificationFailed: (FirebaseAuthException e) {
+        _phoneAuthenticationState
+            .add(VerifyPhoneStateDataSourceEvent.error(message: e.message));
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        _phoneVerificationId = verificationId;
+        _phoneAuthenticationState
+            .add(const VerifyPhoneStateDataSourceEvent.otpSent());
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      verifyPhoneOtp({required String code}) async {
+
+    PhoneAuthCredential credential;
     if (_phoneVerificationId != null) {
-      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
+      credential = PhoneAuthProvider.credential(
           verificationId: _phoneVerificationId!, smsCode: code);
-      return _firebaseAuth
-          .signInWithCredential(credential)
-          .then((UserCredential value) => right(value.user!.toDataSource()),
-              onError: (dynamic error, dynamic stackTrace) {
-        if (error is FirebaseAuthException) {
-          switch (error.code) {
-            case _errorExpiredPhoneOtp:
-              return left(
-                  AuthFailureDataSourceEvent.otpExpired(message: error.message));
-            default:
-              return left(AuthFailureDataSourceEvent.badOtp(message: error.message));
-          }
-        } else {
-          return left(const AuthFailureDataSourceEvent.unknown());
-        }
-      });
+    } else if (_phoneAutoRetrieveCredential != null) {
+      credential = _phoneAutoRetrieveCredential!;
     } else {
       return left(const AuthFailureDataSourceEvent.otpExpired());
     }
+
+    return _firebaseAuth
+        .signInWithCredential(credential)
+        .then((UserCredential value) => right(value.user!.toDataSource()),
+            onError: (dynamic error, dynamic stackTrace) {
+      if (error is FirebaseAuthException) {
+        switch (error.code) {
+          case _errorExpiredPhoneOtp:
+            return left(
+                AuthFailureDataSourceEvent.otpExpired(message: error.message));
+          default:
+            return left(
+                AuthFailureDataSourceEvent.badOtp(message: error.message));
+        }
+      } else {
+        return left(const AuthFailureDataSourceEvent.unknown());
+      }
+    });
   }
 
   @override
@@ -116,7 +129,8 @@ class FirebaseAuthFacade implements AuthDataSource {
             return left(AuthFailureDataSourceEvent.credentialsAlreadyUsed(
                 message: error.message));
           default:
-            left(AuthFailureDataSourceEvent.badCredentials(message: error.message));
+            left(AuthFailureDataSourceEvent.badCredentials(
+                message: error.message));
         }
       } else {
         return left(const AuthFailureDataSourceEvent.unknown());
@@ -142,10 +156,11 @@ class FirebaseAuthFacade implements AuthDataSource {
         switch (error.code) {
           case _errorWrongPassword:
           case _errorUserNotFound:
-            return left(
-                AuthFailureDataSourceEvent.badCredentials(message: error.message));
+            return left(AuthFailureDataSourceEvent.badCredentials(
+                message: error.message));
           default:
-            left(AuthFailureDataSourceEvent.badCredentials(message: error.message));
+            left(AuthFailureDataSourceEvent.badCredentials(
+                message: error.message));
         }
       } else {
         return left(const AuthFailureDataSourceEvent.unknown());
@@ -174,8 +189,8 @@ class FirebaseAuthFacade implements AuthDataSource {
         if (error is FirebaseAuthException) {
           switch (error.code) {
             default:
-              left(
-                  AuthFailureDataSourceEvent.badCredentials(message: error.message));
+              left(AuthFailureDataSourceEvent.badCredentials(
+                  message: error.message));
           }
         } else {
           return left(const AuthFailureDataSourceEvent.unknown());
@@ -187,13 +202,15 @@ class FirebaseAuthFacade implements AuthDataSource {
   }
 
   @override
-  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>> signInWithFacebook() {
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithFacebook() {
     // TODO: implement signInWithFacebook
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>> signInWithApple() {
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithApple() {
     // TODO: implement signInWithApple
     // SignInWithApple.getKeychainCredential();
     throw UnimplementedError();

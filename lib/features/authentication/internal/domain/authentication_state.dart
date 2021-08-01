@@ -64,6 +64,11 @@ class AuthenticationStatus with _$AuthenticationStatus {
   const factory AuthenticationStatus.autoLogin({required String smsCode}) =
       PhoneAutoLogin;
 
+  /// domain rules has been completed successfully,
+  /// still waiting for server validation
+  /// used with AuthenticationLoading state
+  const factory AuthenticationStatus.inProgress() = InProgress;
+
   /// server error
   /// used with AuthenticationFailure state
   const factory AuthenticationStatus.serverError(

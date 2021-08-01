@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/resources/strings.dart';
@@ -16,38 +19,88 @@ class SmsOtpBindings extends Bindings {
 /// The viewModel of SmsOtpPage
 class SmsOtpController extends GetxController {
   /// Constructor
-  SmsOtpController(this._authUseCase);
+  SmsOtpController(this._authUseCase) {
+    _phoneAuthenticationStateSubscription = _authUseCase
+        .getPhoneNumberAuthenticationState()
+        .listen((AuthenticationState state) {
+      Logger.d("SmsOtpController state received $state");
+      state.status.maybeWhen(
+          autoLogin: (String? smsOtp) {
+            if (smsOtp != null) {
+              otpTextController.text = smsOtp;
+            }
+          },
+          orElse: () =>
+              Logger.d("SmsOtpController undefined state received $state"));
+    });
+  }
+
+  late StreamSubscription<AuthenticationState>
+      _phoneAuthenticationStateSubscription;
+
+  /// Handle text controller at viewModel level to dispose it in onClose
+  final TextEditingController otpTextController = TextEditingController();
+
+  /// Handle formKey at viewModel level to workaround sync form validation
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final PhoneAuthUseCase _authUseCase;
   String? _lastOtp;
 
   /// used to notify an async validation with message
-  RxnString phoneOtpValidatedMessage = RxnString();
+  String? phoneOtpValidatedMessage;
 
   /// verify the phone otp and go to next page
   String? verifySmsOtp(String? otp) {
     if (otp == _lastOtp) {
-      return phoneOtpValidatedMessage.value;
+      return phoneOtpValidatedMessage;
     } else {
       _lastOtp = otp;
       _authUseCase
           .verifyPhoneOtp(smsCode: otp)
           .then((AuthenticationState state) {
+        Logger.d("SmsOtpController verifySmsOtp state received $state");
         state.status.maybeWhen(
-            badOtp: (String? message) => message?.let((String it) =>
-                phoneOtpValidatedMessage.value =
-                    AppStrings.translate(message: it)),
-            serverError: (String? message) => phoneOtpValidatedMessage.value =
-                AppStrings.translate(
-                    message: message ?? AppStrings.genericAuthFailure),
-            unknown: (String? message) => phoneOtpValidatedMessage.value =
-                AppStrings.translate(
-                    message: message ?? AppStrings.genericAuthFailure),
-            signedIn: () => phoneOtpValidatedMessage.value = null,
-            orElse: () => Logger.d("state received $state"));
+            badOtp: (String? message) {
+              phoneOtpValidatedMessage = AppStrings.translate(
+                  message: message ?? AppStrings.genericAuthFailure);
+              // re-validate with new message
+              formKey.currentState?.validate();
+            },
+            serverError: (String? message) {
+              phoneOtpValidatedMessage = AppStrings.translate(
+                  message: message ?? AppStrings.genericAuthFailure);
+              // re-validate with new message
+              formKey.currentState?.validate();
+            },
+            unknown: (String? message) {
+              phoneOtpValidatedMessage = AppStrings.translate(
+                  message: message ?? AppStrings.genericAuthFailure);
+              // re-validate with new message
+              formKey.currentState?.validate();
+            },
+            signedIn: () {
+              phoneOtpValidatedMessage = null;
+              // re-validate with new message
+              formKey.currentState?.validate();
+            },
+            orElse: () => Logger.d("SmsOtpController verifySmsOtp "
+                "undefined state received $state"));
       });
-      return phoneOtpValidatedMessage.value
+      return phoneOtpValidatedMessage
           ?.let((String it) => AppStrings.translate(message: it));
     }
+  }
+
+  /// On next button pressed
+  void onNextPressed() {
+    formKey.currentState?.validate();
+  }
+
+  @override
+  void onClose() {
+    _phoneAuthenticationStateSubscription.cancel();
+    otpTextController.dispose();
+    super.onClose();
   }
 }

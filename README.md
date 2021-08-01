@@ -28,7 +28,7 @@ flutter packages pub run build_runner build
 - State management and dependency injection should be done with GetX or Riverpod
 - Unit tests
 
-For this project, I used the packge by feature approach for the following reasons:
+For this project, I used the package by feature approach for the following reasons:
 
 - Higher Modularity
 Package-by-feature has packages with high cohesion, high modularity, and low coupling between packages.

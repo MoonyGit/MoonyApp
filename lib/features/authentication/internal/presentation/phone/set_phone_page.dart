@@ -14,9 +14,6 @@ class SetPhonePage extends GetView<SetPhoneController> {
 
   @override
   Widget build(BuildContext context) {
-    // ever(controller.phoneNumberValidatedMessage, (event) {
-    //   _formKey.currentState!.validate();
-    // });
     return Scaffold(
         appBar: AppBar(),
         body: Form(

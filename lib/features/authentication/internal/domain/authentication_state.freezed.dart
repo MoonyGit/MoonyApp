@@ -703,6 +703,10 @@ class _$AuthenticationStatusTearOff {
     );
   }
 
+  InProgress inProgress() {
+    return const InProgress();
+  }
+
   ServerError serverError({String? message = null}) {
     return ServerError(
       message: message,
@@ -732,6 +736,7 @@ mixin _$AuthenticationStatus {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) =>
@@ -747,6 +752,7 @@ mixin _$AuthenticationStatus {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -763,6 +769,7 @@ mixin _$AuthenticationStatus {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) =>
@@ -778,6 +785,7 @@ mixin _$AuthenticationStatus {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -849,6 +857,7 @@ class _$SignedIn implements SignedIn {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -867,6 +876,7 @@ class _$SignedIn implements SignedIn {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -889,6 +899,7 @@ class _$SignedIn implements SignedIn {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -907,6 +918,7 @@ class _$SignedIn implements SignedIn {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -969,6 +981,7 @@ class _$SignedOut implements SignedOut {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -987,6 +1000,7 @@ class _$SignedOut implements SignedOut {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1009,6 +1023,7 @@ class _$SignedOut implements SignedOut {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1027,6 +1042,7 @@ class _$SignedOut implements SignedOut {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1091,6 +1107,7 @@ class _$SessionExpired implements SessionExpired {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1109,6 +1126,7 @@ class _$SessionExpired implements SessionExpired {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1131,6 +1149,7 @@ class _$SessionExpired implements SessionExpired {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1149,6 +1168,7 @@ class _$SessionExpired implements SessionExpired {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1239,6 +1259,7 @@ class _$BadCredentials implements BadCredentials {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1257,6 +1278,7 @@ class _$BadCredentials implements BadCredentials {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1279,6 +1301,7 @@ class _$BadCredentials implements BadCredentials {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1297,6 +1320,7 @@ class _$BadCredentials implements BadCredentials {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1364,6 +1388,7 @@ class _$Cancelled implements Cancelled {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1382,6 +1407,7 @@ class _$Cancelled implements Cancelled {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1404,6 +1430,7 @@ class _$Cancelled implements Cancelled {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1422,6 +1449,7 @@ class _$Cancelled implements Cancelled {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1486,6 +1514,7 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1504,6 +1533,7 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1526,6 +1556,7 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1544,6 +1575,7 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1632,6 +1664,7 @@ class _$BadOtp implements BadOtp {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1650,6 +1683,7 @@ class _$BadOtp implements BadOtp {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1672,6 +1706,7 @@ class _$BadOtp implements BadOtp {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1690,6 +1725,7 @@ class _$BadOtp implements BadOtp {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1756,6 +1792,7 @@ class _$OtpSent implements OtpSent {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1774,6 +1811,7 @@ class _$OtpSent implements OtpSent {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1796,6 +1834,7 @@ class _$OtpSent implements OtpSent {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1814,6 +1853,7 @@ class _$OtpSent implements OtpSent {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1903,6 +1943,7 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -1921,6 +1962,7 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -1943,6 +1985,7 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -1961,6 +2004,7 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -1979,6 +2023,131 @@ abstract class PhoneAutoLogin implements AuthenticationStatus {
   @JsonKey(ignore: true)
   $PhoneAutoLoginCopyWith<PhoneAutoLogin> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InProgressCopyWith<$Res> {
+  factory $InProgressCopyWith(
+          InProgress value, $Res Function(InProgress) then) =
+      _$InProgressCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InProgressCopyWithImpl<$Res>
+    extends _$AuthenticationStatusCopyWithImpl<$Res>
+    implements $InProgressCopyWith<$Res> {
+  _$InProgressCopyWithImpl(InProgress _value, $Res Function(InProgress) _then)
+      : super(_value, (v) => _then(v as InProgress));
+
+  @override
+  InProgress get _value => super._value as InProgress;
+}
+
+/// @nodoc
+
+class _$InProgress implements InProgress {
+  const _$InProgress();
+
+  @override
+  String toString() {
+    return 'AuthenticationStatus.inProgress()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InProgress);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() signedIn,
+    required TResult Function() signedOut,
+    required TResult Function() sessionExpired,
+    required TResult Function(String? message) badCredentials,
+    required TResult Function() cancelled,
+    required TResult Function() used,
+    required TResult Function(String? message) badOtp,
+    required TResult Function() otpSent,
+    required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
+    required TResult Function(String? message) serverError,
+    required TResult Function(String? message) unknown,
+  }) {
+    return inProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+    required TResult orElse(),
+  }) {
+    if (inProgress != null) {
+      return inProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SignedIn value) signedIn,
+    required TResult Function(SignedOut value) signedOut,
+    required TResult Function(SessionExpired value) sessionExpired,
+    required TResult Function(BadCredentials value) badCredentials,
+    required TResult Function(Cancelled value) cancelled,
+    required TResult Function(CredentialsAlreadyUsed value) used,
+    required TResult Function(BadOtp value) badOtp,
+    required TResult Function(OtpSent value) otpSent,
+    required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(Unknown value) unknown,
+  }) {
+    return inProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (inProgress != null) {
+      return inProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InProgress implements AuthenticationStatus {
+  const factory InProgress() = _$InProgress;
 }
 
 /// @nodoc
@@ -2056,6 +2225,7 @@ class _$ServerError implements ServerError {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -2074,6 +2244,7 @@ class _$ServerError implements ServerError {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -2096,6 +2267,7 @@ class _$ServerError implements ServerError {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -2114,6 +2286,7 @@ class _$ServerError implements ServerError {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
@@ -2207,6 +2380,7 @@ class _$Unknown implements Unknown {
     required TResult Function(String? message) badOtp,
     required TResult Function() otpSent,
     required TResult Function(String smsCode) autoLogin,
+    required TResult Function() inProgress,
     required TResult Function(String? message) serverError,
     required TResult Function(String? message) unknown,
   }) {
@@ -2225,6 +2399,7 @@ class _$Unknown implements Unknown {
     TResult Function(String? message)? badOtp,
     TResult Function()? otpSent,
     TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
     TResult Function(String? message)? serverError,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
@@ -2247,6 +2422,7 @@ class _$Unknown implements Unknown {
     required TResult Function(BadOtp value) badOtp,
     required TResult Function(OtpSent value) otpSent,
     required TResult Function(PhoneAutoLogin value) autoLogin,
+    required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
   }) {
@@ -2265,6 +2441,7 @@ class _$Unknown implements Unknown {
     TResult Function(BadOtp value)? badOtp,
     TResult Function(OtpSent value)? otpSent,
     TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
     TResult Function(ServerError value)? serverError,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),

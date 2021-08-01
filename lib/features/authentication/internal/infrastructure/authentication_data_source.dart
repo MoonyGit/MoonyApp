@@ -12,8 +12,12 @@ abstract class AuthDataSource {
   Stream<AuthUserDataSourceModel?> getUserAuthStateChanges();
 
   /// try sign in with phone number (send otp)
-  Future<VerifyPhoneStateDataSourceEvent> signInWithPhoneNumber(
+  void signInWithPhoneNumber(
       {required String phoneNumber});
+
+  /// get phone number auth state as a stream, provide results of
+  /// void signInWithPhoneNumber({required String phoneNumber}) method
+  Stream<VerifyPhoneStateDataSourceEvent> getPhoneNumberAuthenticationState();
 
   /// verify phone otp
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>

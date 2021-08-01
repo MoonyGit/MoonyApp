@@ -17,8 +17,13 @@ abstract class ISignOutRepository {
 
 /// Phone authentication repository
 abstract class IPhoneAuthRepository {
+
+  /// get phone number auth state as a stream, provide results of
+  /// void signInWithPhoneNumber({required String phoneNumber}) method
+  Stream<AuthenticationState> getPhoneNumberAuthenticationState();
+
   /// sign in with phone number (send phone otp)
-  Future<AuthenticationState> signInWithPhoneNumber(
+  void signInWithPhoneNumber(
       {required String phoneNumber});
 
   /// verify phone otp

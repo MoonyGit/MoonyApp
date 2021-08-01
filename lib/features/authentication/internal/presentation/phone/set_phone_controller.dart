@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:kt_dart/standard.dart';
@@ -18,17 +20,38 @@ class SetPhoneBindings extends Bindings {
 /// The viewModel of SetPhonePage
 class SetPhoneController extends GetxController {
   /// Constructor
-  SetPhoneController(this._authUseCase);
-
-  /// In case of automatic otp retrieved, provide this otp to next page
-  static const String automaticSmsOtp = "automaticSmsOtp";
+  SetPhoneController(this._authUseCase) {
+    _phoneAuthStateSubscription = _authUseCase
+        .getPhoneNumberAuthenticationState()
+        .listen((AuthenticationState state) {
+      Logger.d("SetPhoneController state received $state");
+      state.status.maybeWhen(
+        badCredentials: (String? message) =>
+            message?.let((String it) =>
+            phoneNumberValidatedMessage.value =
+                AppStrings.translate(message: it)),
+        otpSent: () => Get.toNamed(Navigation.loginPhoneOtp),
+        serverError: (String? message) =>
+            message?.let((String it) =>
+            phoneNumberValidatedMessage.value =
+                AppStrings.translate(message: message)),
+        unknown: (String? message) =>
+            message?.let((String it) =>
+            phoneNumberValidatedMessage.value =
+                AppStrings.translate(message: message)),
+        orElse: () =>
+            Logger.d("SetPhoneController undefined state received $state"),
+      );
+    });
+  }
 
   final PhoneAuthUseCase _authUseCase;
   PhoneNumber? _lastPhoneNumber;
+  late StreamSubscription<AuthenticationState> _phoneAuthStateSubscription;
 
   /// The current phone number
   PhoneNumber currentPhoneNumber =
-      PhoneNumber(isoCode: Get.deviceLocale?.countryCode);
+  PhoneNumber(isoCode: Get.deviceLocale?.countryCode);
 
   /// used to notify an async validation with message
   RxnString phoneNumberValidatedMessage = RxnString();
@@ -41,27 +64,17 @@ class SetPhoneController extends GetxController {
       _lastPhoneNumber = number;
       _authUseCase
           .signInWithPhoneNumber(phoneNumber: number.phoneNumber)
-          .then((AuthenticationState state) {
-        state.status.maybeWhen(
-          badCredentials: (String? message) => message?.let((String it) =>
-              phoneNumberValidatedMessage.value =
-                  AppStrings.translate(message: it)),
-          otpSent: () => Get.toNamed(Navigation.loginPhoneOtp),
-          autoLogin: (String? smsOtp) =>
-              smsOtp?.let((String it) => Get.toNamed(Navigation.loginPhoneOtp,
-                  parameters: <String, String>{automaticSmsOtp: it})) ??
-              Get.toNamed(Navigation.loginPhoneOtp),
-          serverError: (String? message) => message?.let((String it) =>
-              phoneNumberValidatedMessage.value =
-                  AppStrings.translate(message: message)),
-          unknown: (String? message) => message?.let((String it) =>
-              phoneNumberValidatedMessage.value =
-                  AppStrings.translate(message: message)),
-          orElse: () => Logger.d("state received $state"),
-        );
-      });
-      return phoneNumberValidatedMessage.value;
+          .status
+          .maybeWhen(
+        badCredentials: (String? message) =>
+            message?.let((String it) =>
+            phoneNumberValidatedMessage.value =
+                AppStrings.translate(message: it)),
+        inProgress: () => Logger.d("phone auth currently in progress"),
+        orElse: () => Logger.d("undefined state received"),
+      );
     }
+    return phoneNumberValidatedMessage.value;
   }
 
   /// callback phone number edited
@@ -71,5 +84,11 @@ class SetPhoneController extends GetxController {
   /// callback of form validator
   String? validatePhoneNumber(String? value) {
     return loginWithPhoneNumber(currentPhoneNumber);
+  }
+
+  @override
+  void onClose() {
+    _phoneAuthStateSubscription.cancel();
+    super.onClose();
   }
 }
