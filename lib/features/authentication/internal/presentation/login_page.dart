@@ -37,11 +37,11 @@ class LoginPage extends GetView<LoginController> {
                       child: OutlinedButton.icon(
                           icon: const Icon(Icons.facebook_rounded),
                           onPressed: controller.onFacebookLoginPressed,
-                          label: makeTextWithConstraints(
-                            text: AppStrings.translate(
+                          label: makeWidgetWithConstraints(
+                            child: Text(AppStrings.translate(
                                 message: AppStrings.loginWithFacebook),
                             textAlign: TextAlign.center,
-                          )),
+                          ))),
                     ),
                     Center(
                       child: OutlinedButton.icon(
@@ -49,20 +49,20 @@ class LoginPage extends GetView<LoginController> {
                             Icons.mail_rounded,
                           ),
                           onPressed: controller.onGmailLoginPressed,
-                          label: makeTextWithConstraints(
-                            text: AppStrings.translate(
+                          label: makeWidgetWithConstraints(
+                            child: Text(AppStrings.translate(
                                 message: AppStrings.loginWithGmail),
                             textAlign: TextAlign.center,
-                          )),
+                          ))),
                     ),
                     Center(
                       child: OutlinedButton.icon(
                           icon: const Icon(Icons.sms_rounded),
                           onPressed: controller.onPhoneLoginPressed,
-                          label: makeTextWithConstraints(
-                              text: AppStrings.translate(
+                          label: makeWidgetWithConstraints(
+                              child: Text(AppStrings.translate(
                                   message: AppStrings.loginWithPhone),
-                              textAlign: TextAlign.center)),
+                              textAlign: TextAlign.center))),
                     ),
                   ],
                 ))));

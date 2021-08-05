@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:moony_app/common/resources/themes.dart';
 
-/// create text with maximum constraints
-Widget makeTextWithConstraints(
-    {required String text, TextAlign? textAlign, TextStyle? textStyle}) {
+/// create widget with maximum constraints
+Widget makeWidgetWithConstraints(
+    {required Widget child}) {
   return ConstrainedBox(
       constraints:
-          const BoxConstraints(maxHeight: 200, maxWidth: 300, minWidth: 280),
+      const BoxConstraints(maxHeight: 200, maxWidth: 300, minWidth: 280),
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          child: Text(
-            text,
-            textAlign: textAlign,
-            style: textStyle,
-          )));
+          child: child));
 }
 
 /// create text with a given gradient and maximum constraints
@@ -40,7 +37,22 @@ Widget makeTextWithGradient(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius)),
     ),
-    child: makeTextWithConstraints(
-        text: text, textAlign: textAlign, textStyle: textStyle),
+    child: makeWidgetWithConstraints(
+        child: Text(text, textAlign: textAlign, style: textStyle)),
   );
+}
+
+Widget makeCenteredRoundedTextWithMoonyGradient({required BuildContext context,
+  required String text}) {
+
+  return Center(
+      child: makeTextWithGradient(
+          text: text,
+          textAlign: TextAlign.center,
+          textStyle: Theme.of(context).textTheme.moonyMessage,
+          alignmentBegin: Alignment.centerLeft,
+          alignmentEnd: Alignment.centerRight,
+          colorBegin: AppTheme.secondary,
+          colorEnd: AppTheme.primary,
+          borderRadius: 30));
 }

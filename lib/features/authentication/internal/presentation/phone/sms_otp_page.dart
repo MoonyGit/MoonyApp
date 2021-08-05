@@ -82,10 +82,10 @@ class SmsOtpPage extends GetView<SmsOtpController> {
                 Center(
                   child: OutlinedButton(
                     onPressed: controller.onNextPressed,
-                    child: makeTextWithConstraints(
-                      text: AppStrings.translate(message: AppStrings.goToNext),
-                      textAlign: TextAlign.center,
-                    ),
+                    child: makeWidgetWithConstraints(
+                        child: Text(AppStrings.translate(message: AppStrings.goToNext),
+                          textAlign: TextAlign.center,
+                        )),
                   ),
                 )
               ]),

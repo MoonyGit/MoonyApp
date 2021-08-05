@@ -67,10 +67,10 @@ class SetPhonePage extends GetView<SetPhoneController> {
                     onPressed: () {
                       _formKey.currentState!.validate();
                     },
-                    child: makeTextWithConstraints(
-                      text: AppStrings.translate(message: AppStrings.goToNext),
+                    child: makeWidgetWithConstraints(child: Text(
+                      AppStrings.translate(message: AppStrings.goToNext),
                       textAlign: TextAlign.center,
-                    ),
+                    )),
                   ),
                 )
               ])),
