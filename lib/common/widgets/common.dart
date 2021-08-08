@@ -3,10 +3,10 @@ import 'package:moony_app/common/resources/themes.dart';
 
 /// create widget with maximum constraints
 Widget makeWidgetWithConstraints(
-    {required Widget child}) {
+    {required Widget child, double minWidth = 280}) {
   return ConstrainedBox(
       constraints:
-      const BoxConstraints(maxHeight: 200, maxWidth: 300, minWidth: 280),
+          BoxConstraints(maxHeight: 200, maxWidth: 300, minWidth: minWidth),
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: child));
@@ -42,9 +42,8 @@ Widget makeTextWithGradient(
   );
 }
 
-Widget makeCenteredRoundedTextWithMoonyGradient({required BuildContext context,
-  required String text}) {
-
+Widget makeCenteredRoundedTextWithMoonyGradient(
+    {required BuildContext context, required String text}) {
   return Center(
       child: makeTextWithGradient(
           text: text,
