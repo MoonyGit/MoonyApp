@@ -3,12 +3,10 @@ import 'package:moony_app/common/base/domain/value_object.dart';
 import 'package:moony_app/common/resources/strings.dart';
 
 /// Email failure
-class EmailAddressFailure {
+class EmailAddressFailure extends Failure {
   /// Public constructor
-  const EmailAddressFailure({required this.message});
-
-  /// Message of the failure
-  final String message;
+  const EmailAddressFailure({required String message})
+      : super(message: message);
 }
 
 /// Email value object class

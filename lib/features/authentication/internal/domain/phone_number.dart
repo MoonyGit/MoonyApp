@@ -3,12 +3,9 @@ import 'package:moony_app/common/base/domain/value_object.dart';
 import 'package:moony_app/common/resources/strings.dart';
 
 /// Phone number failure
-class PhoneNumberFailure {
+class PhoneNumberFailure extends Failure {
   /// Public constructor
-  const PhoneNumberFailure({required this.message});
-
-  /// Message of the failure
-  final String message;
+  const PhoneNumberFailure({required String message}) : super(message: message);
 }
 
 /// Phone number value object

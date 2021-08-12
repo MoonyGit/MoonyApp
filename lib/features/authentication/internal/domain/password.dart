@@ -3,12 +3,9 @@ import 'package:moony_app/common/base/domain/value_object.dart';
 import 'package:moony_app/common/resources/strings.dart';
 
 /// Password failure
-class PasswordFailure {
+class PasswordFailure extends Failure {
   /// Public constructor
-  const PasswordFailure({required this.message});
-
-  /// Message of the failure
-  final String message;
+  const PasswordFailure({required String message}) : super(message: message);
 }
 
 /// Password value object class

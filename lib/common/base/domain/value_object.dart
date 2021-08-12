@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
-import 'errors.dart';
-
 /// Extend this abstract class to create a validated value object class.
 ///
 /// A value object is an object that contains attributes,
@@ -25,12 +23,12 @@ import 'errors.dart';
 ///}
 /// ```
 @immutable
-abstract class ValueObject<Failure, T> {
+abstract class ValueObject<F extends Failure, T> {
   /// Creates a [ValueObject]
   const ValueObject();
 
   /// The value of this [ValueObject]
-  Either<Failure, T> get value;
+  Either<F, T> get value;
 
   /// If this is valid, returns the value.
   /// Otherwise, throws [UnexpectedValueError].
@@ -41,7 +39,8 @@ abstract class ValueObject<Failure, T> {
   /// Do not use this for validation (for example, by wrapping in a `try`/`catch`).
   /// Instead, use the [value] field, or the [isValid] getter.
   T getOrCrash() {
-    return value.fold((f) => throw UnexpectedValueError(f), id);
+    return value.fold(
+        (F f) => throw UnexpectedValueError<F>(f), id);
   }
 
   /// If this is valid, returns the value. Otherwise, returns [dflt].
@@ -55,7 +54,7 @@ abstract class ValueObject<Failure, T> {
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
-    return o is ValueObject<Failure, T> && o.value == value;
+    return o is ValueObject<F, T> && o.value == value;
   }
 
   @override
@@ -63,4 +62,42 @@ abstract class ValueObject<Failure, T> {
 
   @override
   String toString() => 'Value($value)';
+}
+
+/// Base failure object
+@immutable
+class Failure {
+  /// Public constructor
+  const Failure({required this.message});
+
+  /// Message of the failure
+  final String message;
+}
+
+/// Thrown when a [ValueObject] is expected to be valid, but is invalid.
+@immutable
+class UnexpectedValueError<F extends Failure> extends Error {
+
+  /// Creates an [UnexpectedValueError]
+  UnexpectedValueError(this.valueFailure);
+
+  /// The failure from the [ValueObject].
+  final F valueFailure;
+
+  @override
+  String toString() {
+    const String explanation =
+        'Encountered a failure at an unrecoverable point. Terminating.';
+    return Error.safeToString('$explanation Failure was: $valueFailure');
+  }
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is UnexpectedValueError<Failure> && o.valueFailure == valueFailure;
+  }
+
+  @override
+  int get hashCode => valueFailure.hashCode;
 }
