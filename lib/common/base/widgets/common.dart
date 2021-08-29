@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moony_app/common/resources/assets.dart';
 import 'package:moony_app/common/resources/themes.dart';
 
 /// create widget with maximum constraints
@@ -42,16 +43,23 @@ Widget makeTextWithGradient(
   );
 }
 
-Widget makeCenteredRoundedTextWithMoonyGradient(
+Widget makeRoundedTextWithMoonyGradient(
     {required BuildContext context, required String text}) {
-  return Center(
-      child: makeTextWithGradient(
-          text: text,
-          textAlign: TextAlign.center,
-          textStyle: Theme.of(context).textTheme.moonyMessage,
-          alignmentBegin: Alignment.centerLeft,
-          alignmentEnd: Alignment.centerRight,
-          colorBegin: AppTheme.secondary,
-          colorEnd: AppTheme.primary,
-          borderRadius: 30));
+  return makeTextWithGradient(
+      text: text,
+      textAlign: TextAlign.center,
+      textStyle: Theme.of(context).textTheme.moonyMessage,
+      alignmentBegin: Alignment.centerLeft,
+      alignmentEnd: Alignment.centerRight,
+      colorBegin: AppTheme.secondary,
+      colorEnd: AppTheme.primary,
+      borderRadius: 30);
+}
+
+Widget getMoonyImage({double size = 150}) {
+  return Image.asset(
+    AppAsset.moonyShadow,
+    width: size,
+    height: size,
+  );
 }

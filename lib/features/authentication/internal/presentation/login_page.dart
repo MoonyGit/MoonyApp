@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/resources/assets.dart';
 import 'package:moony_app/common/resources/strings.dart';
-import 'package:moony_app/common/widgets/common.dart';
 
 import 'login_controller.dart';
 
