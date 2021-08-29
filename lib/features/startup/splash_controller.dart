@@ -1,6 +1,10 @@
-import 'package:get/get.dart';import 'package:moony_app/common/application/app_router.dart';
+import 'package:get/get.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/features/activity/router/router.dart'
+    as activity_router;
 import 'package:moony_app/features/authentication/api/api.dart';
+import 'package:moony_app/features/authentication/router/router.dart'
+    as auth_router;
 
 /// Class to define SplashPage dependencies by dependency injection
 class SplashBindings extends Bindings {
@@ -27,7 +31,9 @@ class SplashController extends GetxController {
       // TODO: remove simulation of delay
       Future<void>.delayed(const Duration(milliseconds: 3000), () {
         Get.offNamed(
-          isAuthenticated ? Navigation.home : Navigation.login,
+          isAuthenticated
+              ? activity_router.Router.home
+              : auth_router.Router.login,
         );
       });
     } catch (e) {

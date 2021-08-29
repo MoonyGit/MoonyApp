@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/common/application/app_router.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
+import 'package:moony_app/features/authentication/router/router.dart';
 
 /// Class to define SetPhonePage dependencies by dependency injection
 class SetPhoneBindings extends Bindings {
@@ -30,7 +30,7 @@ class SetPhoneController extends GetxController {
             message?.let((String it) =>
             phoneNumberValidatedMessage.value =
                 AppStrings.translate(message: it)),
-        otpSent: () => Get.toNamed(Navigation.loginPhoneOtp),
+        otpSent: () => Get.toNamed(Router.loginPhoneOtp),
         serverError: (String? message) =>
             message?.let((String it) =>
             phoneNumberValidatedMessage.value =

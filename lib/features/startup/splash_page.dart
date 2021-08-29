@@ -11,7 +11,8 @@ class SplashPage extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     controller.goToNextScreen();
-    SystemChrome.setEnabledSystemUIOverlays(List<SystemUiOverlay>.empty());
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: List<SystemUiOverlay>.empty());
     return Container(
       color: Colors.white,
       child: Center(

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:moony_app/common/application/app_router.dart';
+import 'package:moony_app/features/authentication/router/router.dart';
 
 /// Class to define LoginPage dependencies by dependency injection
 class LoginBindings extends Bindings {
@@ -13,9 +13,9 @@ class LoginBindings extends Bindings {
 class LoginController extends GetxController {
 
   /// on facebook login button pressed
-  void onFacebookLoginPressed() => Get.toNamed(Navigation.loginFacebook);
+  void onFacebookLoginPressed() => Get.toNamed(Router.loginFacebook);
   /// on google login button pressed
-  void onGmailLoginPressed() => Get.toNamed(Navigation.loginGmail);
+  void onGmailLoginPressed() => Get.toNamed(Router.loginGmail);
   /// on phone login button pressed
-  void onPhoneLoginPressed() => Get.toNamed(Navigation.loginPhone);
+  void onPhoneLoginPressed() => Get.toNamed(Router.loginPhone);
 }
