@@ -58,19 +58,25 @@ In the package-by-feature style, the number of classes within each package remai
 
 ```yaml
 
-# all the common, global and shared material and configuration
+# All the common, global and shared material and configuration
 - /common
     # Our global (shared) data sources, device apis services...
     - /services
         - /example_service
             - service_abstract.dart
             - service_impl.dart
-    # Navigation configuration
-    - /router
-        - navigation.dart
+    # Application configuration
+    - /application
+        # Dependency injection loader (will rely on feature di module)
+        - app_binding.dart
+        # Navigation configuration (will rely on feature router)
+        - app_router.dart
+        # Main app widget
+        - app_widget.dart
     # Dependencies injection configuration
     - /di
-        - bindings.dart
+        # Common di
+        - module.dart
     # Common resources class
     - /resources
         # Asset constants (images and fonts paths)
@@ -79,11 +85,22 @@ In the package-by-feature style, the number of classes within each package remai
         - strings.dart
         # Themes and colors constants
         - themes.dart
-    # Common reusable widgets
-    - /widgets
-        # Main application
-        - app.dart
-        - widget1.dart
+    # Common reusable toolbox
+    - /base
+        # Common reusable widgets
+        - /widgets
+            # Reusable widget
+            - widget1.dart
+        # Common reusable domain objects
+        - /domain
+            # Entity as of Clean architecture / DDD, all entities should inherit from it
+            - entity.dart
+            # Value object as of Clean architecture / DDD, all VO should inherit from it
+            - value_object.dart
+    # Utilities toolbox
+    - /util
+        # Custom logger
+        - logger.dart
 # Directory that regroups all the features of the application
 - /features
     # Feature package corresponding to an epic
@@ -119,8 +136,22 @@ In the package-by-feature style, the number of classes within each package remai
                 - widget.dart
                 # Feature presentation viewmodel
                 - controller.dart
-                # Feature presentation dependencies to inject
+                # Feature presentation dependencies to inject (For Getx router)
                 - bindings.dart
+        # Directory that contains di module
+        - /di
+            - module.dart
+        # Directory that contains router configuration
+        - /router
+            - router.dart
+        # Directory that contains resources of the feature
+        - /resources
+            # Asset constants (images and fonts paths)
+            - assets.dart
+            # Strings constants for name, messages or descriptions
+            - strings.dart
+            # Can include some database or configuration object for example:
+            - database.json
 # main file to initialize the application
 - main.dart
 
