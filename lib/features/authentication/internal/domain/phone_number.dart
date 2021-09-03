@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:moony_app/common/base/domain/value_object.dart';
-import 'package:moony_app/common/resources/strings.dart';
+import 'package:moony_app/features/authentication/resources/strings.dart';
 
 /// Phone number failure
 class PhoneNumberFailure extends Failure {
@@ -16,10 +16,10 @@ class PhoneNumber extends ValueObject<PhoneNumberFailure, String> {
   factory PhoneNumber({required String? input}) {
     if (input == null || input.length < _phoneNumberSize) {
       return PhoneNumber._(left(const PhoneNumberFailure(
-          message: AppStrings.phoneNumberBadSizeMessageFailure)));
+          message: phoneNumberBadSizeMessageFailure)));
     } else if (!_phoneNumberRegex.hasMatch(input)) {
       return PhoneNumber._(left(const PhoneNumberFailure(
-          message: AppStrings.phoneNumberBadFormatMessageFailure)));
+          message: phoneNumberBadFormatMessageFailure)));
     } else {
       return PhoneNumber._(right(input));
     }

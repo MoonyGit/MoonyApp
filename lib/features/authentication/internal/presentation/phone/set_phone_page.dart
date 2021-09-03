@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/resources/strings.dart';
+import 'package:moony_app/features/authentication/resources/strings.dart';
 
 import 'set_phone_controller.dart';
 
@@ -24,7 +25,7 @@ class SetPhonePage extends SetInfoModalBasePage<SetPhoneController> {
   IconData getPageIconHint() => Icons.sms_rounded;
 
   @override
-  String getPageTextHint() => AppStrings.setPhoneNumberHint;
+  String getPageTextHint() => setPhoneNumberHint;
 
   @override
   List<Widget> getWidgets(BuildContext context) => [

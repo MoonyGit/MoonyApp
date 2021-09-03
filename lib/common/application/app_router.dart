@@ -6,7 +6,7 @@ import 'package:moony_app/features/authentication/router/router.dart'
 import 'package:moony_app/features/startup/router.dart' as startup_router;
 
 /// Navigation class will provide all the routes of the application
-class Navigation {
+abstract class Navigation {
   /// The initial route
   static const String initial = startup_router.Router.splash;
 

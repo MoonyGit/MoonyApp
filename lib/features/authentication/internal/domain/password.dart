@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:moony_app/common/base/domain/value_object.dart';
-import 'package:moony_app/common/resources/strings.dart';
+import 'package:moony_app/features/authentication/resources/strings.dart';
 
 /// Password failure
 class PasswordFailure extends Failure {
@@ -18,7 +18,7 @@ class Password extends ValueObject<PasswordFailure, String> {
       return Password._(
         left(
           const PasswordFailure(
-              message: AppStrings.passwordBadSizeMessageFailure),
+              message: passwordBadSizeMessageFailure),
         ),
       );
     } else {

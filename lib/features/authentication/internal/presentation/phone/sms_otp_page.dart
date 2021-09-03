@@ -3,6 +3,7 @@ import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/resources/themes.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/features/authentication/resources/strings.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'sms_otp_controller.dart';
@@ -22,7 +23,7 @@ class SmsOtpPage extends SetInfoModalBasePage<SmsOtpController> {
   IconData getPageIconHint() => Icons.sms_rounded;
 
   @override
-  String getPageTextHint() => AppStrings.smsOtpHint;
+  String getPageTextHint() => smsOtpHint;
 
   @override
   List<Widget> getWidgets(BuildContext context) => [

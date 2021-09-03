@@ -7,6 +7,7 @@ import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
+import 'package:moony_app/features/authentication/resources/strings.dart';
 
 /// Class to define SmsOtpPage dependencies by dependency injection
 class SmsOtpBindings extends Bindings {
@@ -63,19 +64,19 @@ class SmsOtpController extends GetxController {
         state.status.maybeWhen(
             badOtp: (String? message) {
               phoneOtpValidatedMessage = AppStrings.translate(
-                  message: message ?? AppStrings.genericAuthFailure);
+                  message: message ?? genericAuthFailure);
               // re-validate with new message
               formKey.currentState?.validate();
             },
             serverError: (String? message) {
               phoneOtpValidatedMessage = AppStrings.translate(
-                  message: message ?? AppStrings.genericAuthFailure);
+                  message: message ?? genericAuthFailure);
               // re-validate with new message
               formKey.currentState?.validate();
             },
             unknown: (String? message) {
               phoneOtpValidatedMessage = AppStrings.translate(
-                  message: message ?? AppStrings.genericAuthFailure);
+                  message: message ?? genericAuthFailure);
               // re-validate with new message
               formKey.currentState?.validate();
             },

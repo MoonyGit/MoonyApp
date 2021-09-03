@@ -12,39 +12,49 @@ extension CustomTextStyles on TextTheme {
 }
 
 /// This class is used to provide all theming elements in a statical way
-class AppTheme {
+abstract class AppTheme {
   /// Palette of `Primary` color's
   static const Color primary = Color(0xffa5224b);
+
   // ignore: public_member_api_docs
   static const Color primaryDark = Color(0x773b234a);
+
   // ignore: public_member_api_docs
   static const Color primaryLight = Color(0xFFdda7b7);
 
   /// Palette of `Secondary` color's
   static const Color secondary = Color(0xFF3b234a);
+
   // ignore: public_member_api_docs
   static const Color secondaryDark = Color(0x773b234a);
+
   // ignore: public_member_api_docs
   static const Color secondaryLight = Color(0xFFb0a7b7);
 
   /// Palette of `Tertiary` color's
   static const Color tertiary = Color(0xFF999999);
+
   // ignore: public_member_api_docs
   static const Color tertiaryDark = Color(0xFF000000);
+
   // ignore: public_member_api_docs
   static const Color tertiaryLight = Color(0xFFFFFFFF);
 
   /// Palette of `State` color's
   static const Color error = Color(0xFFFF3B3B);
+
   // ignore: public_member_api_docs
   static const Color success = Color(0xFF06C270);
+
   // ignore: public_member_api_docs
   static const Color warning = Color(0xffffcc00);
+
   // ignore: public_member_api_docs
   static const Color info = Color(0xFF0063F7);
 
   /// Other color's
   static const Color background = Color(0xFFF4F5F8);
+
   // ignore: public_member_api_docs
   static const Color backgroundDark = Color(0xFF1D1B1C);
 

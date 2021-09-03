@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/resources/assets.dart';
 import 'package:moony_app/common/resources/strings.dart';
+import 'package:moony_app/features/authentication/resources/strings.dart';
 
 import 'login_controller.dart';
 
@@ -30,7 +31,7 @@ class LoginPage extends GetView<LoginController> {
                                 maxHeight: 200, maxWidth: 300),
                             child: Text(
                               AppStrings.translate(
-                                  message: AppStrings.termsOfUseLoginScreen),
+                                  message: termsOfUseLoginScreen),
                               textAlign: TextAlign.center,
                             ))),
                     Center(
@@ -39,7 +40,7 @@ class LoginPage extends GetView<LoginController> {
                           onPressed: controller.onFacebookLoginPressed,
                           label: makeWidgetWithConstraints(
                             child: Text(AppStrings.translate(
-                                message: AppStrings.loginWithFacebook),
+                                message: loginWithFacebook),
                             textAlign: TextAlign.center,
                           ))),
                     ),
@@ -51,7 +52,7 @@ class LoginPage extends GetView<LoginController> {
                           onPressed: controller.onGmailLoginPressed,
                           label: makeWidgetWithConstraints(
                             child: Text(AppStrings.translate(
-                                message: AppStrings.loginWithGmail),
+                                message: loginWithGmail),
                             textAlign: TextAlign.center,
                           ))),
                     ),
@@ -61,7 +62,7 @@ class LoginPage extends GetView<LoginController> {
                           onPressed: controller.onPhoneLoginPressed,
                           label: makeWidgetWithConstraints(
                               child: Text(AppStrings.translate(
-                                  message: AppStrings.loginWithPhone),
+                                  message: loginWithPhone),
                               textAlign: TextAlign.center))),
                     ),
                   ],
