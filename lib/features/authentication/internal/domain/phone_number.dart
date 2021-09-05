@@ -40,10 +40,10 @@ class SmsOtp extends ValueObject<PhoneNumberFailure, String> {
   factory SmsOtp({required String input}) {
     if (input.length != _phoneNumberSize) {
       return SmsOtp._(left(const PhoneNumberFailure(
-          message: AppStrings.phoneOtpBadSizeMessageFailure)));
+          message: phoneOtpBadSizeMessageFailure)));
     } else if (int.tryParse(input) == null) {
       return SmsOtp._(left(const PhoneNumberFailure(
-          message: AppStrings.phoneOtpBadFormatMessageFailure)));
+          message: phoneOtpBadFormatMessageFailure)));
     } else {
       return SmsOtp._(right(input));
     }
