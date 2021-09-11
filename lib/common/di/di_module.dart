@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:moony_app/common/services/connectivity/connectivity.dart';
-import 'package:moony_app/common/services/connectivity/connectivity_service.dart';
-import 'package:moony_app/common/services/local_storage/local_storage.dart';
-import 'package:moony_app/common/services/local_storage/local_storage_service.dart';
+import 'package:moony_app/common/infrastructure/remote/connectivity/connectivity.dart';
+import 'package:moony_app/common/infrastructure/remote/connectivity/connectivity_service.dart';
+import 'package:moony_app/common/infrastructure/services/local_storage/local_storage.dart';
+import 'package:moony_app/common/infrastructure/services/local_storage/local_storage_service.dart';
 
 /// Load global dependencies
 void loadModule() {
