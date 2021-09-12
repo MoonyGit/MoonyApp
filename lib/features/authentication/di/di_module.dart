@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moony_app/features/authentication/api/api.dart';
-import 'package:moony_app/features/authentication/internal/infrastructure/authentication_data_source.dart';
-import 'package:moony_app/features/authentication/internal/infrastructure/authentication_firebase.dart';
-import 'package:moony_app/features/authentication/internal/infrastructure/authentication_repository_impl.dart';
+import 'package:moony_app/features/authentication/internal/infrastructure/remote/authentication_data_source.dart';
+import 'package:moony_app/features/authentication/internal/infrastructure/remote/authentication_data_source_impl.dart';
+import 'package:moony_app/features/authentication/internal/infrastructure/repository/authentication_repository_impl.dart';
 import 'package:moony_app/features/authentication/internal/usecase/get_auth_state.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_apple.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_email.dart';
@@ -21,7 +22,7 @@ void loadModule() {
   Get.lazyPut<FacebookAuth>(() => FacebookAuth.instance, fenix: true);
   Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
   Get.lazyPut<AuthDataSource>(
-      () => FirebaseAuthFacade(
+      () => AuthDataSourceImpl(
             Get.find(),
             Get.find(),
             Get.find(),
@@ -55,6 +56,16 @@ void loadModule() {
       () => SignOutUseCase(Get.find<AuthenticationRepositoryImpl>()),
       fenix: true);
 
-  Get.lazyPut<AuthenticationApi>(() => AuthenticationApi(Get.find()),
+  Get.lazyPut<AuthenticationApi>(
+      () => AuthenticationApi(Get.find(), Get.find()),
       fenix: true);
+
+  // User creation
+  Get.lazyPut<FirebaseFirestore>(() => FirebaseFirestore.instance, fenix: true);
+  Get.lazyPut<UserRemoteSource>(() => UserFirebaseDataStore(Get.find()),
+      fenix: true);
+  Get.lazyPut<IUserRepository>(
+      () => UserRepositoryImpl(Get.find(), Get.find(), Get.find()),
+      fenix: true);
+  Get.lazyPut<UserUseCase>(() => UserUseCase(Get.find()), fenix: true);
 }

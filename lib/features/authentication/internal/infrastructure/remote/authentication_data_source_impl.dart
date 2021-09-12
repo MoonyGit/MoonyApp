@@ -7,13 +7,13 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rxdart/rxdart.dart';
 
-import './firebase_user_mapper.dart';
 import 'authentication_data_source.dart';
+import 'firebase_user_mapper.dart';
 
 /// Firebase authentication data source
-class FirebaseAuthFacade implements AuthDataSource {
+class AuthDataSourceImpl implements AuthDataSource {
   /// Constructor
-  FirebaseAuthFacade(
+  AuthDataSourceImpl(
       this._firebaseAuth, this._googleSignIn, this._facebookSignIn);
 
   static const String _errorEmailAlreadyInUse = 'email-already-in-use';
