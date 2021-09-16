@@ -34,7 +34,7 @@ void loadModule() {
 
   Get.lazyPut<GetAuthStateUseCase>(
       () => GetAuthStateUseCase(
-          Get.find<AuthenticationRepositoryImpl>(), Get.find()),
+          Get.find<AuthenticationRepositoryImpl>()),
       fenix: true);
   Get.lazyPut<AppleAuthUseCase>(
       () => AppleAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
