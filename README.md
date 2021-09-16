@@ -21,6 +21,13 @@ Execute command:
 ## Start build_runner code generation
 flutter packages pub run build_runner build
 
+## Dev register in firebase
+
+- cd android
+- gradlew signinReport
+- Copy SHA 1 at the beginning of the result
+- Paste on Firebase -> Paramètre -> Paramètres généraux
+
 ## Architecture overview
 - App should use Domain Driven Development principles (presentation, application, domain, infrastructure) refers to this link https://resocoder.com/2020/03/09/flutter-firebase-ddd-course-1-domain-driven-design-principles/
 - App should use MaterialApp widget for both Android and iOS. No need to look native on both platforms (no need CupertinoApp)
