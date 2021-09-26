@@ -64,13 +64,14 @@ abstract class SetInfoModalBasePage<C extends GetxController>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          leading:
-              showAppBarBackButton() ? const Icon(Icons.arrow_back_ios) : null,
-        ),
-        body: Center(
-            child: Form(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        elevation: 0,
+        leading:
+            showAppBarBackButton() ? const Icon(Icons.arrow_back_ios) : null,
+      ),
+      body: Center(
+        child: Form(
           key: getFormKey(),
           child: Column(children: [
             Icon(
@@ -101,6 +102,8 @@ abstract class SetInfoModalBasePage<C extends GetxController>
                 )),
             const Padding(padding: EdgeInsets.only(bottom: 20)),
           ]),
-        )));
+        ),
+      ),
+    );
   }
 }
