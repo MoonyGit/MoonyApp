@@ -81,13 +81,26 @@ abstract class AppTheme {
       // primary: color,
       shape: ButtonStyleButton.allOrNull<OutlinedBorder>(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(60))),
-      side:
-          ButtonStyleButton.allOrNull<BorderSide>(const BorderSide(width: 2.0)),
+      side: MaterialStateProperty.resolveWith<BorderSide>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return const BorderSide(width: 2.0, color: Colors.grey);
+        } else {
+          return const BorderSide(width: 2.0);
+        }
+      }),
       textStyle:
           ButtonStyleButton.allOrNull<TextStyle>(const TextStyle(fontSize: 20)),
       padding: ButtonStyleButton.allOrNull<EdgeInsetsGeometry>(
           const EdgeInsets.symmetric(vertical: 8, horizontal: 8)),
-      foregroundColor: ButtonStyleButton.allOrNull<Color>(primaryColor),
+      foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return Colors.grey;
+        } else {
+          return primaryColor;
+        }
+      }),
       overlayColor: ButtonStyleButton.allOrNull<Color>(overlayColor),
     ));
   }
