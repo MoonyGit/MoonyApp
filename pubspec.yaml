@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  collection: ^1.15.0
+
   ## Utils
   dartz: ^0.10.0-nullsafety.2
   uuid: 3.0.4
