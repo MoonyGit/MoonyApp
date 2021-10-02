@@ -1,6 +1,6 @@
+import 'package:moony_app/common/domain/user/phone_number.dart';
 import 'package:moony_app/features/authentication/internal/domain/auth_repositories_facade.dart';
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
-import 'package:moony_app/features/authentication/internal/domain/phone_number.dart';
 
 /// The phone authentication use case
 class PhoneAuthUseCase {
