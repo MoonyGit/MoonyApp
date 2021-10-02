@@ -3,6 +3,7 @@ import 'package:moony_app/features/activity/router/router.dart'
     as activity_router;
 import 'package:moony_app/features/authentication/router/router.dart'
     as auth_router;
+import 'package:moony_app/features/registration/router/router.dart' as registration_router;
 import 'package:moony_app/features/startup/router.dart' as startup_router;
 
 /// Navigation class will provide all the routes of the application
@@ -13,5 +14,6 @@ abstract class Navigation {
   /// The list of routes
   static final List<GetPage<dynamic>> routes = startup_router.Router.routes +
       auth_router.Router.routes +
-      activity_router.Router.routes;
+      activity_router.Router.routes +
+      registration_router.Router.routes;
 }
