@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
@@ -34,8 +33,7 @@ void loadModule() {
       fenix: true);
 
   Get.lazyPut<GetAuthStateUseCase>(
-      () => GetAuthStateUseCase(
-          Get.find<AuthenticationRepositoryImpl>()),
+      () => GetAuthStateUseCase(Get.find<AuthenticationRepositoryImpl>()),
       fenix: true);
   Get.lazyPut<AppleAuthUseCase>(
       () => AppleAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
@@ -56,16 +54,6 @@ void loadModule() {
       () => SignOutUseCase(Get.find<AuthenticationRepositoryImpl>()),
       fenix: true);
 
-  Get.lazyPut<AuthenticationApi>(
-      () => AuthenticationApi(Get.find(), Get.find()),
+  Get.lazyPut<AuthenticationApi>(() => AuthenticationApi(Get.find()),
       fenix: true);
-
-  // User creation
-  Get.lazyPut<FirebaseFirestore>(() => FirebaseFirestore.instance, fenix: true);
-  Get.lazyPut<UserRemoteSource>(() => UserFirebaseDataStore(Get.find()),
-      fenix: true);
-  Get.lazyPut<IUserRepository>(
-      () => UserRepositoryImpl(Get.find(), Get.find(), Get.find()),
-      fenix: true);
-  Get.lazyPut<UserUseCase>(() => UserUseCase(Get.find()), fenix: true);
 }
