@@ -7,10 +7,10 @@ abstract class ILocalStorage {
   Future<void> add(String key, dynamic value);
 
   /// Reads a value of any type from persistent storage.
-  T? get<T>(String key);
+  Future<T?> get<T>(String key);
 
   /// Reads all value of any type from persistent storage.
-  T? getAll<T>();
+  Future<T?> getAll<T>();
 
   /// Removes an entry from persistent storage.
   Future<void> remove(String key);
