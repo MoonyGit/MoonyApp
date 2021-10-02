@@ -12,8 +12,7 @@ abstract class AuthDataSource {
   Stream<AuthUserDataSourceModel?> getUserAuthStateChanges();
 
   /// try sign in with phone number (send otp)
-  void signInWithPhoneNumber(
-      {required String phoneNumber});
+  void signInWithPhoneNumber({required String phoneNumber});
 
   /// get phone number auth state as a stream, provide results of
   /// void signInWithPhoneNumber({required String phoneNumber}) method
@@ -56,10 +55,17 @@ abstract class AuthDataSource {
 /// User data source Model
 class AuthUserDataSourceModel {
   /// Constructor
-  AuthUserDataSourceModel({required this.id});
+  AuthUserDataSourceModel(
+      {required this.id, this.phone, this.email, this.externalPhotoUrl});
 
   /// id of user
   String id;
+  /// phone of user in case of auth by phone (always the case for us)
+  String? phone;
+  /// email address of user in case of auth by email
+  String? email;
+  /// external photo url from providers like Facebook etc
+  String? externalPhotoUrl;
 }
 
 /// VerifyPhoneState data source sealed class class VerifyPhoneStateDataSource

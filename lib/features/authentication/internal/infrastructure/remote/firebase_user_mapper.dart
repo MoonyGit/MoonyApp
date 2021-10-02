@@ -6,6 +6,7 @@ import 'authentication_data_source.dart';
 extension FirebaseUserDomainX on firebase.User {
   /// convert firebase user to model
   AuthUserDataSourceModel toDataSource() {
-    return AuthUserDataSourceModel(id: uid);
+    return AuthUserDataSourceModel(
+        id: uid, phone: phoneNumber, email: email, externalPhotoUrl: photoURL);
   }
 }
