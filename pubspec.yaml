@@ -57,6 +57,12 @@ dependencies:
   smooth_page_indicator: ^0.3.0-nullsafety.0
   # lots of icons
   font_awesome_flutter: ^9.1.0
+  # taking photos
+  image_picker: ^0.8.4
+  # prevent user spamming button
+  tap_debouncer: ^2.0.0
+  # reactive forms to make async
+  reactive_forms: ^10.6.0
 
   # Adds support for immutable objects
   freezed_annotation: ^0.14.2
