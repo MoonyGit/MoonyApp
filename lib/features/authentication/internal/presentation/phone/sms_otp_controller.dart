@@ -1,26 +1,30 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/features/activity/router/router.dart' as activity_router;
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
 import 'package:moony_app/features/authentication/resources/strings.dart';
+import 'package:moony_app/features/registration/api/api.dart';
+import 'package:moony_app/features/registration/router/router.dart' as registration_router;
 
 /// Class to define SmsOtpPage dependencies by dependency injection
 class SmsOtpBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => SmsOtpController(Get.find()));
+    Get.lazyPut(() => SmsOtpController(Get.find(), Get.find()));
   }
 }
 
 /// The viewModel of SmsOtpPage
 class SmsOtpController extends GetxController {
   /// Constructor
-  SmsOtpController(this._authUseCase) {
+  SmsOtpController(this._authUseCase, this._registrationApi) {
+    otpTextController = TextEditingController();
     _phoneAuthenticationStateSubscription = _authUseCase
         .getPhoneNumberAuthenticationState()
         .listen((AuthenticationState state) {
@@ -40,12 +44,14 @@ class SmsOtpController extends GetxController {
       _phoneAuthenticationStateSubscription;
 
   /// Handle text controller at viewModel level to dispose it in onClose
-  final TextEditingController otpTextController = TextEditingController();
+  late final TextEditingController otpTextController;
 
   /// Handle formKey at viewModel level to workaround sync form validation
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final PhoneAuthUseCase _authUseCase;
+  final RegistrationApi _registrationApi;
+
   String? _lastOtp;
 
   /// used to notify an async validation with message
@@ -82,8 +88,10 @@ class SmsOtpController extends GetxController {
             },
             signedIn: () {
               phoneOtpValidatedMessage = null;
-              // re-validate with new message
-              formKey.currentState?.validate();
+              _registrationApi.doesUserExist().then((bool doesUserExist) =>
+                  doesUserExist
+                      ? Get.offNamed(activity_router.Router.home)
+                      : Get.offNamed(registration_router.Router.setBackupEmail));
             },
             orElse: () => Logger.d("SmsOtpController verifySmsOtp "
                 "undefined state received $state"));
