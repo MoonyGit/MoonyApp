@@ -1,15 +1,15 @@
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/features/authentication/internal/domain/auth_repositories_facade.dart';
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
 
 /// The authentication uses cases
-class GoogleAuthUseCase {
+class SignInWithGoogleUseCase extends AsyncUseCase<AuthenticationState> {
   /// Constructor
-  GoogleAuthUseCase(this._authRepo);
+  SignInWithGoogleUseCase(this._authRepo);
 
   final IGoogleAuthRepository _authRepo;
 
-  /// try sign in with google account
-  Future<AuthenticationState> signInWithGoogle() {
-    return _authRepo.signInWithGoogle();
-  }
+  @override
+  Future<AuthenticationState> call({void input}) =>
+      _authRepo.signInWithGoogle();
 }

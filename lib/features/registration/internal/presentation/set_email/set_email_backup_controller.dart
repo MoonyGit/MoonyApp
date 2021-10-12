@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/features/registration/internal/usecase/registration_use_case.dart';
+import 'package:moony_app/features/registration/internal/usecase/save_user_infos.dart';
 
 /// Class to define SetEmailBackupPage dependencies by dependency injection
 class SetEmailBackupBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => SetEmailBackupController(Get.find()));
+    Get.lazyPut<SaveUserEmailUseCase>(() => SaveUserEmailUseCase(Get.find()),
+        fenix: true);
+    Get.lazyPut(
+        () => SetEmailBackupController(Get.find<SaveUserEmailUseCase>()));
   }
 }
 
@@ -17,9 +21,11 @@ class SetEmailBackupController extends GetxController {
   /// Constructor
   SetEmailBackupController(this._registrationUseCase);
 
-  final RegistrationUseCase _registrationUseCase;
+  final AsyncParamUseCase<EmailAddress, void> _registrationUseCase;
+
   /// email address text controller
   TextEditingController emailController = TextEditingController();
+
   /// Reactive email address string
   RxnString emailAddress = RxnString();
 
@@ -30,8 +36,7 @@ class SetEmailBackupController extends GetxController {
         return failure.message;
       }, (String address) {
         emailAddress.value = address;
-        _registrationUseCase.setUserEmailAddress(
-            address: EmailAddress(input: address));
+        _registrationUseCase(input: EmailAddress(input: address));
         return null;
       }));
 }

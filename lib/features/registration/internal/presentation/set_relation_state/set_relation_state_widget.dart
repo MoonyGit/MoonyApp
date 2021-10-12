@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_rx/src/rx_workers/rx_workers.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/domain/user/relation_state.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/features/registration/internal/presentation/registration_controller.dart';
-import 'package:moony_app/features/registration/internal/usecase/registration_use_case.dart';
 import 'package:moony_app/features/registration/resources/strings.dart';
 
 /// The set name widget
@@ -70,7 +70,7 @@ class SetRelationStateController extends GetxController {
   }
 
   late final Worker _currentPageDisposable;
-  final RegistrationUseCase _registrationUseCase;
+  final AsyncParamUseCase<RelationState, void> _registrationUseCase;
   final RegistrationController _registrationController;
 
   RelationState? _relationState;
@@ -78,14 +78,14 @@ class SetRelationStateController extends GetxController {
   /// alone picked button callback
   void onAloneRelationStateChoosen() {
     _relationState = const RelationState.alone();
-    _registrationUseCase.setUserRelationState(relationState: _relationState!);
+    _registrationUseCase(input: _relationState!);
     _registrationController.enableNextButton();
   }
 
   /// taken picked button callback
   void onTakenRelationStatePicked() {
     _relationState = const RelationState.taken();
-    _registrationUseCase.setUserRelationState(relationState: _relationState!);
+    _registrationUseCase(input: _relationState!);
     _registrationController.enableNextButton();
   }
 

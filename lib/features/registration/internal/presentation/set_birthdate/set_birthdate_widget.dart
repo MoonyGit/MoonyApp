@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/domain/user/birthdate.dart';
@@ -74,7 +75,7 @@ class SetBirthdateController extends GetxController {
   late final Worker _currentPageDisposable;
 
   final RegistrationController _registrationController;
-  final RegistrationUseCase _registrationUseCase;
+  final AsyncParamUseCase<Birthdate, void> _registrationUseCase;
 
   /// first date used in date picker
   final DateTime firstDate = Birthdate.maxSecurityDate();
@@ -91,7 +92,7 @@ class SetBirthdateController extends GetxController {
   set setBirthDate(DateTime date) {
     if (date != lastDate && Birthdate(input: date).isValid) {
       _birthDate.value = date;
-      _registrationUseCase.setUserBirthdate(birthdate: Birthdate(input: date));
+      _registrationUseCase(input: Birthdate(input: date));
       _registrationController.enableNextButton();
     }
   }

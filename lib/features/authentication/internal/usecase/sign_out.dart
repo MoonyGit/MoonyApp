@@ -1,15 +1,15 @@
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/features/authentication/internal/domain/auth_repositories_facade.dart';
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
 
-/// The sign out use case
-class SignOutUseCase {
+/// The authentication uses cases
+class SignOutUseCase extends AsyncUseCase<AuthenticationState> {
   /// Constructor
   SignOutUseCase(this._authRepo);
 
   final ISignOutRepository _authRepo;
 
-  /// sign out the current user
-  Future<AuthenticationState> signOut() {
-    return _authRepo.signOut();
-  }
+  @override
+  Future<AuthenticationState> call({void input}) =>
+      _authRepo.signOut();
 }

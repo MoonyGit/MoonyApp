@@ -1,5 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/common/domain/user/email.dart';
+import 'package:moony_app/common/domain/user/password.dart';
+import 'package:moony_app/common/domain/user/phone_number.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/features/authentication/internal/domain/auth_repositories_facade.dart';
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
@@ -37,10 +40,11 @@ class AuthenticationRepositoryImpl
 
   @override
   Future<AuthenticationState> registerWithEmailAndPassword(
-      {required String emailAddress, required String password}) {
+      {required EmailAddress emailAddress, required Password password}) {
     return _authDataSource
         .registerWithEmailAndPassword(
-            emailAddress: emailAddress, password: password)
+            emailAddress: emailAddress.getOrCrash(),
+            password: password.getOrCrash())
         .then((Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel> value) =>
             value.fold(
                 (AuthFailureDataSourceEvent failure) => AuthenticationFailure(
@@ -60,8 +64,9 @@ class AuthenticationRepositoryImpl
   }
 
   @override
-  void signInWithPhoneNumber({required String phoneNumber}) {
-    _authDataSource.signInWithPhoneNumber(phoneNumber: phoneNumber);
+  Future<void> signInWithPhoneNumber({required PhoneNumber phoneNumber}) async {
+    _authDataSource.signInWithPhoneNumber(
+        phoneNumber: phoneNumber.getOrCrash());
   }
 
   @override
@@ -76,8 +81,8 @@ class AuthenticationRepositoryImpl
   }
 
   @override
-  Future<AuthenticationState> verifyPhoneOtp({required String code}) {
-    return _authDataSource.verifyPhoneOtp(code: code).then(
+  Future<AuthenticationState> verifyPhoneOtp({required SmsOtp code}) {
+    return _authDataSource.verifyPhoneOtp(code: code.getOrCrash()).then(
         (Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel> value) =>
             value.fold(
                 (AuthFailureDataSourceEvent failure) => AuthenticationFailure(
@@ -97,7 +102,7 @@ class AuthenticationRepositoryImpl
 
   @override
   Future<AuthenticationState> signInWithEmailAndPassword(
-      {required String emailAddress, required String password}) {
+      {required EmailAddress emailAddress, required Password password}) {
     // TODO: implement signInWithEmailAndPassword
     throw UnimplementedError();
   }

@@ -1,6 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/domain/repository/user_repositories_facade.dart';
+import 'package:moony_app/common/domain/user/birthdate.dart';
+import 'package:moony_app/common/domain/user/email.dart';
+import 'package:moony_app/common/domain/user/gender.dart';
+import 'package:moony_app/common/domain/user/name.dart';
+import 'package:moony_app/common/domain/user/phone_number.dart';
+import 'package:moony_app/common/domain/user/relation_state.dart';
 import 'package:moony_app/common/domain/user/user.dart';
 import 'package:moony_app/common/infrastructure/remote/photo/photo_remote_source.dart';
 import 'package:moony_app/common/infrastructure/remote/user/model/user_data_model.dart';
@@ -44,7 +50,7 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<Either<ErrorCreatingUserFailure, bool>> createUserFromLocal() async {
+  Future<ErrorCreatingUserFailure?> registerUser() async {
     try {
       final String userId = (await _authDataSource.getSignedInUser())!.id;
       final String phone = (await _authDataSource.getSignedInUser())!.phone!;
@@ -91,9 +97,9 @@ class UserRepositoryImpl implements IUserRepository {
           secondaryPhotos: secondaryPhotosUrl,
           verified: false);
       await _userRemoteSource.create(user: user);
-      return right(true);
+      return null;
     } on Exception catch (ex, _) {
-      return left(ErrorCreatingUserFailure(message: ex.toString()));
+      return ErrorCreatingUserFailure(message: ex.toString());
     }
   }
 
@@ -107,44 +113,46 @@ class UserRepositoryImpl implements IUserRepository {
 
   @override
   Future<void> saveUserName(
-      {required String firstName, required String familyName}) async {
-    _userLocalSource.setUserFamilyName(name: familyName);
-    _userLocalSource.setUserFirstName(name: firstName);
+      {required Name firstName, required Name familyName}) async {
+    _userLocalSource.setUserFamilyName(name: familyName.getOrCrash());
+    _userLocalSource.setUserFirstName(name: firstName.getOrCrash());
   }
 
   @override
-  Future<void> saveUserBirthdate({required DateTime birthdate}) async {
-    _userLocalSource.setUserBirthdate(birthdate: birthdate);
+  Future<void> saveUserBirthdate({required Birthdate birthdate}) async {
+    _userLocalSource.setUserBirthdate(birthdate: birthdate.getOrCrash());
   }
 
   @override
-  Future<void> saveUserEmailAddress({required String address}) async {
-    _userLocalSource.setUserEmailAddress(address: address);
+  Future<void> saveUserEmailAddress({required EmailAddress address}) async {
+    _userLocalSource.setUserEmailAddress(address: address.getOrCrash());
   }
 
   @override
-  Future<void> saveUserPhoneNumber({required String phone}) async {
-    _userLocalSource.setUserPhoneNumber(phone: phone);
+  Future<void> saveUserPhoneNumber({required PhoneNumber phone}) async {
+    _userLocalSource.setUserPhoneNumber(phone: phone.getOrCrash());
   }
 
   @override
-  Future<void> saveUserGender({required int gender}) async {
-    _userLocalSource.setUserGender(gender: gender);
+  Future<void> saveUserGender({required Gender gender}) async {
+    _userLocalSource.setUserGender(gender: gender.id!);
   }
 
   @override
-  Future<void> saveUserRelationState({required int relationState}) async {
-    _userLocalSource.setUserRelationState(relationState: relationState);
+  Future<void> saveUserRelationState(
+      {required RelationState relationState}) async {
+    _userLocalSource.setUserRelationState(relationState: relationState.id!);
   }
 
   @override
   Future<void> saveUserSecondaryPhotoPathList(
-      {required List<String> paths}) async {
-    _userLocalSource.setUserSecondaryPhotoPathList(paths: paths);
+      {required List<Uri> paths}) async {
+    _userLocalSource.setUserSecondaryPhotoPathList(
+        paths: paths.map((Uri uri) => uri.toString()).toList());
   }
 
   @override
-  Future<void> saveUserProfilePhotoPath({required String path}) async {
-    _userLocalSource.setUserProfilePhotoPath(path: path);
+  Future<void> saveUserProfilePhotoPath({required Uri path}) async {
+    _userLocalSource.setUserProfilePhotoPath(path: path.toString());
   }
 }

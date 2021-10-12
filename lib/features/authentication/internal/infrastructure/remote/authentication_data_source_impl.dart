@@ -54,7 +54,7 @@ class AuthDataSourceImpl implements AuthDataSource {
   }
 
   @override
-  void signInWithPhoneNumber({required String phoneNumber}) {
+  Future<void> signInWithPhoneNumber({required String phoneNumber}) async {
     _firebaseAuth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       verificationCompleted: (PhoneAuthCredential credential) async {

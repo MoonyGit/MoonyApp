@@ -7,12 +7,6 @@ import 'package:moony_app/features/authentication/internal/infrastructure/remote
 import 'package:moony_app/features/authentication/internal/infrastructure/remote/authentication_data_source_impl.dart';
 import 'package:moony_app/features/authentication/internal/infrastructure/repository/authentication_repository_impl.dart';
 import 'package:moony_app/features/authentication/internal/usecase/get_auth_state.dart';
-import 'package:moony_app/features/authentication/internal/usecase/login_with_apple.dart';
-import 'package:moony_app/features/authentication/internal/usecase/login_with_email.dart';
-import 'package:moony_app/features/authentication/internal/usecase/login_with_facebook.dart';
-import 'package:moony_app/features/authentication/internal/usecase/login_with_google.dart';
-import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
-import 'package:moony_app/features/authentication/internal/usecase/sign_out.dart';
 
 /// Load auth dependencies
 void loadModule() {
@@ -32,28 +26,12 @@ void loadModule() {
       () => AuthenticationRepositoryImpl(Get.find()),
       fenix: true);
 
-  Get.lazyPut<GetAuthStateUseCase>(
-      () => GetAuthStateUseCase(Get.find<AuthenticationRepositoryImpl>()),
-      fenix: true);
-  Get.lazyPut<AppleAuthUseCase>(
-      () => AppleAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
-      fenix: true);
-  Get.lazyPut<EmailAuthUseCase>(
-      () => EmailAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
-      fenix: true);
-  Get.lazyPut<FacebookAuthUseCase>(
-      () => FacebookAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
-      fenix: true);
-  Get.lazyPut<GoogleAuthUseCase>(
-      () => GoogleAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
-      fenix: true);
-  Get.lazyPut<PhoneAuthUseCase>(
-      () => PhoneAuthUseCase(Get.find<AuthenticationRepositoryImpl>()),
-      fenix: true);
-  Get.lazyPut<SignOutUseCase>(
-      () => SignOutUseCase(Get.find<AuthenticationRepositoryImpl>()),
+  Get.lazyPut<IsUserAuthenticatedUseCase>(
+      () =>
+          IsUserAuthenticatedUseCase(Get.find<AuthenticationRepositoryImpl>()),
       fenix: true);
 
-  Get.lazyPut<AuthenticationApi>(() => AuthenticationApi(Get.find()),
+  Get.lazyPut<AuthenticationApi>(
+      () => AuthenticationApi(Get.find<IsUserAuthenticatedUseCase>()),
       fenix: true);
 }

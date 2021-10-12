@@ -32,17 +32,23 @@ class PhoneNumber extends ValueObject<PhoneNumberFailure, String> {
   static final RegExp _phoneNumberRegex = RegExp(r'(^\+(?:[0-9] ?){6,14}[0-9]$)');
 }
 
+/// Sms otp failure
+class SmsOtpFailure extends Failure {
+  /// Public constructor
+  const SmsOtpFailure({required String message}) : super(message: message);
+}
+
 /// SmsOtp value object
-class SmsOtp extends ValueObject<PhoneNumberFailure, String> {
+class SmsOtp extends ValueObject<SmsOtpFailure, String> {
   const SmsOtp._(this.value);
 
   /// factory constructor
   factory SmsOtp({required String input}) {
-    if (input.length != _phoneNumberSize) {
-      return SmsOtp._(left(const PhoneNumberFailure(
+    if (input.length != _otpSize) {
+      return SmsOtp._(left(const SmsOtpFailure(
           message: phoneOtpBadSizeMessageFailure)));
     } else if (int.tryParse(input) == null) {
-      return SmsOtp._(left(const PhoneNumberFailure(
+      return SmsOtp._(left(const SmsOtpFailure(
           message: phoneOtpBadFormatMessageFailure)));
     } else {
       return SmsOtp._(right(input));
@@ -50,7 +56,7 @@ class SmsOtp extends ValueObject<PhoneNumberFailure, String> {
   }
 
   @override
-  final Either<PhoneNumberFailure, String> value;
+  final Either<SmsOtpFailure, String> value;
 
-  static const int _phoneNumberSize = 6;
+  static const int _otpSize = 6;
 }

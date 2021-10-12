@@ -12,7 +12,7 @@ abstract class AuthDataSource {
   Stream<AuthUserDataSourceModel?> getUserAuthStateChanges();
 
   /// try sign in with phone number (send otp)
-  void signInWithPhoneNumber({required String phoneNumber});
+  Future<void> signInWithPhoneNumber({required String phoneNumber});
 
   /// get phone number auth state as a stream, provide results of
   /// void signInWithPhoneNumber({required String phoneNumber}) method

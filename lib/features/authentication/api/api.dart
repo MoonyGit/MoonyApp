@@ -1,19 +1,14 @@
-import 'package:moony_app/features/authentication/internal/usecase/get_auth_state.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 
 /// Api class to expose public methods from the Authentication feature
 class AuthenticationApi {
   /// Constructor
   const AuthenticationApi(this._authUseCase);
 
-  final GetAuthStateUseCase _authUseCase;
+  final AsyncUseCase<bool> _authUseCase;
 
   /// return if user is logged on the application
   Future<bool> isUserAuthenticated() {
-    return _authUseCase.checkIsAuthenticated();
-  }
-
-  /// return if user is logged on the application
-  Stream<bool> isUserAuthenticatedStream() {
-    return _authUseCase.listenAuthenticationStateChanged();
+    return _authUseCase();
   }
 }

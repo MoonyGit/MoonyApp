@@ -3,31 +3,44 @@ import 'dart:async';
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
+import 'package:moony_app/common/domain/user/phone_number.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
-import 'package:moony_app/features/activity/router/router.dart' as activity_router;
+import 'package:moony_app/features/activity/router/router.dart'
+    as activity_router;
 import 'package:moony_app/features/authentication/internal/domain/authentication_state.dart';
+import 'package:moony_app/features/authentication/internal/infrastructure/repository/authentication_repository_impl.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
 import 'package:moony_app/features/authentication/resources/strings.dart';
 import 'package:moony_app/features/registration/api/api.dart';
-import 'package:moony_app/features/registration/router/router.dart' as registration_router;
+import 'package:moony_app/features/registration/router/router.dart'
+    as registration_router;
 
 /// Class to define SmsOtpPage dependencies by dependency injection
 class SmsOtpBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => SmsOtpController(Get.find(), Get.find()));
+    Get.lazyPut<VerifyPhoneOtpUseCase>(
+            () => VerifyPhoneOtpUseCase(Get.find<AuthenticationRepositoryImpl>()),
+        fenix: true);
+
+    Get.lazyPut<GetPhoneAuthStateUseCase>(
+            () => GetPhoneAuthStateUseCase(Get.find<AuthenticationRepositoryImpl>()),
+        fenix: true);
+    Get.lazyPut(() => SmsOtpController(Get.find<VerifyPhoneOtpUseCase>(),
+        Get.find<GetPhoneAuthStateUseCase>(), Get.find()));
   }
 }
 
 /// The viewModel of SmsOtpPage
 class SmsOtpController extends GetxController {
   /// Constructor
-  SmsOtpController(this._authUseCase, this._registrationApi) {
+  SmsOtpController(
+      this._verifyPhoneOtp, this._getPhoneAuthState, this._registrationApi) {
     otpTextController = TextEditingController();
-    _phoneAuthenticationStateSubscription = _authUseCase
-        .getPhoneNumberAuthenticationState()
-        .listen((AuthenticationState state) {
+    _phoneAuthenticationStateSubscription =
+        _getPhoneAuthState().listen((AuthenticationState state) {
       Logger.d("SmsOtpController state received $state");
       state.status.maybeWhen(
           autoLogin: (String? smsOtp) {
@@ -49,7 +62,8 @@ class SmsOtpController extends GetxController {
   /// Handle formKey at viewModel level to workaround sync form validation
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final PhoneAuthUseCase _authUseCase;
+  final AsyncParamUseCase<SmsOtp, AuthenticationState> _verifyPhoneOtp;
+  final ReactiveUseCase<AuthenticationState> _getPhoneAuthState;
   final RegistrationApi _registrationApi;
 
   String? _lastOtp;
@@ -63,38 +77,42 @@ class SmsOtpController extends GetxController {
       return phoneOtpValidatedMessage;
     } else {
       _lastOtp = otp;
-      _authUseCase
-          .verifyPhoneOtp(smsCode: otp)
-          .then((AuthenticationState state) {
-        Logger.d("SmsOtpController verifySmsOtp state received $state");
-        state.status.maybeWhen(
-            badOtp: (String? message) {
-              phoneOtpValidatedMessage = AppStrings.translate(
-                  message: message ?? genericAuthFailure);
-              // re-validate with new message
-              formKey.currentState?.validate();
-            },
-            serverError: (String? message) {
-              phoneOtpValidatedMessage = AppStrings.translate(
-                  message: message ?? genericAuthFailure);
-              // re-validate with new message
-              formKey.currentState?.validate();
-            },
-            unknown: (String? message) {
-              phoneOtpValidatedMessage = AppStrings.translate(
-                  message: message ?? genericAuthFailure);
-              // re-validate with new message
-              formKey.currentState?.validate();
-            },
-            signedIn: () {
-              phoneOtpValidatedMessage = null;
-              _registrationApi.doesUserExist().then((bool doesUserExist) =>
-                  doesUserExist
-                      ? Get.offNamed(activity_router.Router.home)
-                      : Get.offNamed(registration_router.Router.setBackupEmail));
-            },
-            orElse: () => Logger.d("SmsOtpController verifySmsOtp "
-                "undefined state received $state"));
+      SmsOtp(input: otp!).value.fold(
+          (SmsOtpFailure failure) => phoneOtpValidatedMessage =
+              AppStrings.translate(message: failure.message), (String value) {
+        _verifyPhoneOtp(input: SmsOtp(input: otp))
+            .then((AuthenticationState state) {
+          Logger.d("SmsOtpController verifySmsOtp state received $state");
+          state.status.maybeWhen(
+              badOtp: (String? message) {
+                phoneOtpValidatedMessage = AppStrings.translate(
+                    message: message ?? genericAuthFailure);
+                // re-validate with new message
+                formKey.currentState?.validate();
+              },
+              serverError: (String? message) {
+                phoneOtpValidatedMessage = AppStrings.translate(
+                    message: message ?? genericAuthFailure);
+                // re-validate with new message
+                formKey.currentState?.validate();
+              },
+              unknown: (String? message) {
+                phoneOtpValidatedMessage = AppStrings.translate(
+                    message: message ?? genericAuthFailure);
+                // re-validate with new message
+                formKey.currentState?.validate();
+              },
+              signedIn: () {
+                phoneOtpValidatedMessage = null;
+                _registrationApi.doesUserExist().then((bool doesUserExist) =>
+                    doesUserExist
+                        ? Get.offNamed(activity_router.Router.home)
+                        : Get.offNamed(
+                            registration_router.Router.setBackupEmail));
+              },
+              orElse: () => Logger.d("SmsOtpController verifySmsOtp "
+                  "undefined state received $state"));
+        });
       });
       return phoneOtpValidatedMessage
           ?.let((String it) => AppStrings.translate(message: it));

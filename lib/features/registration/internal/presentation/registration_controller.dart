@@ -1,10 +1,13 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/user.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/features/activity/router/router.dart';
 import 'package:moony_app/features/registration/internal/usecase/registration_use_case.dart';
+import 'package:moony_app/features/registration/internal/usecase/save_user_infos.dart';
 import 'package:moony_app/features/registration/resources/strings.dart';
 import 'set_birthdate/set_birthdate_widget.dart';
 import 'set_gender/set_gender_widget.dart';
@@ -16,12 +19,46 @@ import 'set_relation_state/set_relation_state_widget.dart';
 class RegistrationBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => RegistrationController(Get.find()));
-    Get.lazyPut(() => SetNameController(Get.find(), Get.find()));
-    Get.lazyPut(() => SetBirthdateController(Get.find(), Get.find()));
-    Get.lazyPut(() => SetPhotoController(Get.find(), Get.find()));
-    Get.lazyPut(() => SetRelationStateController(Get.find(), Get.find()));
-    Get.lazyPut(() => SetGenderController(Get.find(), Get.find()));
+    Get.lazyPut<RegisterUser>(() => RegisterUser(Get.find()), fenix: true);
+
+    Get.lazyPut<SaveUserNameUseCase>(() => SaveUserNameUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<SaveUserBirthdateUseCase>(
+        () => SaveUserBirthdateUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<SaveUserPhoneUseCase>(() => SaveUserPhoneUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<SaveUserGenderUseCase>(() => SaveUserGenderUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<SaveUserRelationStateUseCase>(
+        () => SaveUserRelationStateUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<SaveUserSecondaryPhotoListStateUseCase>(
+        () => SaveUserSecondaryPhotoListStateUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<SaveUserProfilePhotoStateUseCase>(
+        () => SaveUserProfilePhotoStateUseCase(Get.find()),
+        fenix: true);
+
+    Get.lazyPut(() => RegistrationController(Get.find<RegisterUser>()));
+    Get.lazyPut(
+        () => SetNameController(Get.find(), Get.find<SaveUserNameUseCase>()));
+    Get.lazyPut(() => SetBirthdateController(
+        Get.find(), Get.find<SaveUserBirthdateUseCase>()));
+    Get.lazyPut(() => SetPhotoController(
+        Get.find(),
+        Get.find<SaveUserSecondaryPhotoListStateUseCase>(),
+        Get.find<SaveUserProfilePhotoStateUseCase>()));
+    Get.lazyPut(() => SetRelationStateController(
+        Get.find(), Get.find<SaveUserRelationStateUseCase>()));
+    Get.lazyPut(() =>
+        SetGenderController(Get.find(), Get.find<SaveUserGenderUseCase>()));
   }
 }
 
@@ -52,7 +89,7 @@ class RegistrationController extends GetxController {
     });
   }
 
-  final RegistrationUseCase _registrationUseCase;
+  final AsyncUseCase<ErrorCreatingUserFailure?> _registrationUseCase;
 
   /// Page animation duration
   Duration pageAnimation = const Duration(milliseconds: 300);
@@ -100,28 +137,32 @@ class RegistrationController extends GetxController {
   /// user request to go to next page or finish
   Future<void> onNextButtonPressed() async {
     if (pageController.page?.round() == pages.length - 1) {
-      Get.defaultDialog(
-          title: AppStrings.translate(message: settingAccountTitle),
-          middleText: AppStrings.translate(message: settingAccountMessage),
-          content: const CircularProgressIndicator());
-      (await _registrationUseCase.createUserFromLocal()).fold(
-          (ErrorCreatingUserFailure failure) {
-        if (Get.isDialogOpen == true) {
-          Get.back(closeOverlays: true);
-        }
-        Get.snackbar(AppStrings.translate(message: settingAccountErrorTitle),
-            AppStrings.translate(message: failure.message));
-      }, (bool success) {
-        if (Get.isDialogOpen == true) {
-          Get.back(closeOverlays: true);
-        }
-        Get.offNamed(Router.home);
-      });
+      await _onFinishButtonPressed();
     } else {
       pageController.nextPage(
         curve: Curves.linear,
         duration: pageAnimation,
       );
+    }
+  }
+
+  Future<void> _onFinishButtonPressed() async {
+    Get.defaultDialog(
+        title: AppStrings.translate(message: settingAccountTitle),
+        middleText: AppStrings.translate(message: settingAccountMessage),
+        content: const CircularProgressIndicator());
+    final ErrorCreatingUserFailure? failure = await _registrationUseCase();
+    if (failure != null) {
+      if (Get.isDialogOpen == true) {
+        Get.back(closeOverlays: true);
+      }
+      Get.snackbar(AppStrings.translate(message: settingAccountErrorTitle),
+          AppStrings.translate(message: failure.message));
+    } else {
+      if (Get.isDialogOpen == true) {
+        Get.back(closeOverlays: true);
+      }
+      Get.offNamed(Router.home);
     }
   }
 

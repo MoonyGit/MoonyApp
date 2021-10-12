@@ -1,3 +1,7 @@
+import 'package:moony_app/common/domain/user/email.dart';
+import 'package:moony_app/common/domain/user/password.dart';
+import 'package:moony_app/common/domain/user/phone_number.dart';
+
 import 'authentication_state.dart';
 
 /// Authentication state repository
@@ -23,21 +27,21 @@ abstract class IPhoneAuthRepository {
   Stream<AuthenticationState> getPhoneNumberAuthenticationState();
 
   /// sign in with phone number (send phone otp)
-  void signInWithPhoneNumber(
-      {required String phoneNumber});
+  Future<void> signInWithPhoneNumber(
+      {required PhoneNumber phoneNumber});
 
   /// verify phone otp
-  Future<AuthenticationState> verifyPhoneOtp({required String code});
+  Future<AuthenticationState> verifyPhoneOtp({required SmsOtp code});
 }
 
 /// Email authentication repository
 abstract class IEmailAuthRepository {
   /// sign in with email and password
   Future<AuthenticationState> signInWithEmailAndPassword(
-      {required String emailAddress, required String password});
+      {required EmailAddress emailAddress, required Password password});
   /// register user with email and password (TODO: remove if not needed)
   Future<AuthenticationState> registerWithEmailAndPassword(
-      {required String emailAddress, required String password});
+      {required EmailAddress emailAddress, required Password password});
 }
 
 /// Facebook authentication repository

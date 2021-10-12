@@ -4,7 +4,10 @@ import 'package:moony_app/features/registration/internal/usecase/registration_us
 
 /// Load user dependencies
 void loadModule() {
-  Get.lazyPut<RegistrationUseCase>(() => RegistrationUseCase(Get.find()),
+  Get.lazyPut<IsUserRegistered>(() => IsUserRegistered(Get.find()),
       fenix: true);
-  Get.lazyPut<RegistrationApi>(() => RegistrationApi(Get.find()), fenix: true);
+
+  Get.lazyPut<RegistrationApi>(
+      () => RegistrationApi(Get.find<IsUserRegistered>()),
+      fenix: true);
 }

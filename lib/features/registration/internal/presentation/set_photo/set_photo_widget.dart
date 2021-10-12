@@ -8,10 +8,10 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/features/registration/internal/presentation/registration_controller.dart';
-import 'package:moony_app/features/registration/internal/usecase/registration_use_case.dart';
 import 'package:moony_app/features/registration/resources/strings.dart';
 
 /// The set name widget
@@ -166,7 +166,8 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
 /// SetPhoto Controller
 class SetPhotoController extends GetxController {
   /// Public constructor
-  SetPhotoController(this._registrationController, this._registrationUseCase) {
+  SetPhotoController(this._registrationController, this._saveSecondaryPhotoList,
+      this._saveProfilePhoto) {
     _currentPageDisposable =
         ever(_registrationController.currentPage, (Widget? page) {
       if (page is SetPhotoWidget) {
@@ -178,7 +179,8 @@ class SetPhotoController extends GetxController {
   }
 
   late final Worker _currentPageDisposable;
-  final RegistrationUseCase _registrationUseCase;
+  final AsyncParamUseCase<List<Uri>, void> _saveSecondaryPhotoList;
+  final AsyncParamUseCase<Uri, void> _saveProfilePhoto;
   final RegistrationController _registrationController;
 
   /// first photo reactive path
@@ -189,28 +191,20 @@ class SetPhotoController extends GetxController {
 
   /// first photo path form validator
   String? path1Validator(String item) {
-    if (item != path2.value) {
+    if (item != path2.value && Uri.tryParse(item) != null) {
       path1.value = item;
       if (path2.value != null) {
-        _registrationUseCase.setUserProfilePhotoPath(
-            path: Uri.parse(path1.value!));
-        _registrationUseCase
-            .setUserSecondaryPhotoPathList(paths: [Uri.parse(path2.value!)]);
-        _registrationController.enableNextButton();
+        _savePhotos();
       }
     }
   }
 
   /// second photo path form validator
   String? path2Validator(String item) {
-    if (item != path1.value) {
+    if (item != path1.value && Uri.tryParse(item) != null) {
       path2.value = item;
       if (path1.value != null) {
-        _registrationUseCase.setUserProfilePhotoPath(
-            path: Uri.parse(path1.value!));
-        _registrationUseCase
-            .setUserSecondaryPhotoPathList(paths: [Uri.parse(path2.value!)]);
-        _registrationController.enableNextButton();
+        _savePhotos();
       }
     }
   }
@@ -219,5 +213,11 @@ class SetPhotoController extends GetxController {
   void onClose() {
     _currentPageDisposable.dispose();
     super.onClose();
+  }
+
+  void _savePhotos() {
+    _saveProfilePhoto(input: Uri.parse(path1.value!));
+    _saveSecondaryPhotoList(input: [Uri.parse(path2.value!)]);
+    _registrationController.enableNextButton();
   }
 }
