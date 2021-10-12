@@ -66,14 +66,14 @@ In the package-by-feature style, the number of classes within each package remai
 ```yaml
 
 # All the common, global and shared material and configuration
-- /common
+/common
     # Our global (shared) data sources, device apis services...
-    - /services
-        - /example_service
+    /services
+        /example_service
             - service_abstract.dart
             - service_impl.dart
     # Application configuration
-    - /application
+    /application
         # Dependency injection loader (will rely on feature di module)
         - app_binding.dart
         # Navigation configuration (will rely on feature router)
@@ -81,78 +81,101 @@ In the package-by-feature style, the number of classes within each package remai
         # Main app widget
         - app_widget.dart
     # Dependencies injection configuration
-    - /di
+    /di
         # Common di
         - module.dart
     # Common resources class
-    - /resources
+    /resources
         # Asset constants (images and fonts paths)
         - assets.dart
         # Strings constants for name, messages or descriptions
         - strings.dart
         # Themes and colors constants
         - themes.dart
-    # Common reusable toolbox
-    - /base
+    # Common data feature
+    /data
+    # Common domain feature
+    /domain
+    # Common presentation feature
+    /presentation
+    # Abstract extendable toolbox
+    /base
         # Common reusable widgets
-        - /widgets
+        /widgets
             # Reusable widget
             - widget1.dart
         # Common reusable domain objects
-        - /domain
-            # Entity as of Clean architecture / DDD, all entities should inherit from it
-            - entity.dart
-            # Value object as of Clean architecture / DDD, all VO should inherit from it
-            - value_object.dart
+        /domain
+            /model
+                # Entity as of Clean architecture / DDD, all entities should inherit from it
+                - entity.dart
+                # Value object as of Clean architecture / DDD, all VO should inherit from it
+                - value_object.dart
+            /usecase
+                # Base use case classes to use in features
+                - usecase.dart
     # Utilities toolbox
-    - /util
+    /util
         # Custom logger
         - logger.dart
 # Directory that regroups all the features of the application
-- /features
+/features
     # Feature package corresponding to an epic
-    - /feature1
-        # Directory that contains interfaces that can be accessed by others features (optional)
-        - /api
-        # Directory that cannot be accessed outside feature package, visibility package protected (in case of no sub-feature folders)
-        - /internal
-            # Directory responsible for containing everything related to external services like databases, remote services, device apis, data providers  of a feature
-            - /infrastructure
+    /feature1
+        # Directory responsible for containing everything related to external services like databases, remote services, device apis, data providers  of a feature
+        /data
+            # For local data source
+            /local
                 - model.dart
+                # Model mapper to convert api object to data model and vise versa
+                - mapper.dart
                 - data_source.dart
+            # For remote data source
+            /remote
+                - model.dart
+                # Model mapper to convert api object to data model and vise versa
+                - mapper.dart
+                - data_source.dart
+            # Implement repository interface and manage data sources
+            /repository
                 - repository_impl.dart
-            # The enterprise business rules that contains entities, failures, validated objects and repositories abstractions of a feature
-            - /domain
+                # Model mapper to convert data object to entity and vise versa
+                - mapper.dart
+        # The enterprise business rules that contains entities, failures, validated objects and repositories abstractions of a feature
+        /domain
+            /model
                 # The entity of the feature (User, Activity...)
                 - entity.dart
                 # The failures to handles exceptions
                 - failures.dart
                 # The value objects of a feature (Password, Emails, Date...), does not contains ids
                 - value_object.dart
-                # The abstraction part of the repository to return either a failure or an entity the the above layer
+            # The abstraction part of the repository to return either a failure or an entity the the above layer
+            /repository
                 - repository_abstract.dart
-            # The application business rules directory, contains use cases  of a feature
-            - /application
-                - usecase1.dart
-                - usecase2.dart
-            # Directory responsible for containing pages, widgets, viewmodels of a feature
-            - /presentation
-                # Feature presentation page
-                - page.dart
-                # Feature presentation widget
-                - widget.dart
-                # Feature presentation viewmodel
-                - controller.dart
-                # Feature presentation dependencies to inject (For Getx router)
-                - bindings.dart
+            # The application business rules directory, contains use cases of a feature
+            /usecase
+              - usecase1.dart
+              - usecase2.dart
+        # Directory responsible for containing pages, widgets, viewmodels of a feature
+        - /presentation
+            # Feature presentation page
+            - page.dart
+            # Feature presentation widget
+            - widget.dart
+            # Feature presentation viewmodel
+            - controller.dart
+            # Feature presentation dependencies to inject (For Getx router)
+            - bindings.dart
+            # Model mapper to convert entity to ui model and vise versa
+            - mapper.dart
         # Directory that contains di module
         - /di
             - module.dart
-        # Directory that contains router configuration
-        - /router
-            - router.dart
         # Directory that contains resources of the feature
         - /resources
+            # Contains router configuration
+            - router.dart
             # Asset constants (images and fonts paths)
             - assets.dart
             # Strings constants for name, messages or descriptions

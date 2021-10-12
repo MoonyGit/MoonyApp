@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:moony_app/common/di/di_module.dart' as common_module;
-import 'package:moony_app/features/authentication/di/di_module.dart'
+import 'package:moony_app/authentication/di/di_module.dart'
     as auth_module;
+import 'package:moony_app/common/di/di_module.dart' as common_module;
 
 /// Application global dependencies
 class AppBinding extends Bindings {

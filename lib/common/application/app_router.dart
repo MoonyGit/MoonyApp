@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:moony_app/features/activity/router/router.dart'
+import 'package:moony_app/activity/resources/router.dart'
     as activity_router;
-import 'package:moony_app/features/authentication/router/router.dart'
+import 'package:moony_app/authentication/resources/router.dart'
     as auth_router;
-import 'package:moony_app/features/registration/router/router.dart' as registration_router;
-import 'package:moony_app/features/startup/router.dart' as startup_router;
+import 'package:moony_app/registration/resources/router.dart' as registration_router;
+import 'package:moony_app/startup/resources/router.dart' as startup_router;
 
 /// Navigation class will provide all the routes of the application
 abstract class Navigation {

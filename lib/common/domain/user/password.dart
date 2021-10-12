@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:moony_app/common/base/domain/value_object.dart';
-import 'package:moony_app/features/authentication/resources/strings.dart';
+import 'package:moony_app/authentication/resources/strings.dart';
+import 'package:moony_app/common/base/domain/model/value_object.dart';
 
 /// Password failure
 class PasswordFailure extends Failure {

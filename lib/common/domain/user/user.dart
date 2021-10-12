@@ -1,5 +1,5 @@
-import 'package:moony_app/common/base/domain/entity.dart';
-import 'package:moony_app/common/base/domain/value_object.dart';
+import 'package:moony_app/common/base/domain/model/entity.dart';
+import 'package:moony_app/common/base/domain/model/value_object.dart';
 import 'package:moony_app/common/domain/user/birthdate.dart';
 import 'package:moony_app/common/domain/user/email.dart';
 import 'package:moony_app/common/domain/user/phone_number.dart';

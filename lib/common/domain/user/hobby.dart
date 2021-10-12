@@ -1,4 +1,4 @@
-import 'package:moony_app/common/base/domain/entity.dart';
+import 'package:moony_app/common/base/domain/model/entity.dart';
 
 /// Hobby entity
 class Hobby extends Entity<int> {

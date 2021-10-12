@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/common/base/domain/value_object.dart';
-import 'package:moony_app/features/registration/resources/strings.dart';
+import 'package:moony_app/common/base/domain/model/value_object.dart';
+import 'package:moony_app/registration/resources/strings.dart';
 
 /// Birthdate failure
 class BirthdateFailure extends Failure {
