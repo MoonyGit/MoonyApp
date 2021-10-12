@@ -13,7 +13,7 @@ import 'package:moony_app/features/authentication/internal/domain/authentication
 import 'package:moony_app/features/authentication/internal/infrastructure/repository/authentication_repository_impl.dart';
 import 'package:moony_app/features/authentication/internal/usecase/login_with_phone.dart';
 import 'package:moony_app/features/authentication/resources/strings.dart';
-import 'package:moony_app/features/registration/api/api.dart';
+import 'package:moony_app/features/registration/internal/usecase/registration_use_case.dart';
 import 'package:moony_app/features/registration/router/router.dart'
     as registration_router;
 
@@ -28,8 +28,12 @@ class SmsOtpBindings extends Bindings {
     Get.lazyPut<GetPhoneAuthStateUseCase>(
             () => GetPhoneAuthStateUseCase(Get.find<AuthenticationRepositoryImpl>()),
         fenix: true);
+
+    Get.lazyPut<IsUserRegistered>(() => IsUserRegistered(Get.find()),
+        fenix: true);
+
     Get.lazyPut(() => SmsOtpController(Get.find<VerifyPhoneOtpUseCase>(),
-        Get.find<GetPhoneAuthStateUseCase>(), Get.find()));
+        Get.find<GetPhoneAuthStateUseCase>(), Get.find<IsUserRegistered>()));
   }
 }
 
@@ -37,7 +41,7 @@ class SmsOtpBindings extends Bindings {
 class SmsOtpController extends GetxController {
   /// Constructor
   SmsOtpController(
-      this._verifyPhoneOtp, this._getPhoneAuthState, this._registrationApi) {
+      this._verifyPhoneOtp, this._getPhoneAuthState, this._isUserRegistered) {
     otpTextController = TextEditingController();
     _phoneAuthenticationStateSubscription =
         _getPhoneAuthState().listen((AuthenticationState state) {
@@ -64,7 +68,7 @@ class SmsOtpController extends GetxController {
 
   final AsyncParamUseCase<SmsOtp, AuthenticationState> _verifyPhoneOtp;
   final ReactiveUseCase<AuthenticationState> _getPhoneAuthState;
-  final RegistrationApi _registrationApi;
+  final AsyncUseCase<bool> _isUserRegistered;
 
   String? _lastOtp;
 
@@ -104,7 +108,7 @@ class SmsOtpController extends GetxController {
               },
               signedIn: () {
                 phoneOtpValidatedMessage = null;
-                _registrationApi.doesUserExist().then((bool doesUserExist) =>
+                _isUserRegistered().then((bool doesUserExist) =>
                     doesUserExist
                         ? Get.offNamed(activity_router.Router.home)
                         : Get.offNamed(

@@ -1,38 +1,47 @@
 import 'package:get/get.dart';
+import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/features/activity/router/router.dart'
     as activity_router;
-import 'package:moony_app/features/authentication/api/api.dart';
+import 'package:moony_app/features/authentication/internal/infrastructure/repository/authentication_repository_impl.dart';
+import 'package:moony_app/features/authentication/internal/usecase/get_auth_state.dart';
 import 'package:moony_app/features/authentication/router/router.dart'
     as auth_router;
-import 'package:moony_app/features/registration/api/api.dart';
-import 'package:moony_app/features/registration/router/router.dart' as registration_router;
+import 'package:moony_app/features/registration/internal/usecase/registration_use_case.dart';
+import 'package:moony_app/features/registration/router/router.dart'
+    as registration_router;
 
 /// Class to define SplashPage dependencies by dependency injection
 class SplashBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => SplashController(Get.find(), Get.find()));
+    Get.lazyPut<IsUserRegistered>(() => IsUserRegistered(Get.find()),
+        fenix: true);
+
+    Get.lazyPut<IsUserAuthenticatedUseCase>(
+        () => IsUserAuthenticatedUseCase(
+            Get.find<AuthenticationRepositoryImpl>()),
+        fenix: true);
+    Get.lazyPut(() => SplashController(
+        Get.find<IsUserAuthenticatedUseCase>(), Get.find<IsUserRegistered>()));
   }
 }
 
 /// ViewModel of the splash screen
 class SplashController extends GetxController {
   /// Constructor
-  SplashController(this._authApi, this._registrationApi);
+  SplashController(this._isUserAuthenticated, this._isUserRegistered);
 
-  final AuthenticationApi _authApi;
-  final RegistrationApi _registrationApi;
+  final AsyncUseCase<bool> _isUserAuthenticated;
+  final AsyncUseCase<bool> _isUserRegistered;
 
   /// Perform some initializations and check sign in state
   /// before going to next screen
   Future<void> goToNextScreen() async {
     try {
       //TODO: initialize/update resources
-      final bool isAuthenticated =
-          await _authApi.isUserAuthenticated();
-      final bool isRegistered =
-          await _registrationApi.doesUserExist();
+      final bool isAuthenticated = await _isUserAuthenticated();
+      final bool isRegistered = await _isUserRegistered();
       // TODO: remove simulation of delay
       Future<void>.delayed(const Duration(milliseconds: 3000), () {
         String page;
