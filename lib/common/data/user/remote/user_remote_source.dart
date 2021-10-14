@@ -1,6 +1,6 @@
 
 
-import 'model/user_data_model.dart';
+import 'user_data_model.dart';
 
 abstract class UserRemoteSource {
   /// Get remote user by id

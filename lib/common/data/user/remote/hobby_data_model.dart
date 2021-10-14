@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:moony_app/common/domain/user/hobby.dart';
+import 'package:moony_app/common/domain/user/model/hobby.dart';
 
 part 'hobby_data_model.g.dart';
 

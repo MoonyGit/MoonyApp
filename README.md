@@ -94,10 +94,16 @@ In the package-by-feature style, the number of classes within each package remai
         - themes.dart
     # Common data feature
     /data
+        /feature1
+        /feature2
     # Common domain feature
     /domain
+        /feature1
+        /feature2
     # Common presentation feature
     /presentation
+        /feature1
+        /feature2
     # Abstract extendable toolbox
     /base
         # Common reusable widgets

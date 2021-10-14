@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/common/data/remote/user/user_remote_source.dart';
-
-import 'model/user_data_model.dart';
+import 'package:moony_app/common/data/user/remote/user_data_model.dart';
+import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 
 /// UserRemoteSource implementation
 class UserRemoteSourceImpl implements UserRemoteSource {

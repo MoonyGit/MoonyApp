@@ -4,7 +4,7 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/activity/resources/router.dart'

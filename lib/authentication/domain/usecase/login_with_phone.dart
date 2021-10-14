@@ -1,5 +1,5 @@
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/authentication/domain/repository/auth_repositories_facade.dart';
 import 'package:moony_app/authentication/domain/model/authentication_state.dart';
 

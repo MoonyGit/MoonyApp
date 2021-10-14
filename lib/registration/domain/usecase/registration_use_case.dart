@@ -1,6 +1,6 @@
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/repository/user_repositories_facade.dart';
-import 'package:moony_app/common/domain/user/user.dart';
+import 'package:moony_app/common/domain/user/model/user.dart';
+import 'package:moony_app/common/domain/user/repository/user_repositories_facade.dart';
 
 /// Give user registration state
 class IsUserRegistered extends AsyncUseCase<bool> {

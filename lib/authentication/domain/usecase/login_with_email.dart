@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/common/domain/user/password.dart';
+import 'package:moony_app/common/domain/user/model/email.dart';
+import 'package:moony_app/common/domain/user/model/password.dart';
 import 'package:moony_app/authentication/domain/repository/auth_repositories_facade.dart';
 import 'package:moony_app/authentication/domain/model/authentication_state.dart';
 

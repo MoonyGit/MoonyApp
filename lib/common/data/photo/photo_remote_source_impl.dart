@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:moony_app/common/data/remote/photo/photo_remote_source.dart';
+import 'package:moony_app/common/data/photo/photo_remote_source.dart';
 import 'package:moony_app/common/util/logger.dart';
 
 /// PhotoRemoteSource implementation

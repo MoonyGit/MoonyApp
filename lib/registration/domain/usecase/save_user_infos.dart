@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/repository/user_repositories_facade.dart';
-import 'package:moony_app/common/domain/user/birthdate.dart';
-import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/common/domain/user/gender.dart';
-import 'package:moony_app/common/domain/user/name.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
-import 'package:moony_app/common/domain/user/relation_state.dart';
+import 'package:moony_app/common/domain/user/model/birthdate.dart';
+import 'package:moony_app/common/domain/user/model/email.dart';
+import 'package:moony_app/common/domain/user/model/gender.dart';
+import 'package:moony_app/common/domain/user/model/name.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
+import 'package:moony_app/common/domain/user/model/relation_state.dart';
+import 'package:moony_app/common/domain/user/repository/user_repositories_facade.dart';
 
 part 'save_user_infos.freezed.dart';
 

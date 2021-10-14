@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-import 'package:moony_app/common/data/local/user/user_local_source.dart';
-import 'package:moony_app/common/data/local/user/user_local_source_impl.dart';
-import 'package:moony_app/common/data/remote/connectivity/connectivity.dart';
-import 'package:moony_app/common/data/remote/connectivity/connectivity_service.dart';
-import 'package:moony_app/common/data/remote/photo/photo_remote_source.dart';
-import 'package:moony_app/common/data/remote/photo/photo_remote_source_impl.dart';
-import 'package:moony_app/common/data/remote/user/user_remote_source.dart';
-import 'package:moony_app/common/data/remote/user/user_remote_source_impl.dart';
-import 'package:moony_app/common/data/repository/user_repository_impl.dart';
+import 'package:moony_app/common/data/connectivity/connectivity.dart';
+import 'package:moony_app/common/data/connectivity/connectivity_service.dart';
+import 'package:moony_app/common/data/photo/photo_remote_source.dart';
+import 'package:moony_app/common/data/photo/photo_remote_source_impl.dart';
 import 'package:moony_app/common/data/services/local_storage/local_storage.dart';
 import 'package:moony_app/common/data/services/local_storage/local_storage_service.dart';
-import 'package:moony_app/common/domain/repository/user_repositories_facade.dart';
+import 'package:moony_app/common/data/user/local/user_local_source.dart';
+import 'package:moony_app/common/data/user/local/user_local_source_impl.dart';
+import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
+import 'package:moony_app/common/data/user/remote/user_remote_source_impl.dart';
+import 'package:moony_app/common/data/user/repository/user_repository_impl.dart';
+import 'package:moony_app/common/domain/user/repository/user_repositories_facade.dart';
 
 /// Load global dependencies
 void loadModule() {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/user/email.dart';
+import 'package:moony_app/common/domain/user/model/email.dart';
 import 'package:moony_app/registration/domain/usecase/save_user_infos.dart';
 
 /// Class to define SetEmailBackupPage dependencies by dependency injection

@@ -1,10 +1,10 @@
 import 'package:moony_app/common/base/domain/model/entity.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
-import 'package:moony_app/common/domain/user/birthdate.dart';
-import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
-import 'package:moony_app/common/domain/user/relation_state.dart';
+import 'package:moony_app/common/domain/user/model/birthdate.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
+import 'package:moony_app/common/domain/user/model/relation_state.dart';
 
+import 'email.dart';
 import 'gender.dart';
 import 'hobby.dart';
 import 'name.dart';

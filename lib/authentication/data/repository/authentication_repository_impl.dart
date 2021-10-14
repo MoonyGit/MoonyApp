@@ -3,9 +3,9 @@ import 'package:kt_dart/standard.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
 import 'package:moony_app/authentication/domain/model/authentication_state.dart';
 import 'package:moony_app/authentication/domain/repository/auth_repositories_facade.dart';
-import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/common/domain/user/password.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
+import 'package:moony_app/common/domain/user/model/email.dart';
+import 'package:moony_app/common/domain/user/model/password.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/common/util/logger.dart';
 
 /// Authentication repository

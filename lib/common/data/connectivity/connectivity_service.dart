@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-import '../../../data/remote/connectivity/connectivity.dart';
+import 'connectivity.dart';
 
 /// Wrapper class to provide connectivity status
 class ConnectivityService implements IConnectivity {

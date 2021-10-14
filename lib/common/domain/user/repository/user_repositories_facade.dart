@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:moony_app/common/domain/user/birthdate.dart';
-import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/common/domain/user/gender.dart';
-import 'package:moony_app/common/domain/user/name.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
-import 'package:moony_app/common/domain/user/relation_state.dart';
-import 'package:moony_app/common/domain/user/user.dart';
+import 'package:moony_app/common/domain/user/model/birthdate.dart';
+import 'package:moony_app/common/domain/user/model/email.dart';
+import 'package:moony_app/common/domain/user/model/gender.dart';
+import 'package:moony_app/common/domain/user/model/name.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
+import 'package:moony_app/common/domain/user/model/relation_state.dart';
+import 'package:moony_app/common/domain/user/model/user.dart';
 
 /// User repository
 abstract class IUserRepository {

@@ -5,7 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
-import 'package:moony_app/common/domain/user/gender.dart';
+import 'package:moony_app/common/domain/user/model/gender.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/registration/presentation/registration_controller.dart';
 import 'package:moony_app/registration/resources/strings.dart';

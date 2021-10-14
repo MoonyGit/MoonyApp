@@ -6,7 +6,7 @@ import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
-import 'package:moony_app/common/domain/user/name.dart';
+import 'package:moony_app/common/domain/user/model/name.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/registration/presentation/registration_controller.dart';
 import 'package:moony_app/registration/domain/usecase/save_user_infos.dart';

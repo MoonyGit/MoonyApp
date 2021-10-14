@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/user/user.dart';
+import 'package:moony_app/common/domain/user/model/user.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/activity/resources/router.dart';
 import 'package:moony_app/registration/domain/usecase/registration_use_case.dart';

@@ -1,6 +1,7 @@
-import 'package:moony_app/common/domain/user/email.dart';
-import 'package:moony_app/common/domain/user/password.dart';
-import 'package:moony_app/common/domain/user/phone_number.dart';
+
+import 'package:moony_app/common/domain/user/model/email.dart';
+import 'package:moony_app/common/domain/user/model/password.dart';
+import 'package:moony_app/common/domain/user/model/phone_number.dart';
 
 import '../model/authentication_state.dart';
 
