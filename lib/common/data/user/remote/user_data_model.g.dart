@@ -21,14 +21,10 @@ UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) {
         .map((e) => e as String)
         .toList(),
     verified: json['verified'] as bool,
-    creationDate: json['creationDate'] == null
-        ? null
-        : DateTime.parse(json['creationDate'] as String),
-    lastUpdateDate: json['lastUpdateDate'] == null
-        ? null
-        : DateTime.parse(json['lastUpdateDate'] as String),
-    hobbies: (json['hobbies'] as List<dynamic>?)
-        ?.map((e) => HobbyDataModel.fromJson(e as Map<String, dynamic>))
+    creationDate: DateTime.parse(json['creationDate'] as String),
+    lastUpdateDate: DateTime.parse(json['lastUpdateDate'] as String),
+    hobbies: (json['hobbies'] as List<dynamic>)
+        .map((e) => HobbyDataModel.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

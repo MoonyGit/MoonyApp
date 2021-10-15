@@ -30,13 +30,9 @@ class UserDataModel {
       required this.profilePhoto,
       required this.secondaryPhotos,
       required this.verified,
-      DateTime? creationDate,
-      DateTime? lastUpdateDate,
-      List<HobbyDataModel>? hobbies}) {
-    this.creationDate = creationDate ?? DateTime.now();
-    this.lastUpdateDate = lastUpdateDate ?? DateTime.now();
-    this.hobbies = hobbies ?? [];
-  }
+      required this.creationDate,
+      required this.lastUpdateDate,
+      required this.hobbies});
 
   /// Convert Object from json
   factory UserDataModel.fromJson(Map<String, dynamic> json) =>
@@ -70,11 +66,11 @@ class UserDataModel {
   final bool verified;
 
   /// User creationDate
-  late final DateTime creationDate;
+  final DateTime creationDate;
   /// User lastUpdateDate
-  late final DateTime lastUpdateDate;
+  final DateTime lastUpdateDate;
   /// User hobbies
-  late final List<HobbyDataModel> hobbies;
+  final List<HobbyDataModel> hobbies;
 }
 
 /// Mapper extension to convert an UserDataModel into an User

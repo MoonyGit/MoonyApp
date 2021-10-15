@@ -19,53 +19,61 @@ class ErrorCreatingUserFailure extends Failure {
 /// User entity class
 class User extends Entity<String> {
   /// Constructor
-  User({required this.id,
-        required this.familyName,
-        required this.firstName,
-        required this.birthdate,
-        required this.emailAddress,
-        required this.phoneNumber,
-        required this.gender,
-        required this.relationState,
-        required this.profilePhoto,
-        required this.secondaryPhotos,
-        required this.verified,
-        DateTime? creationDate,
-        DateTime? lastUpdateDate,
-        List<Hobby>? hobbies}) {
-    this.creationDate = creationDate ?? DateTime.now();
-    this.lastUpdateDate = lastUpdateDate ?? DateTime.now();
-    this.hobbies = hobbies ?? [];
-  }
+  User(
+      {required this.id,
+      required this.familyName,
+      required this.firstName,
+      required this.birthdate,
+      required this.emailAddress,
+      required this.phoneNumber,
+      required this.gender,
+      required this.relationState,
+      required this.profilePhoto,
+      required this.secondaryPhotos,
+      required this.verified,
+      required this.creationDate,
+      required this.lastUpdateDate,
+      required this.hobbies});
 
   @override
   final String id;
 
   /// User family name
   final Name familyName;
+
   /// User first name
   final Name firstName;
+
   /// User birth date
   final Birthdate birthdate;
+
   /// User email address
   final EmailAddress emailAddress;
+
   /// User phone number
   final PhoneNumber phoneNumber;
+
   /// User gender
   final Gender gender;
+
   /// User relation state
   final RelationState relationState;
+
   /// User profile photo url
   final Uri profilePhoto;
+
   /// User secondary photo url list
   final List<Uri> secondaryPhotos;
+
   /// User profile verified state
   final bool verified;
 
   /// User creation date
   late final DateTime creationDate;
+
   /// User update date
   late final DateTime lastUpdateDate;
+
   /// User hobby list
   late final List<Hobby> hobbies;
 }
