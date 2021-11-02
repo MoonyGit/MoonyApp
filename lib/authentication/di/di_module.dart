@@ -6,7 +6,12 @@ import 'package:moony_app/authentication/data/remote/authentication_data_source.
 import 'package:moony_app/authentication/data/remote/authentication_data_source_impl.dart';
 import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
 
-/// Load auth dependencies
+/// Load global dependencies
+///
+/// theses dependencies here will remain in memory during the whole application
+/// lifecycle
+/// if possible, prefer add dependencies in page bindings (scoped to page)
+/// include only data source as global dependencies if needed
 void loadModule() {
   // Auth
   Get.lazyPut<GoogleSignIn>(() => GoogleSignIn(), fenix: true);
