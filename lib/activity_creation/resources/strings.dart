@@ -49,3 +49,5 @@ const String activityBudgetLv2 = "20€ - 50€";
 
 /// Activity creation process: Budget= Free
 const String activityBudgetLv3 = "+50€";
+
+
