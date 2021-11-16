@@ -3,6 +3,9 @@ import 'package:kt_dart/standard.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
 import 'package:moony_app/common/data/photo/photo_remote_source.dart';
 import 'package:moony_app/common/data/user/local/user_local_source.dart';
+import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
+import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
+import 'package:moony_app/common/data/user/remote/relation_state_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
@@ -79,8 +82,8 @@ class UserRepositoryImpl implements IUserRepository {
       final String familyName = (await _userLocalSource.getUserFamilyName())!;
       final String firstName = (await _userLocalSource.getUserFirstName())!;
       final DateTime birthdate = (await _userLocalSource.getUserBirthdate())!;
-      final int gender = (await _userLocalSource.getUserGender())!;
-      final int relationState =
+      final GenderDataModel gender = (await _userLocalSource.getUserGender())!;
+      final RelationStateDataModel relationState =
           (await _userLocalSource.getUserRelationState())!;
 
       final UserDataModel user = UserDataModel(
@@ -96,7 +99,7 @@ class UserRepositoryImpl implements IUserRepository {
           secondaryPhotos: secondaryPhotosUrl,
           creationDate: DateTime.now(),
           lastUpdateDate: DateTime.now(),
-          hobbies: [],
+          hobbies: <HobbyDataModel>[],
           verified: false);
       await _userRemoteSource.create(user: user);
       return null;
@@ -137,13 +140,14 @@ class UserRepositoryImpl implements IUserRepository {
 
   @override
   Future<void> saveUserGender({required Gender gender}) async {
-    _userLocalSource.setUserGender(gender: gender.id!);
+    _userLocalSource.setUserGender(gender: gender.toData());
   }
 
   @override
   Future<void> saveUserRelationState(
       {required RelationState relationState}) async {
-    _userLocalSource.setUserRelationState(relationState: relationState.id!);
+    _userLocalSource.setUserRelationState(
+        relationState: relationState.toData());
   }
 
   @override

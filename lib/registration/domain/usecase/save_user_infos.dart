@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/email.dart';
@@ -8,14 +7,16 @@ import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/common/domain/user/model/relation_state.dart';
 import 'package:moony_app/common/domain/user/repository/user_repositories_facade.dart';
 
-part 'save_user_infos.freezed.dart';
-
 /// Parameter data class for SaveUserNameUseCase
-@freezed
-class SaveUserNameUseCaseParam with _$SaveUserNameUseCaseParam {
+class SaveUserNameUseCaseParam {
   /// Constructor
-  factory SaveUserNameUseCaseParam(
-      {required Name family, required Name first}) = _SaveUserNameUseCaseParam;
+  SaveUserNameUseCaseParam({required this.family, required this.first});
+
+  /// Family name
+  final Name family;
+
+  /// First name
+  final Name first;
 }
 
 /// Save user family and first names
@@ -28,9 +29,7 @@ class SaveUserNameUseCase
 
   @override
   Future<void> call({required SaveUserNameUseCaseParam input}) =>
-      _userRepo.saveUserName(
-          firstName: input.first, familyName: input.family);
-
+      _userRepo.saveUserName(firstName: input.first, familyName: input.family);
 }
 
 /// Save user birthdate
@@ -82,7 +81,8 @@ class SaveUserGenderUseCase extends AsyncParamUseCase<Gender, void> {
 }
 
 /// Save user relation state
-class SaveUserRelationStateUseCase extends AsyncParamUseCase<RelationState, void> {
+class SaveUserRelationStateUseCase
+    extends AsyncParamUseCase<RelationState, void> {
   /// Constructor
   SaveUserRelationStateUseCase(this._userRepo);
 

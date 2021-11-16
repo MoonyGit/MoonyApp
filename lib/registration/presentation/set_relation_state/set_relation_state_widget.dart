@@ -32,7 +32,7 @@ class SetRelationStateWidget
 
   @override
   List<Widget> getWidgets(BuildContext context) {
-    return [
+    return <Widget>[
       OutlinedButton(
           onPressed: controller.onAloneRelationStateChoosen,
           child: makeWidgetWithConstraints(
@@ -77,14 +77,14 @@ class SetRelationStateController extends GetxController {
 
   /// alone picked button callback
   void onAloneRelationStateChoosen() {
-    _relationState = const RelationState.alone();
+    _relationState = RelationState.alone;
     _registrationUseCase(input: _relationState!);
     _registrationController.enableNextButton();
   }
 
   /// taken picked button callback
   void onTakenRelationStatePicked() {
-    _relationState = const RelationState.taken();
+    _relationState = RelationState.taken;
     _registrationUseCase(input: _relationState!);
     _registrationController.enableNextButton();
   }

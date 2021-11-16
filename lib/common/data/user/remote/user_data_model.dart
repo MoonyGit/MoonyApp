@@ -1,13 +1,13 @@
 import 'dart:core';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
+import 'package:moony_app/common/data/user/remote/relation_state_data_model.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/email.dart';
-import 'package:moony_app/common/domain/user/model/gender.dart';
 import 'package:moony_app/common/domain/user/model/hobby.dart';
 import 'package:moony_app/common/domain/user/model/name.dart';
 import 'package:moony_app/common/domain/user/model/phone_number.dart';
-import 'package:moony_app/common/domain/user/model/relation_state.dart';
 import 'package:moony_app/common/domain/user/model/user.dart';
 
 import 'hobby_data_model.dart';
@@ -55,9 +55,9 @@ class UserDataModel {
   /// User phoneNumber
   final String phoneNumber;
   /// User gender
-  final int gender;
+  final GenderDataModel gender;
   /// User relationState
-  final int relationState;
+  final RelationStateDataModel relationState;
   /// User profilePhoto
   final String profilePhoto;
   /// User secondaryPhotos
@@ -84,8 +84,8 @@ extension UserDataSourceMapper on UserDataModel {
       birthdate: Birthdate(input: birthdate),
       phoneNumber: PhoneNumber(input: phoneNumber),
       emailAddress: EmailAddress(input: emailAddress),
-      gender: Gender.fromId(id: gender),
-      relationState: RelationState.fromId(id: relationState),
+      gender: gender.toDomain(),
+      relationState: relationState.toDomain(),
       profilePhoto: Uri.parse(profilePhoto),
       secondaryPhotos:
           secondaryPhotos.map((String item) => Uri.parse(item)).toList(),
@@ -108,8 +108,8 @@ extension UserMapper on User {
         birthdate: birthdate.getOrCrash(),
         phoneNumber: phoneNumber.getOrCrash(),
         emailAddress: emailAddress.getOrCrash(),
-        gender: gender.id ?? Gender.defaultId,
-        relationState: relationState.id ?? RelationState.defaultId,
+        gender: gender.toData(),
+        relationState: relationState.toData(),
         profilePhoto: profilePhoto.toString(),
         secondaryPhotos:
             secondaryPhotos.map((Uri item) => item.toString()).toList(),

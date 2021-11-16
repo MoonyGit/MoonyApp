@@ -1,4 +1,6 @@
 import 'package:moony_app/common/data/services/local_storage/local_storage.dart';
+import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
+import 'package:moony_app/common/data/user/remote/relation_state_data_model.dart';
 
 import 'user_local_source.dart';
 
@@ -24,9 +26,8 @@ class UserLocalSourceImpl extends UserLocalSource {
   final ILocalStorage _storage;
 
   @override
-  Future<DateTime?> getUserBirthdate() async =>
-      Future<DateTime?>(() =>
-          _storage.get<DateTime>(userCreation + _separator + _birthdateKey));
+  Future<DateTime?> getUserBirthdate() async => Future<DateTime?>(
+      () => _storage.get<DateTime>(userCreation + _separator + _birthdateKey));
 
   @override
   Future<void> setUserBirthdate({required DateTime birthdate}) async {
@@ -61,13 +62,13 @@ class UserLocalSourceImpl extends UserLocalSource {
       _storage.get<String>(userCreation + _separator + _firstNameKey);
 
   @override
-  Future<void> setUserGender({required int gender}) async {
+  Future<void> setUserGender({required GenderDataModel gender}) async {
     _storage.add(userCreation + _separator + _genderKey, gender);
   }
 
   @override
-  Future<int?> getUserGender() async =>
-      _storage.get<int>(userCreation + _separator + _genderKey);
+  Future<GenderDataModel?> getUserGender() async =>
+      _storage.get<GenderDataModel>(userCreation + _separator + _genderKey);
 
   @override
   Future<void> setUserSecondaryPhotoPathList(
@@ -89,13 +90,14 @@ class UserLocalSourceImpl extends UserLocalSource {
   }
 
   @override
-  Future<void> setUserRelationState({required int relationState}) async {
+  Future<void> setUserRelationState({required RelationStateDataModel relationState}) async {
     _storage.add(userCreation + _separator + _relationStateKey, relationState);
   }
 
   @override
-  Future<int?> getUserRelationState() async =>
-      _storage.get<int>(userCreation + _separator + _relationStateKey);
+  Future<RelationStateDataModel?> getUserRelationState() async =>
+      _storage.get<RelationStateDataModel>(
+          userCreation + _separator + _relationStateKey);
 
   @override
   Future<String?> getUserPhoneNumber() async =>

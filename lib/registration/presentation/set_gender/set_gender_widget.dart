@@ -31,7 +31,7 @@ class SetGenderWidget extends SetInfoBaseWidget<SetGenderController> {
 
   @override
   List<Widget> getWidgets(BuildContext context) {
-    return [
+    return <Widget>[
       OutlinedButton(
           onPressed: controller.onFemaleGenderPicked,
           child: makeWidgetWithConstraints(
@@ -76,14 +76,14 @@ class SetGenderController extends GetxController {
 
   /// on male gender button callback
   void onMaleGenderPicked() {
-    _gender = const Gender.male();
+    _gender = Gender.male;
     _registrationUseCase(input: _gender!);
     _registrationController.enableNextButton();
   }
 
   /// on female gender button callback
   void onFemaleGenderPicked() {
-    _gender = const Gender.female();
+    _gender = Gender.female;
     _registrationUseCase(input: _gender!);
     _registrationController.enableNextButton();
   }
