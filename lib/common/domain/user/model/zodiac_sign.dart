@@ -49,7 +49,7 @@ extension ZodiacSignMapper on ZodiacSign {
     }
   }
 
-  String getName() => toString();
+  String getName() => toString().split(".")[1];
 
   static ZodiacSign fromBirthdate({required Birthdate birthdate}) =>
       ZodiacSign.aries;
