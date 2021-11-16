@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/activity_swipe/resources/router.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/model/user.dart';
 import 'package:moony_app/common/resources/strings.dart';
-import 'package:moony_app/activity/resources/router.dart';
 import 'package:moony_app/registration/domain/usecase/registration_use_case.dart';
 import 'package:moony_app/registration/domain/usecase/save_user_infos.dart';
 import 'package:moony_app/registration/resources/strings.dart';
+
 import 'set_birthdate/set_birthdate_widget.dart';
 import 'set_gender/set_gender_widget.dart';
 import 'set_name/set_name_widget.dart';
@@ -97,7 +98,7 @@ class RegistrationController extends GetxController {
   final PageController pageController = PageController();
 
   /// Page list
-  final List<Widget> pages = [
+  final List<Widget> pages = <Widget>[
     SetNameWidget(),
     SetBirthDateWidget(),
     SetGenderWidget(),
@@ -163,7 +164,7 @@ class RegistrationController extends GetxController {
       if (Get.isDialogOpen == true) {
         Get.back(closeOverlays: true);
       }
-      Get.offNamed(Router.home);
+      Get.offNamed(Router.swipe);
     }
   }
 

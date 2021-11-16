@@ -3,14 +3,15 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart' as ui_api;
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
+import 'package:moony_app/authentication/domain/model/authentication_state.dart';
+import 'package:moony_app/authentication/domain/usecase/login_with_phone.dart';
+import 'package:moony_app/authentication/resources/router.dart';
+import 'package:moony_app/authentication/resources/strings.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
-import 'package:moony_app/authentication/domain/model/authentication_state.dart';
-import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
-import 'package:moony_app/authentication/domain/usecase/login_with_phone.dart';
-import 'package:moony_app/authentication/resources/router.dart';
 
 /// Class to define SetPhonePage dependencies by dependency injection
 class SetPhoneBindings extends Bindings {

@@ -3,16 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
+import 'package:moony_app/activity_swipe/resources/router.dart' as swipe_router;
+import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
+import 'package:moony_app/authentication/domain/model/authentication_state.dart';
+import 'package:moony_app/authentication/domain/usecase/login_with_phone.dart';
+import 'package:moony_app/authentication/resources/strings.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
-import 'package:moony_app/activity/resources/router.dart'
-    as activity_router;
-import 'package:moony_app/authentication/domain/model/authentication_state.dart';
-import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
-import 'package:moony_app/authentication/domain/usecase/login_with_phone.dart';
-import 'package:moony_app/authentication/resources/strings.dart';
 import 'package:moony_app/registration/domain/usecase/registration_use_case.dart';
 import 'package:moony_app/registration/resources/router.dart'
     as registration_router;
@@ -111,11 +110,9 @@ class SmsOtpController extends GetxController {
               },
               signedIn: () {
                 phoneOtpValidatedMessage = null;
-                _isUserRegistered().then((bool doesUserExist) =>
-                    doesUserExist
-                        ? Get.offNamed(activity_router.Router.home)
-                        : Get.offNamed(
-                            registration_router.Router.setBackupEmail));
+                _isUserRegistered().then((bool doesUserExist) => doesUserExist
+                    ? Get.offNamed(swipe_router.Router.swipe)
+                    : Get.offNamed(registration_router.Router.setBackupEmail));
               },
               orElse: () => Logger.d("SmsOtpController verifySmsOtp "
                   "undefined state received $state"));

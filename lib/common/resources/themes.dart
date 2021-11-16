@@ -15,6 +15,8 @@ extension CustomTextStyles on TextTheme {
 abstract class AppTheme {
   /// Palette of `Primary` color's
   static const Color primary = Color(0xffa5224b);
+  /// Palette of `Primary` color's
+  static const Color primaryHalfOpacity = Color(0x99a5224b);
 
   // ignore: public_member_api_docs
   static const Color primaryDark = Color(0x773b234a);
