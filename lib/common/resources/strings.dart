@@ -47,6 +47,9 @@ abstract class AppStrings {
   /// Fab add text
   static const String addFab = "+";
 
+  /// The generic string for failures
+  static const String genericFailure = "Something went wrong";
+
   /// Method to translate strings
   static String translate({required String message}) {
     return message.tr;

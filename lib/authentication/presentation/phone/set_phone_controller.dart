@@ -73,7 +73,7 @@ class SetPhoneController extends GetxController {
       _lastPhoneNumber = number;
       PhoneNumber(input: number.phoneNumber).value.fold(
           (PhoneNumberFailure failure) => phoneNumberValidatedMessage.value =
-              AppStrings.translate(message: failure.message),
+              AppStrings.translate(message: failure.message ?? genericAuthFailure),
           (String r) =>
               _signInWithPhone(input: PhoneNumber(input: number.phoneNumber)));
     }

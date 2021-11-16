@@ -68,10 +68,10 @@ abstract class ValueObject<F extends Failure, T> {
 @immutable
 class Failure {
   /// Public constructor
-  const Failure({required this.message});
+  const Failure({this.message});
 
   /// Message of the failure
-  final String message;
+  final String? message;
 }
 
 /// Thrown when a [ValueObject] is expected to be valid, but is invalid.

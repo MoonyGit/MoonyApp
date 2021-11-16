@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
@@ -156,8 +155,10 @@ class RegistrationController extends GetxController {
       if (Get.isDialogOpen == true) {
         Get.back(closeOverlays: true);
       }
-      Get.snackbar(AppStrings.translate(message: settingAccountErrorTitle),
-          AppStrings.translate(message: failure.message));
+      Get.snackbar(
+          AppStrings.translate(message: settingAccountErrorTitle),
+          AppStrings.translate(
+              message: failure.message ?? AppStrings.genericFailure));
     } else {
       if (Get.isDialogOpen == true) {
         Get.back(closeOverlays: true);

@@ -22,11 +22,12 @@ class SmsOtpBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<VerifyPhoneOtpUseCase>(
-            () => VerifyPhoneOtpUseCase(Get.find<AuthenticationRepositoryImpl>()),
+        () => VerifyPhoneOtpUseCase(Get.find<AuthenticationRepositoryImpl>()),
         fenix: true);
 
     Get.lazyPut<GetPhoneAuthStateUseCase>(
-            () => GetPhoneAuthStateUseCase(Get.find<AuthenticationRepositoryImpl>()),
+        () =>
+            GetPhoneAuthStateUseCase(Get.find<AuthenticationRepositoryImpl>()),
         fenix: true);
 
     Get.lazyPut<IsUserRegistered>(() => IsUserRegistered(Get.find()),
@@ -83,7 +84,9 @@ class SmsOtpController extends GetxController {
       _lastOtp = otp;
       SmsOtp(input: otp!).value.fold(
           (SmsOtpFailure failure) => phoneOtpValidatedMessage =
-              AppStrings.translate(message: failure.message), (String value) {
+              AppStrings.translate(
+                  message: failure.message ?? genericAuthFailure),
+          (String value) {
         _verifyPhoneOtp(input: SmsOtp(input: otp))
             .then((AuthenticationState state) {
           Logger.d("SmsOtpController verifySmsOtp state received $state");
