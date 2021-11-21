@@ -1,11 +1,11 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:moony_app/settings/di/notification/settings_notification_bindings.dart';
 import 'package:moony_app/settings/presentation/home/setting_home_controller.dart';
 import 'package:moony_app/settings/presentation/home/setting_home_page.dart';
 import 'package:moony_app/settings/presentation/invoke/setting_invoke_controller.dart';
 import 'package:moony_app/settings/presentation/invoke/setting_invoke_page.dart';
 import 'package:moony_app/settings/presentation/location/setting_location_controller.dart';
 import 'package:moony_app/settings/presentation/location/setting_location_page.dart';
-import 'package:moony_app/settings/presentation/notification/setting_notification_controller.dart';
 import 'package:moony_app/settings/presentation/notification/setting_notification_page.dart';
 import 'package:moony_app/settings/presentation/payment/setting_payment_controller.dart';
 import 'package:moony_app/settings/presentation/payment/setting_payment_page.dart';
@@ -50,9 +50,7 @@ abstract class Router {
   /// Router for user setting
   static final List<GetPage<dynamic>> routes = [
     GetPage<dynamic>(
-        name: setting,
-        page: () => SettingPage(),
-        binding: SettingBindings()),
+        name: setting, page: () => SettingPage(), binding: SettingBindings()),
     GetPage<dynamic>(
         name: settingProfile,
         page: () => SettingProfilePage(),

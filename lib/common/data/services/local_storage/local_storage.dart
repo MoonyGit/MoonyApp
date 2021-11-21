@@ -2,7 +2,6 @@ import 'dart:async';
 
 /// Class used to abstract local key-value store (shared preferences...)
 abstract class ILocalStorage {
-
   /// Saves a [value] to persistent storage in the background.
   Future<void> add(String key, dynamic value);
 
