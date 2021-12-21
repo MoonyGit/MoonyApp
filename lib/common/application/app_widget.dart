@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:responsive_framework/utils/scroll_behavior.dart';
 
 import '../resources/strings.dart';
 import '../resources/themes.dart';
@@ -24,6 +26,16 @@ class MoonyApp extends StatelessWidget {
       darkTheme: AppTheme.dark,
       initialBinding: AppBinding(),
       locale: Get.deviceLocale,
+      builder: (BuildContext context, Widget? widget) =>
+          ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget!),
+        breakpoints: const <ResponsiveBreakpoint>[
+          ResponsiveBreakpoint.autoScale(350, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(600, name: TABLET),
+          ResponsiveBreakpoint.resize(800, name: DESKTOP),
+          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+        ],
+      ),
     );
   }
 }

@@ -70,6 +70,8 @@ dependencies:
   url_launcher: ^6.0.12
   # for cached image
   cached_network_image: ^3.1.0
+  # responsive framework
+  responsive_framework: ^0.1.5
 
   # Adds support for immutable objects
   freezed_annotation: ^0.14.2
