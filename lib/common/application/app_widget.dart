@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../resources/strings.dart';
@@ -10,6 +11,10 @@ import 'app_router.dart';
 class MoonyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]);
     return GetMaterialApp(
       title: AppStrings.translate(message: AppStrings.appTitle),
       debugShowCheckedModeBanner: false,
