@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/util/logger.dart';
-import 'package:moony_app/main/resources/router.dart';
+import 'package:moony_app/home/resources/router.dart' as home_router;
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/model/user.dart';
 import 'package:moony_app/common/resources/strings.dart';
@@ -165,8 +165,8 @@ class RegistrationController extends GetxController {
       if (Get.isDialogOpen == true) {
         Get.back(closeOverlays: true);
       }
-      Logger.d("Routing to Main");
-      Get.offNamed(Router.mainPage);
+      Logger.d("Routing to Planet");
+      Get.offNamed(home_router.Router.home);
     }
   }
 

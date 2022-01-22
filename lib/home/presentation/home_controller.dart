@@ -6,12 +6,14 @@ import 'package:flutter_cube/flutter_cube.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_ticket_provider_mixin.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/widgets/constrained_page.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
 import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/main/resources/router.dart' as main_router;
 
 /// Class to define Home page dependencies by dependency injection
 class HomeBinding extends Bindings {
@@ -88,6 +90,7 @@ class HomeController extends ConstrainedController
 
   /// Call this method from page, on planet clicked
   void onPlanetTap() {
+    Get.offNamed(main_router.Router.mainPage);
     Logger.d("PLANET CLICKED");
   }
 
