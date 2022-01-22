@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/main/resources/router.dart' as main_router;
+import 'package:moony_app/home/resources/router.dart' as home_router;
 import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
 import 'package:moony_app/authentication/domain/model/authentication_state.dart';
 import 'package:moony_app/authentication/domain/usecase/login_with_phone.dart';
@@ -111,7 +111,7 @@ class SmsOtpController extends GetxController {
               signedIn: () {
                 phoneOtpValidatedMessage = null;
                 _isUserRegistered().then((bool doesUserExist) => doesUserExist
-                    ? Get.offNamed(main_router.Router.mainPage)
+                    ? Get.offNamed(home_router.Router.home)
                     : Get.offNamed(registration_router.Router.setBackupEmail));
               },
               orElse: () => Logger.d("SmsOtpController verifySmsOtp "
