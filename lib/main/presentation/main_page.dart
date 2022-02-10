@@ -5,7 +5,7 @@ import 'package:moony_app/chat/presentation/chat_list_page.dart';
 import 'package:moony_app/gift/presentation/gift_page.dart';
 import 'package:moony_app/main/presentation/main_controller.dart';
 import 'package:moony_app/main/resources/assets.dart';
-import 'package:moony_app/profile/presentation/user_profile_page.dart';
+import 'package:moony_app/profile/activity/presentation/view/user_profile_activity_page.dart';
 
 /// The phone otp page
 class MainPage extends GetView<MainController> {
@@ -18,7 +18,7 @@ class MainPage extends GetView<MainController> {
       case PageType.chat:
         return ChatListPage();
       case PageType.profile:
-        return UserProfilePage();
+        return UserProfileActivityPage();
     }
   }).toList();
 

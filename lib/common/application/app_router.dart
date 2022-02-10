@@ -29,4 +29,5 @@ abstract class Navigation {
       registration_router.Router.routes +
       settings_router.Router.routes +
       swipe_router.Router.routes;
+      profile_router.Router.routes;
 }
