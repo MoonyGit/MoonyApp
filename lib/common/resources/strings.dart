@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 /// This class is used to provide all string constant in a statical way
 abstract class AppStrings {
-
   ///////////////////////////
   ///////// Global /////////
   //////////////////////////
@@ -50,9 +49,18 @@ abstract class AppStrings {
   /// The generic string for failures
   static const String genericFailure = "Something went wrong";
 
+  /// The loading message for moony in user profile
+  static const String moonyLoadingMessage = "Je réfléchis";
+
   /// Method to translate strings
+  @Deprecated("Please use extension on string : Translate")
   static String translate({required String message}) {
     return message.tr;
   }
+}
 
+/// extension for translate any string
+extension Translation on String {
+  /// Translate the string in current locale on mobile
+  String translate() => tr;
 }

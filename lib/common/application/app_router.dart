@@ -15,7 +15,8 @@ import 'package:moony_app/startup/resources/router.dart' as startup_router;
 /// Navigation class will provide all the routes of the application
 abstract class Navigation {
   /// The initial route
-  static const String initial = startup_router.Router.splash;
+  // static const String initial = startup_router.Router.splash;
+  static const String initial = profile_router.Router.userProfile;
 
   /// The list of routes
   static final List<GetPage<dynamic>> routes =
@@ -28,6 +29,6 @@ abstract class Navigation {
       profile_router.Router.routes +
       registration_router.Router.routes +
       settings_router.Router.routes +
-      swipe_router.Router.routes;
+      swipe_router.Router.routes +
       profile_router.Router.routes;
 }

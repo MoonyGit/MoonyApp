@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'authentication_state.dart';
 
@@ -57,6 +58,14 @@ mixin _$AuthenticationState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus status)? loading,
     TResult Function(AuthenticationStatus status)? unAuthenticated,
@@ -71,6 +80,14 @@ mixin _$AuthenticationState {
     required TResult Function(UnAuthenticated value) unAuthenticated,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AuthenticationFailure value) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -208,6 +225,17 @@ class _$AuthenticationLoading implements AuthenticationLoading {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return loading?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus status)? loading,
     TResult Function(AuthenticationStatus status)? unAuthenticated,
@@ -230,6 +258,17 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     required TResult Function(AuthenticationFailure value) failure,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -340,6 +379,17 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return unAuthenticated?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus status)? loading,
     TResult Function(AuthenticationStatus status)? unAuthenticated,
@@ -362,6 +412,17 @@ class _$UnAuthenticated implements UnAuthenticated {
     required TResult Function(AuthenticationFailure value) failure,
   }) {
     return unAuthenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return unAuthenticated?.call(this);
   }
 
   @override
@@ -472,6 +533,17 @@ class _$Authenticated implements Authenticated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return authenticated?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus status)? loading,
     TResult Function(AuthenticationStatus status)? unAuthenticated,
@@ -494,6 +566,17 @@ class _$Authenticated implements Authenticated {
     required TResult Function(AuthenticationFailure value) failure,
   }) {
     return authenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return authenticated?.call(this);
   }
 
   @override
@@ -605,6 +688,17 @@ class _$AuthenticationFailure implements AuthenticationFailure {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return failure?.call(status);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus status)? loading,
     TResult Function(AuthenticationStatus status)? unAuthenticated,
@@ -627,6 +721,17 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     required TResult Function(AuthenticationFailure value) failure,
   }) {
     return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return failure?.call(this);
   }
 
   @override
@@ -742,6 +847,22 @@ mixin _$AuthenticationStatus {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -772,6 +893,22 @@ mixin _$AuthenticationStatus {
     required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -866,6 +1003,25 @@ class _$SignedIn implements SignedIn {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return signedIn?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -904,6 +1060,25 @@ class _$SignedIn implements SignedIn {
     required TResult Function(Unknown value) unknown,
   }) {
     return signedIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return signedIn?.call(this);
   }
 
   @override
@@ -990,6 +1165,25 @@ class _$SignedOut implements SignedOut {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return signedOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1028,6 +1222,25 @@ class _$SignedOut implements SignedOut {
     required TResult Function(Unknown value) unknown,
   }) {
     return signedOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return signedOut?.call(this);
   }
 
   @override
@@ -1116,6 +1329,25 @@ class _$SessionExpired implements SessionExpired {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return sessionExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1154,6 +1386,25 @@ class _$SessionExpired implements SessionExpired {
     required TResult Function(Unknown value) unknown,
   }) {
     return sessionExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return sessionExpired?.call(this);
   }
 
   @override
@@ -1268,6 +1519,25 @@ class _$BadCredentials implements BadCredentials {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return badCredentials?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1306,6 +1576,25 @@ class _$BadCredentials implements BadCredentials {
     required TResult Function(Unknown value) unknown,
   }) {
     return badCredentials(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return badCredentials?.call(this);
   }
 
   @override
@@ -1397,6 +1686,25 @@ class _$Cancelled implements Cancelled {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return cancelled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1435,6 +1743,25 @@ class _$Cancelled implements Cancelled {
     required TResult Function(Unknown value) unknown,
   }) {
     return cancelled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return cancelled?.call(this);
   }
 
   @override
@@ -1523,6 +1850,25 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return used?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1561,6 +1907,25 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     required TResult Function(Unknown value) unknown,
   }) {
     return used(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return used?.call(this);
   }
 
   @override
@@ -1673,6 +2038,25 @@ class _$BadOtp implements BadOtp {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return badOtp?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1711,6 +2095,25 @@ class _$BadOtp implements BadOtp {
     required TResult Function(Unknown value) unknown,
   }) {
     return badOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return badOtp?.call(this);
   }
 
   @override
@@ -1801,6 +2204,25 @@ class _$OtpSent implements OtpSent {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return otpSent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1839,6 +2261,25 @@ class _$OtpSent implements OtpSent {
     required TResult Function(Unknown value) unknown,
   }) {
     return otpSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return otpSent?.call(this);
   }
 
   @override
@@ -1952,6 +2393,25 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return autoLogin?.call(smsCode);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -1990,6 +2450,25 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
     required TResult Function(Unknown value) unknown,
   }) {
     return autoLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return autoLogin?.call(this);
   }
 
   @override
@@ -2082,6 +2561,25 @@ class _$InProgress implements InProgress {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return inProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -2120,6 +2618,25 @@ class _$InProgress implements InProgress {
     required TResult Function(Unknown value) unknown,
   }) {
     return inProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return inProgress?.call(this);
   }
 
   @override
@@ -2234,6 +2751,25 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return serverError?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -2272,6 +2808,25 @@ class _$ServerError implements ServerError {
     required TResult Function(Unknown value) unknown,
   }) {
     return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return serverError?.call(this);
   }
 
   @override
@@ -2389,6 +2944,25 @@ class _$Unknown implements Unknown {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return unknown?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -2427,6 +3001,25 @@ class _$Unknown implements Unknown {
     required TResult Function(Unknown value) unknown,
   }) {
     return unknown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return unknown?.call(this);
   }
 
   @override
