@@ -23,16 +23,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   collection: ^1.15.0
 
   ## Utils
   dartz: ^0.10.0-nullsafety.2
-  uuid: 3.0.4
+  uuid: ^3.0.5
   rxdart: ^0.27.1
   equatable: ^2.0.3
   json_serializable: ^6.0.1
-  json_annotation: ^4.3.0
 
   ## For state, navigation and dependencies management
   get: ^4.3.8
@@ -41,7 +42,7 @@ dependencies:
 
   ## For Kotlin features
   # Adds Kotlin data structure support (List, Map, Set, Pair, Triple)
-  kt_dart: ^0.9.0
+  kt_dart: ^0.10.0
   # Adds lots of Kotlin features on Strings, Int, collections
   supercharged: ^2.0.0
   # Adds Kotlin scoped function (let, also, run)
@@ -52,7 +53,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   # Phone number picker:
   intl_phone_number_input: ^0.7.0+2
-  # Pin code ui
+  # Pin code main
   pin_code_fields: ^7.2.0
   # Page view dots indicators
   smooth_page_indicator: ^1.0.0+2
@@ -63,9 +64,9 @@ dependencies:
   # prevent user spamming button
   tap_debouncer: ^2.0.0
   # reactive forms to make async
-  reactive_forms: ^10.6.0
+  reactive_forms: ^11.0.0
   # swappable list widget
-  swipable_stack: ^0.7.1
+  swipable_stack: ^1.2.0
   # allow user to open link into browser
   url_launcher: ^6.0.12
   # for cached image
@@ -77,13 +78,14 @@ dependencies:
   responsive_framework: ^0.1.5
 
   # Adds support for immutable objects
-  freezed_annotation: ^0.14.2
+  freezed_annotation: ^1.1.0
 
   ## Device service features
   # Adds internet checking support
   connectivity_plus: ^2.0.2
+
   # Adds location service support
-  geolocator: ^7.7.1
+  geolocator: ^8.0.5
 
   # logging
   logger: ^1.0.0
@@ -91,14 +93,19 @@ dependencies:
   ## For backend
   firebase_auth: ^3.1.1
   firebase_core: ^1.6.0
-  cloud_firestore: ^2.5.3
+  cloud_firestore: ^3.1.7
   firebase_storage: ^10.0.3
 
   ## For social sign-in
   google_sign_in: ^5.0.4
-  flutter_facebook_auth: ^3.4.1
+  flutter_facebook_auth: ^4.0.1
   sign_in_with_apple: ^3.0.0
   crypto: ^3.0.1
+  flutter_chat_ui: ^1.4.4
+  json_annotation: ^4.4.0
+  flutter_firebase_chat_core: ^1.4.2
+  open_file: ^3.2.1
+  file_picker: ^4.1.6
 
 
 dev_dependencies:
@@ -107,7 +114,7 @@ dev_dependencies:
 
   # For code generation
   build_runner:
-  freezed: ^0.14.2
+  freezed: ^1.1.1
 
   # For launch icon generation script, to execute with flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
   flutter_launcher_icons: ^0.9.0
@@ -129,6 +136,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/icons/
     - assets/images/swipe/
     - assets/images/home/
 

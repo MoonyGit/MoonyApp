@@ -54,37 +54,40 @@ class _SingleChoiceChipState
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: 3000.0,
-      runSpacing: 20.0,
-      children: buildChipList(),
+    return Expanded(
+      child: Column(
+        children: buildChipList(),
+      ),
     );
   }
 
   @override
   List<Widget> buildChipList() {
     return widget.choices.map((String item) {
-      return ChoiceChip(
-        label: SizedBox(
-          width: 280,
-          child: Text(
-            item,
-            textAlign: TextAlign.center,
+      return Flexible(
+        fit: FlexFit.tight,
+        flex: 1,
+        child: ChoiceChip(
+          label: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Text(
+              item,
+              textAlign: TextAlign.center,
+            ),
           ),
+          shape: const StadiumBorder(side: BorderSide(width: 2)),
+          labelStyle: const TextStyle(color: Colors.black),
+          labelPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          backgroundColor: AppTheme.background,
+          selectedColor: AppTheme.primaryLight,
+          selected: selectedItem == item,
+          onSelected: (bool selected) {
+            setState(() {
+              selectedItem = item;
+            });
+            widget.listener?.call(item);
+          },
         ),
-        shape: const StadiumBorder(side: BorderSide(width: 2)),
-        labelStyle: const TextStyle(color: Colors.black),
-        labelPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        backgroundColor: AppTheme.background,
-        selectedColor: AppTheme.primaryLight,
-        selected: selectedItem == item,
-        onSelected: (bool selected) {
-          setState(() {
-            selectedItem = item;
-          });
-          widget.listener?.call(item);
-        },
       );
     }).toList();
   }

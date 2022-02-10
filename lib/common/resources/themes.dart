@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Extension to apply customs text themes
@@ -6,6 +7,15 @@ extension CustomTextStyles on TextTheme {
   TextStyle get moonyMessage {
     return const TextStyle(
       fontSize: 20.0,
+      color: Colors.white,
+    );
+  }
+
+  /// Moony message text description style
+  TextStyle get moonyDescription {
+    return const TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w300,
       color: Colors.white,
     );
   }
@@ -56,6 +66,10 @@ abstract class AppTheme {
 
   /// Other color's
   static const Color background = Color(0xFFF4F5F8);
+
+  static const Color searchbarBackground = Color(0xFFE5E5E5);
+
+  static const Color connected = Color(0xFF1CC902);
 
   // ignore: public_member_api_docs
   static const Color backgroundDark = Color(0xFF1D1B1C);
