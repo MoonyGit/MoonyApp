@@ -1,20 +1,17 @@
-import 'dart:io';
-
 import 'package:collection/collection.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:moony_app/common/data/photo/photo_remote_source.dart';
-import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/common/data/services/storage/storage_remote_source.dart';
+import 'package:moony_app/common/data/user/remote/photo_remote_source.dart';
 
 /// PhotoRemoteSource implementation
 class PhotoRemoteSourceImpl extends PhotoRemoteSource {
   /// Constructor
-  PhotoRemoteSourceImpl(this._storage);
+  PhotoRemoteSourceImpl(this._service);
 
   static const String _serverPathPrefix = "user_photos/";
   static const String _serverPathProfileSuffix = "/profile";
   static const String _serverProfilePhotoName = "/photo";
   static const String _serverPathSecondarySuffix = "/secondary";
-  final FirebaseStorage _storage;
+  final StorageRemoteSource _service;
 
   @override
   Future<List<String>?> uploadSecondaryPhotos(
@@ -26,7 +23,7 @@ class PhotoRemoteSourceImpl extends PhotoRemoteSource {
           _serverPathSecondarySuffix +
           _serverProfilePhotoName +
           indexPhoto;
-      return (await _uploadPhotoAtPath(
+      return (await _service.uploadFile(
           remotePath: userPhotoPath, localPath: localUrl))!;
     }));
   }
@@ -39,17 +36,6 @@ class PhotoRemoteSourceImpl extends PhotoRemoteSource {
         _serverPathProfileSuffix +
         _serverProfilePhotoName +
         1.toString();
-    return _uploadPhotoAtPath(remotePath: userPhotoPath, localPath: path);
-  }
-
-  Future<String?> _uploadPhotoAtPath(
-      {required String remotePath, required String localPath}) async {
-    try {
-      await _storage.ref(remotePath).putFile(File(localPath));
-      return await _storage.ref(remotePath).getDownloadURL();
-    } catch (e, trace) {
-      Logger.e(trace.toString());
-      return null;
-    }
+    return _service.uploadFile(remotePath: userPhotoPath, localPath: path);
   }
 }
