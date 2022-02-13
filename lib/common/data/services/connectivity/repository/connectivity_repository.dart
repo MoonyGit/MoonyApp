@@ -1,4 +1,4 @@
-import 'package:moony_app/common/data/connectivity/service/connectivity.dart';
+import 'package:moony_app/common/data/services/connectivity/service/connectivity.dart';
 import 'package:moony_app/common/domain/connectivity/model/connectivity.dart';
 import 'package:moony_app/common/domain/connectivity/repository/connectivity_repository.dart';
 
