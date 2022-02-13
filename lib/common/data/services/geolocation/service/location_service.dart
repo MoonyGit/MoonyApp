@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/common/data/geolocation/service/location.dart';
+import 'package:moony_app/common/data/services/geolocation/service/location.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:rxdart/rxdart.dart';
 
