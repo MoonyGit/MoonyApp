@@ -7,12 +7,14 @@ import 'package:moony_app/common/data/connectivity/service/connectivity_service.
 import 'package:moony_app/common/data/geolocation/repository/location_repository.dart';
 import 'package:moony_app/common/data/geolocation/service/location.dart';
 import 'package:moony_app/common/data/geolocation/service/location_service.dart';
-import 'package:moony_app/common/data/photo/photo_remote_source.dart';
-import 'package:moony_app/common/data/photo/photo_remote_source_impl.dart';
 import 'package:moony_app/common/data/services/local_storage/local_storage.dart';
 import 'package:moony_app/common/data/services/local_storage/local_storage_service.dart';
+import 'package:moony_app/common/data/services/storage/storage_remote_source.dart';
+import 'package:moony_app/common/data/services/storage/storage_remote_source_impl.dart';
 import 'package:moony_app/common/data/user/local/user_local_source.dart';
 import 'package:moony_app/common/data/user/local/user_local_source_impl.dart';
+import 'package:moony_app/common/data/user/remote/photo_remote_source.dart';
+import 'package:moony_app/common/data/user/remote/photo_remote_source_impl.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source_impl.dart';
 import 'package:moony_app/common/data/user/repository/user_repository_impl.dart';
@@ -50,6 +52,8 @@ void loadModule() {
   // User creation
   Get.lazyPut<FirebaseFirestore>(() => FirebaseFirestore.instance, fenix: true);
   Get.lazyPut<FirebaseStorage>(() => FirebaseStorage.instance, fenix: true);
+  Get.lazyPut<StorageRemoteSource>(() => StorageRemoteSourceImpl(Get.find()),
+      fenix: true);
   Get.lazyPut<UserLocalSource>(() => UserLocalSourceImpl(Get.find()),
       fenix: true);
   Get.lazyPut<UserRemoteSource>(() => UserRemoteSourceImpl(Get.find()),
