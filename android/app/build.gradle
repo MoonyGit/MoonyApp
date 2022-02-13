@@ -36,16 +36,19 @@ android {
             dimension "flavor-type"
             applicationId "com.moony.moony_app.mock"
             resValue "string", "app_name", "Moony mocked App"
+            ext.useGoogleGcm = false
         }
         staging {
             dimension "flavor-type"
             applicationId "com.moony.moony_app.staging"
             resValue "string", "app_name", "Moony staging App"
+            ext.useGoogleGcm = true
         }
         prod {
             dimension "flavor-type"
             applicationId "com.moony.moony_app"
             resValue "string", "app_name", "Moony"
+            ext.useGoogleGcm = true
         }
     }
 
@@ -83,6 +86,13 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
+}
+
+android.productFlavors.each { flavor ->
+    if (getGradle().getStartParameter().getTaskRequests().toString().toLowerCase().contains(flavor.name) && flavor.ext.useGoogleGcm) {
+        println("Building flavor with Google GCM [${flavor.name}] - applying plugin")
+        apply plugin: 'com.google.gms.google-services'
+    }
 }
 
 //rootProject.ext {
