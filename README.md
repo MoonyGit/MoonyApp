@@ -4,6 +4,15 @@
 
 The Moony dating application
 
+## Build variant
+
+(For ios please check flutter_flavorizr package readme and uncomment ios option in pubspec.yaml)
+To generate variant (only one time necessary): flutter pub run flutter_flavorizr
+
+For run mock: flutter run --flavor mock -t lib/main-mock.dart
+For run staging: flutter run --flavor staging -t lib/main-staging.dart
+For run prod: flutter run --flavor prod -t lib/main-prod.dart
+
 ## Lint check
 
 Run command  "dart analyze" before commit

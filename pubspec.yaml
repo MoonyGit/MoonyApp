@@ -115,6 +115,9 @@ dev_dependencies:
   # For QA
   lint: ^1.5.3
 
+  # Build flavor
+  flutter_flavorizr: ^2.1.2
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -157,3 +160,59 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+flavorizr:
+  ide: "idea"
+
+  instructions:
+    - android:androidManifest
+    - android:buildGradle
+    - android:icons
+    - flutter:flavors
+    - ide:config
+    # Uncomment for iOS target
+    #- ios:xcconfig
+    #- ios:buildTargets
+    #- ios:schema
+    #- ios:icons
+    #- ios:plist
+
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+
+  flavors:
+    mock:
+      app:
+        name: "Moony mocked App"
+        icon: assets/images/cat-black-face.png
+
+      android:
+        applicationId: "com.moony.moony_app.mock"
+
+      ios:
+        bundleId: "com.moony.moonyApp.mock"
+
+    staging:
+      app:
+        name: "Moony staging App"
+        icon: assets/images/cat-black-face-grey.png
+
+      android:
+        applicationId: "com.moony.moony_app.staging"
+
+      ios:
+        bundleId: "com.moony.moonyApp.staging"
+
+    prod:
+      app:
+        name: "Moony"
+        icon: assets/images/cat-black-face-color.png
+
+      android:
+        applicationId: "com.moony.moony_app"
+
+      ios:
+        bundleId: "com.moony.moonyApp"

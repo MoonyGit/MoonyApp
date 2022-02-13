@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
+import 'package:moony_app/common/data/mock/mock_service.dart';
 import 'package:moony_app/common/data/services/connectivity/repository/connectivity_repository.dart';
 import 'package:moony_app/common/data/services/connectivity/service/connectivity.dart';
 import 'package:moony_app/common/data/services/connectivity/service/connectivity_service.dart';
@@ -23,6 +24,7 @@ import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_ca
 import 'package:moony_app/common/domain/location/repository/location_repository.dart';
 import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
 import 'package:moony_app/common/domain/user/repository/user_repositories_facade.dart';
+import 'package:moony_app/flavors.dart';
 
 /// Load global dependencies
 ///
@@ -50,13 +52,30 @@ void loadModule() {
       fenix: true);
 
   // User creation
-  Get.lazyPut<FirebaseFirestore>(() => FirebaseFirestore.instance, fenix: true);
-  Get.lazyPut<FirebaseStorage>(() => FirebaseStorage.instance, fenix: true);
-  Get.lazyPut<StorageRemoteSource>(() => StorageRemoteSourceImpl(Get.find()),
-      fenix: true);
+  switch (F.appFlavor) {
+    case Flavor.MOCK:
+      {
+        Get.lazyPut(() => MockService(), fenix: true);
+        Get.lazyPut<StorageRemoteSource>(() => Get.find<MockService>(),
+            fenix: true);
+        Get.lazyPut<UserRemoteSource>(() => Get.find<MockService>(),
+            fenix: true);
+        break;
+      }
+    default:
+      {
+        Get.lazyPut<FirebaseFirestore>(() => FirebaseFirestore.instance,
+            fenix: true);
+        Get.lazyPut<FirebaseStorage>(() => FirebaseStorage.instance,
+            fenix: true);
+        Get.lazyPut<StorageRemoteSource>(
+            () => StorageRemoteSourceImpl(Get.find()),
+            fenix: true);
+        Get.lazyPut<UserRemoteSource>(() => UserRemoteSourceImpl(Get.find()),
+            fenix: true);
+      }
+  }
   Get.lazyPut<UserLocalSource>(() => UserLocalSourceImpl(Get.find()),
-      fenix: true);
-  Get.lazyPut<UserRemoteSource>(() => UserRemoteSourceImpl(Get.find()),
       fenix: true);
   Get.lazyPut<PhotoRemoteSource>(() => PhotoRemoteSourceImpl(Get.find()),
       fenix: true);
