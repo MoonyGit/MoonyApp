@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
+import 'package:dartz/dartz.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/budget_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_creator_info_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_location_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/domain/model/decision.dart';
+import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
 import 'package:moony_app/common/data/services/storage/storage_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
 import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
@@ -13,11 +17,16 @@ import 'package:moony_app/common/data/user/remote/user_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:uuid/uuid.dart';
 
 /// Global mock class that provide mocked data
 class MockService
-    implements UserRemoteSource, ISwipeRemoteSource, StorageRemoteSource {
+    implements
+        UserRemoteSource,
+        ISwipeRemoteSource,
+        StorageRemoteSource,
+        AuthDataSource {
   /// A mock list of swipe user
   final List<SwipeItemDataModel> _swipeMockUserList = <SwipeItemDataModel>[];
 
@@ -74,11 +83,24 @@ class MockService
     ],
   );
 
+  AuthUserDataSourceModel? _currentUser;
+  final String _smsOtp = "123456";
+  final StreamController<VerifyPhoneStateDataSourceEvent>
+      _phoneAuthenticationState =
+      BehaviorSubject<VerifyPhoneStateDataSourceEvent>();
+
+  final StreamController<AuthUserDataSourceModel?> _userAuthState =
+      BehaviorSubject<AuthUserDataSourceModel>();
+
   //#region UserRemoteSource impl
   @override
   Future<void> create({required UserDataModel user}) async {
     Logger.d(
       "MOCK: create user: $user",
+    );
+    _currentUser = AuthUserDataSourceModel(
+      id: "MyUserId",
+      phone: "+33834763058",
     );
   }
 
@@ -110,8 +132,7 @@ class MockService
     );
     return Future<List<SwipeItemDataModel>>.delayed(
       const Duration(seconds: 3),
-          () =>
-      _swipeMockUserList
+      () => _swipeMockUserList
         ..clear()
         ..addAll(<SwipeItemDataModel>[
           for (int i = 0; i < number; i++) _generateSwipeItemMock(),
@@ -125,7 +146,7 @@ class MockService
       "MOCK: getSwipeItemById, id: $id",
     );
     return _swipeMockUserList.firstWhereOrNull(
-          (SwipeItemDataModel element) => element.activityId == id,
+      (SwipeItemDataModel element) => element.activityId == id,
     );
   }
 
@@ -210,6 +231,115 @@ class MockService
       "MOCK: uploadFile, localPath: $localPath, remotePath: $remotePath",
     );
     return Future<String>.value("http://toto.com");
+  }
+
+  //#endregion
+
+  //#region AuthDataSource impl
+
+  @override
+  Stream<VerifyPhoneStateDataSourceEvent> getPhoneNumberAuthenticationState() {
+    Logger.d("MOCK: getPhoneNumberAuthenticationState");
+    return _phoneAuthenticationState.stream;
+  }
+
+  @override
+  Future<AuthUserDataSourceModel?> getSignedInUser() {
+    Logger.d("MOCK: getSignedInUser");
+    return Future<AuthUserDataSourceModel?>.value(_currentUser);
+  }
+
+  @override
+  Stream<AuthUserDataSourceModel?> getUserAuthStateChanges() {
+    Logger.d("MOCK: getUserAuthStateChanges");
+    return _userAuthState.stream;
+  }
+
+  @override
+  Future<void> signInWithPhoneNumber({required String phoneNumber}) async {
+    Logger.d("MOCK: signInWithPhoneNumber, phoneNumber: $phoneNumber");
+    _phoneAuthenticationState
+        .add(const VerifyPhoneStateDataSourceEvent.otpSent());
+    _phoneAuthenticationState.add(
+      VerifyPhoneStateDataSourceEvent.autoLogin(
+        smsCode: _smsOtp,
+      ),
+    );
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      verifyPhoneOtp({required String code}) async {
+    Logger.d("MOCK: verifyPhoneOtp, code: $code");
+    return Future<
+            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        right(AuthUserDataSourceModel(
+      id: "MyUserId",
+      phone: "+33834763058",
+    )));
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      registerWithEmailAndPassword(
+          {required String emailAddress, required String password}) {
+    Logger.d("MOCK: registerWithEmailAndPassword");
+    return Future<
+            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        right(AuthUserDataSourceModel(
+      id: "MyUserId",
+    )));
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithApple() {
+    Logger.d("MOCK: signInWithApple");
+    return Future<
+            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        right(AuthUserDataSourceModel(
+      id: "MyUserId",
+    )));
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithEmailAndPassword(
+          {required String emailAddress, required String password}) {
+    Logger.d("MOCK: signInWithEmailAndPassword, emailAddress: $emailAddress," +
+        "password: $password");
+    return Future<
+            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        right(AuthUserDataSourceModel(
+      id: "MyUserId",
+    )));
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithFacebook() {
+    Logger.d("MOCK: signInWithFacebook");
+    return Future<
+            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        right(AuthUserDataSourceModel(
+      id: "MyUserId",
+    )));
+  }
+
+  @override
+  Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
+      signInWithGoogle() {
+    Logger.d("MOCK: signInWithGoogle");
+    return Future<
+            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        right(AuthUserDataSourceModel(
+      id: "MyUserId",
+    )));
+  }
+
+  @override
+  Future<void> signOut() async {
+    Logger.d("MOCK: signOut");
   }
 
 //#endregion
