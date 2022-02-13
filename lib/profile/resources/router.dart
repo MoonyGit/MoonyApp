@@ -1,18 +1,27 @@
 import 'package:get/get.dart';
-import 'package:moony_app/profile/presentation/user_profile_controller.dart';
-import 'package:moony_app/profile/presentation/user_profile_page.dart';
+import 'package:moony_app/profile/activity/presentation/view/user_profile_activity_page.dart';
+import 'package:moony_app/profile/di/user_profile_activity_bindings.dart';
 
-/// Router for User Profile feature
+/// Profile router
 abstract class Router {
-  /// The "user profile" route path
-  static const String profile = '/profile';
+  /// Root profile
+  static const String userProfile = '/profile';
 
-  /// The list of routes
-  static final List<GetPage<dynamic>> routes = <GetPage<dynamic>>[
+  /// Root profile
+  static const String userProfileViewer = '$userProfile/viewer';
+
+  /// Edit profile
+  static const String userProfileEdit = '$userProfile/edit';
+
+  /// Edit profile naming
+  static const String userProfileEditNaming = '$userProfileEdit/naming';
+
+  /// Routes for user profile
+  static final List<GetPage<dynamic>> routes = [
     GetPage<dynamic>(
-      name: profile,
-      page: () => UserProfilePage(),
-      binding: UserProfileBinding(),
+      name: userProfile,
+      binding: UserProfileActivityBinding(),
+      page: () => UserProfileActivityPage(),
     ),
   ];
 }
