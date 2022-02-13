@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
+import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source_impl.dart';
 import 'package:moony_app/activity_swipe/data/repository/swipe_repository.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_item_detail.dart';
 import 'package:moony_app/activity_swipe/domain/usecase/get_swipable_activity_detail.dart';
@@ -17,17 +18,34 @@ import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/constrained_page.dart';
 import 'package:moony_app/common/data/mock/mock_service.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
+import 'package:moony_app/common/data/user/remote/user_remote_source_impl.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
 import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/flavors.dart';
 
 /// Class to define Swipe detail page dependencies by dependency injection
 class SwipeDetailBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ISwipeRemoteSource>(() => MockService(), fenix: true);
-    Get.lazyPut<UserRemoteSource>(() => MockService(), fenix: true);
+    switch (F.appFlavor) {
+      case Flavor.MOCK:
+        {
+          Get.lazyPut<ISwipeRemoteSource>(() => Get.find<MockService>(),
+              fenix: true);
+          Get.lazyPut<UserRemoteSource>(() => Get.find<MockService>(),
+              fenix: true);
+          break;
+        }
+      default:
+        {
+          Get.lazyPut<ISwipeRemoteSource>(() => SwipeRemoteSource(Get.find()),
+              fenix: true);
+          Get.lazyPut<UserRemoteSource>(() => UserRemoteSourceImpl(Get.find()),
+              fenix: true);
+        }
+    }
     Get.lazyPut(
         () => SwipeRepository(
             Get.find(), Get.find(), Get.find()),
