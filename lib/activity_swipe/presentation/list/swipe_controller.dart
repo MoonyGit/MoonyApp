@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/activity_swipe/data/remote/mock_swipe_remote_source_impl.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/data/repository/swipe_repository.dart';
 import 'package:moony_app/activity_swipe/domain/model/decision.dart';
@@ -15,7 +14,8 @@ import 'package:moony_app/activity_swipe/resources/router.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/constrained_page.dart';
-import 'package:moony_app/common/data/user/remote/mock_user_remote_source_impl.dart';
+import 'package:moony_app/common/data/mock/mock_service.dart';
+import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
 import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
 import 'package:moony_app/common/util/logger.dart';
@@ -28,11 +28,11 @@ import 'swipe_card_model.dart';
 class SwipeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ISwipeRemoteSource>(() => MockSwipeRemoteSource(), fenix: true);
-    Get.lazyPut(() => MockUserRemoteSourceImpl(), fenix: true);
+    Get.lazyPut<ISwipeRemoteSource>(() => MockService(), fenix: true);
+    Get.lazyPut<UserRemoteSource>(() => MockService(), fenix: true);
     Get.lazyPut(
         () => SwipeRepository(
-            Get.find(), Get.find(), Get.find<MockUserRemoteSourceImpl>()),
+            Get.find(), Get.find(), Get.find(),),
         fenix: true);
     Get.lazyPut(() => GetSwipeItemListUseCase(Get.find<SwipeRepository>()),
         fenix: true);

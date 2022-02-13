@@ -5,7 +5,6 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/activity_swipe/data/remote/mock_swipe_remote_source_impl.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/data/repository/swipe_repository.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_item_detail.dart';
@@ -16,7 +15,8 @@ import 'package:moony_app/activity_swipe/resources/router.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/constrained_page.dart';
-import 'package:moony_app/common/data/user/remote/mock_user_remote_source_impl.dart';
+import 'package:moony_app/common/data/mock/mock_service.dart';
+import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
 import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
 import 'package:moony_app/common/resources/strings.dart';
@@ -26,11 +26,11 @@ import 'package:moony_app/common/util/logger.dart';
 class SwipeDetailBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ISwipeRemoteSource>(() => MockSwipeRemoteSource(), fenix: true);
-    Get.lazyPut(() => MockUserRemoteSourceImpl(), fenix: true);
+    Get.lazyPut<ISwipeRemoteSource>(() => MockService(), fenix: true);
+    Get.lazyPut<UserRemoteSource>(() => MockService(), fenix: true);
     Get.lazyPut(
         () => SwipeRepository(
-            Get.find(), Get.find(), Get.find<MockUserRemoteSourceImpl>()),
+            Get.find(), Get.find(), Get.find()),
         fenix: true);
     Get.lazyPut(() => GetSwipeItemDetailUseCase(Get.find<SwipeRepository>()),
         fenix: true);
@@ -40,7 +40,7 @@ class SwipeDetailBinding extends Bindings {
         () => SwipeDetailController(<Constraint>[
               NoInternetConstraint(Get.find<IsConnectedUseCase>().call()),
               NoLocationConstraint(
-                  Get.find<IsLocationActivatedUseCase>().call())
+                  Get.find<IsLocationActivatedUseCase>().call(),)
             ], Get.find<GetSwipeItemDetailUseCase>(),
                 Get.find<SetSwipeDecisionUseCase>()),
         fenix: true);
