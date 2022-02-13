@@ -3,8 +3,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
-import 'package:moony_app/authentication/data/remote/authentication_data_source_impl.dart';
 import 'package:moony_app/authentication/data/repository/authentication_repository_impl.dart';
+import 'package:moony_app/common/data/mock/mock_service.dart';
 
 /// Load global dependencies
 ///
@@ -18,11 +18,7 @@ void loadModule() {
   Get.lazyPut<FacebookAuth>(() => FacebookAuth.instance, fenix: true);
   Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance, fenix: true);
   Get.lazyPut<AuthDataSource>(
-      () => AuthDataSourceImpl(
-            Get.find(),
-            Get.find(),
-            Get.find(),
-          ),
+      () => MockService(),
       fenix: true);
 
   Get.lazyPut<AuthenticationRepositoryImpl>(
