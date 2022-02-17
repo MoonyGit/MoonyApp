@@ -8,7 +8,7 @@ class UserProfileBannerController extends GetxController {
   /// Constructor
   UserProfileBannerController(
     this._getUserProfileActivityInformationUseCase,
-  ){
+  ) {
     fetchUserInformation();
   }
 
@@ -16,15 +16,14 @@ class UserProfileBannerController extends GetxController {
   final AsyncUseCase<UserProfileBannerEntity>
       _getUserProfileActivityInformationUseCase;
 
-  /// User profile information
-  late Rxn<UserProfileBannerUi> userInformation =
-  Rxn<UserProfileBannerUi>();
+  /// User profile information, default value is null
+  late Rxn<UserProfileBannerUi> userInformation = Rxn<UserProfileBannerUi>();
 
-  void fetchUserInformation() async {
-
+  /// Get the current user information
+  Future<void> fetchUserInformation() async {
     /// Get the user information
     final UserProfileBannerEntity userDetail =
-    await _getUserProfileActivityInformationUseCase();
+        await _getUserProfileActivityInformationUseCase();
 
     /// Build user information for ui from entity
     userInformation.value = UserProfileBannerUi(

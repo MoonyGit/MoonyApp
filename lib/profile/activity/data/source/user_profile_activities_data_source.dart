@@ -18,7 +18,7 @@ class UserProfileActivitiesDataSourceImpl
       result.add(
         UserProfileActivityDataModel(
           id: "$i",
-          activityName: "Soirée number $i",
+          activityName: "Party number $i",
           delay: i,
           location: "Paris ($i)",
           maxWaitingPartner: 20,

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/resources/themes.dart';
-import 'package:moony_app/profile/common/presentation/model/user_profile_banner_ui.dart';
 import 'package:moony_app/profile/common/presentation/controller/user_profile_banner_controller.dart';
+import 'package:moony_app/profile/common/presentation/model/user_profile_banner_ui.dart';
 import 'package:moony_app/profile/resources/strings.dart';
 
 /// User profile banner widget
@@ -27,9 +27,9 @@ class UserProfileBannerWidget extends GetView<UserProfileBannerController> {
     return Obx(
           () =>
       controller.userInformation.value?.let(
-            (UserProfileBannerUi p0) => Column(
+            (UserProfileBannerUi userProfileBanner) => Column(
           children: <Widget>[
-            Text(p0.location),
+            Text(userProfileBanner.location),
             Stack(
               children: <Widget>[
                 Container(
@@ -65,7 +65,7 @@ class UserProfileBannerWidget extends GetView<UserProfileBannerController> {
                               padding: EdgeInsets.symmetric(vertical: 8.0),
                             ),
                             Text(
-                              "${p0.froonysNumber}",
+                              "${userProfileBanner.froonysNumber}",
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 24,
@@ -101,7 +101,7 @@ class UserProfileBannerWidget extends GetView<UserProfileBannerController> {
                                           ),
                                         ),
                                       ),
-                                  imageUrl: p0.profilePhoto,
+                                  imageUrl: userProfileBanner.profilePhoto,
                                   errorWidget: (
                                       BuildContext context,
                                       String url,
@@ -135,7 +135,7 @@ class UserProfileBannerWidget extends GetView<UserProfileBannerController> {
                               padding: EdgeInsets.symmetric(vertical: 8.0),
                             ),
                             Text(
-                              "${p0.activityNumber}",
+                              "${userProfileBanner.activityNumber}",
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 24,
@@ -151,7 +151,7 @@ class UserProfileBannerWidget extends GetView<UserProfileBannerController> {
               ],
             ),
             Text(
-              "${p0.firstName} ${p0.lastName}, ${p0.age}",
+              "${userProfileBanner.firstName} ${userProfileBanner.lastName}, ${userProfileBanner.age}",
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 24,
@@ -165,7 +165,7 @@ class UserProfileBannerWidget extends GetView<UserProfileBannerController> {
     );
   }
 
-  /// Add edit button to the view
+  /// Add edit button to the view over the user profile pictures
   Widget addEditButton() {
     return Align(
       alignment: Alignment.topRight,

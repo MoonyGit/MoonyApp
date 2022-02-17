@@ -3,6 +3,7 @@ import 'package:moony_app/profile/activity/data/source/user_profile_activities_d
 import 'package:moony_app/profile/activity/domain/model/user_profile_activity_entity.dart';
 import 'package:moony_app/profile/activity/domain/repository/user_profile_activity_repository.dart';
 
+/// Repository impl for user profile coming activity
 class UserProfileActivityRepositoryImpl extends UserProfileActivityRepository {
   /// Constructor
   UserProfileActivityRepositoryImpl(this._userProfileActivityDataSource);

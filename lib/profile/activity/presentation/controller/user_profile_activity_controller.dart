@@ -27,7 +27,7 @@ class UserProfileActivityController extends GetxController {
   Rxn<List<UserProfileActivityItemUi>>();
 
   /// Retrieve the user information and all coming activity
-  void fetchUserAndActivityInformation() async {
+  Future<void> fetchUserAndActivityInformation() async {
     int number = 0;
 
     _getUserProfileActivityUseCase()
