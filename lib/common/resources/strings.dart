@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 /// This class is used to provide all string constant in a statical way
 abstract class AppStrings {
-
   ///////////////////////////
   ///////// Global /////////
   //////////////////////////

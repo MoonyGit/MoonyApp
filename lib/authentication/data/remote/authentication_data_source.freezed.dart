@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'authentication_data_source.dart';
 
@@ -47,6 +48,13 @@ mixin _$VerifyPhoneStateDataSourceEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String smsCode)? autoLogin,
     TResult Function(String? message)? error,
@@ -59,6 +67,13 @@ mixin _$VerifyPhoneStateDataSourceEvent {
     required TResult Function(VerifyPhoneAutoLoginDataSource value) autoLogin,
     required TResult Function(VerifyPhoneErrorDataSource value) error,
     required TResult Function(VerifyPhoneOtpSentDataSource value) otpSent,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -168,6 +183,16 @@ class _$VerifyPhoneAutoLoginDataSource
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) {
+    return autoLogin?.call(smsCode);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String smsCode)? autoLogin,
     TResult Function(String? message)? error,
@@ -188,6 +213,16 @@ class _$VerifyPhoneAutoLoginDataSource
     required TResult Function(VerifyPhoneOtpSentDataSource value) otpSent,
   }) {
     return autoLogin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
+  }) {
+    return autoLogin?.call(this);
   }
 
   @override
@@ -293,6 +328,16 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) {
+    return error?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String smsCode)? autoLogin,
     TResult Function(String? message)? error,
@@ -313,6 +358,16 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
     required TResult Function(VerifyPhoneOtpSentDataSource value) otpSent,
   }) {
     return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
+  }) {
+    return error?.call(this);
   }
 
   @override
@@ -393,6 +448,16 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) {
+    return otpSent?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String smsCode)? autoLogin,
     TResult Function(String? message)? error,
@@ -413,6 +478,16 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
     required TResult Function(VerifyPhoneOtpSentDataSource value) otpSent,
   }) {
     return otpSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
+  }) {
+    return otpSent?.call(this);
   }
 
   @override
@@ -502,6 +577,17 @@ mixin _$AuthFailureDataSourceEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -524,6 +610,18 @@ mixin _$AuthFailureDataSourceEvent {
     required TResult Function(AuthCancelledDataSource value) cancelled,
     required TResult Function(AuthOtpExpiredDataSource value) otpExpired,
     required TResult Function(AuthBadOtpDataSource value) badOtp,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -662,6 +760,20 @@ class _$AuthCredentialsAlreadyUsedDataSource
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return credentialsAlreadyUsed?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -692,6 +804,21 @@ class _$AuthCredentialsAlreadyUsedDataSource
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return credentialsAlreadyUsed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return credentialsAlreadyUsed?.call(this);
   }
 
   @override
@@ -811,6 +938,20 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return serverError?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -841,6 +982,21 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return serverError?.call(this);
   }
 
   @override
@@ -960,6 +1116,20 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return badCredentials?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -990,6 +1160,21 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return badCredentials(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return badCredentials?.call(this);
   }
 
   @override
@@ -1107,6 +1292,20 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return unknown?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -1137,6 +1336,21 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return unknown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return unknown?.call(this);
   }
 
   @override
@@ -1253,6 +1467,20 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return cancelled?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -1283,6 +1511,21 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return cancelled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return cancelled?.call(this);
   }
 
   @override
@@ -1400,6 +1643,20 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return otpExpired?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -1430,6 +1687,21 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return otpExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return otpExpired?.call(this);
   }
 
   @override
@@ -1546,6 +1818,20 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return badOtp?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -1576,6 +1862,21 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
     required TResult Function(AuthBadOtpDataSource value) badOtp,
   }) {
     return badOtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return badOtp?.call(this);
   }
 
   @override

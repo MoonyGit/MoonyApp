@@ -30,6 +30,11 @@ Execute command:
 ## Start build_runner code generation
 flutter packages pub run build_runner build
 
+## If you have issue wile compiling
+flutter clean
+flutter pub get
+flutter packages pub run build_runner build --delete-conflicting-outputs
+
 ## Dev register in firebase
 
 - cd android
