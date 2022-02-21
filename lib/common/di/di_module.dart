@@ -55,7 +55,7 @@ void loadModule() {
   switch (F.appFlavor) {
     case Flavor.MOCK:
       {
-        Get.lazyPut(() => MockService(), fenix: true);
+        Get.put(MockService(), permanent: true);
         Get.lazyPut<StorageRemoteSource>(() => Get.find<MockService>(),
             fenix: true);
         Get.lazyPut<UserRemoteSource>(() => Get.find<MockService>(),

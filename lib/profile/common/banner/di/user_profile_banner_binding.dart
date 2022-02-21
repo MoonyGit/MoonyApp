@@ -30,7 +30,7 @@ class UserProfileBannerBinding extends Bindings {
         {
           /// Data source
           Get.lazyPut<UserProfileBannerDataSource>(
-                () => MockService(),
+                () => Get.find<MockService>(),
           );
           break;
         }

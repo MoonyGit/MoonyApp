@@ -33,12 +33,17 @@ class MockService
         AuthDataSource,
         UserProfileActivitiesDataSource,
         UserProfileBannerDataSource {
+
+
+  static const String _currentUserId = "myCurrentUserId";
+  static const String _swipeMockUserId = "mySwipeUser";
+
   /// A mock list of swipe user
   final List<SwipeItemDataModel> _swipeMockUserList = <SwipeItemDataModel>[];
 
   /// A mock swipe user
   final UserDataModel _swipeMockUser = UserDataModel(
-    id: const Uuid().v4(),
+    id: "mySwipeUser",
     familyName: "Mihai",
     firstName: "Luna",
     birthdate: Birthdate.minSecurityDate(),
@@ -89,7 +94,9 @@ class MockService
     ],
   );
 
-  AuthUserDataSourceModel? _currentUser;
+
+  AuthUserDataSourceModel? _currentUserAuth;
+  UserDataModel? _currentUser;
   final String _smsOtp = "123456";
   final StreamController<VerifyPhoneStateDataSourceEvent>
   _phoneAuthenticationState =
@@ -104,9 +111,21 @@ class MockService
     Logger.d(
       "MOCK: create user: $user",
     );
-    _currentUser = AuthUserDataSourceModel(
-      id: "MyUserId",
-      phone: "+33834763058",
+    _currentUser = UserDataModel(
+      id: _currentUserId,
+      firstName: "on s'en",
+      familyName: "balek",
+      birthdate: Birthdate.minSecurityDate(),
+      emailAddress: "toto@tata.com",
+      phoneNumber: "+33134768970",
+      gender: GenderDataModel.female,
+      relationState: RelationStateDataModel.alone,
+      profilePhoto: "http://marchepa.fr",
+      secondaryPhotos: ["http://truc.ez"],
+      verified: true,
+      creationDate: DateTime.now(),
+      lastUpdateDate: DateTime.now(),
+      hobbies: []
     );
   }
 
@@ -115,7 +134,14 @@ class MockService
     Logger.d(
       "MOCK: getById id: $id",
     );
-    return _swipeMockUser;
+    switch(id) {
+      case _currentUserId: {
+        return _currentUser;
+      }
+      default: {
+        return _swipeMockUser;
+      }
+    }
   }
 
   @override
@@ -252,7 +278,7 @@ class MockService
   @override
   Future<AuthUserDataSourceModel?> getSignedInUser() {
     Logger.d("MOCK: getSignedInUser");
-    return Future<AuthUserDataSourceModel?>.value(_currentUser);
+    return Future<AuthUserDataSourceModel?>.value(_currentUserAuth);
   }
 
   @override
@@ -277,6 +303,10 @@ class MockService
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
   verifyPhoneOtp({required String code}) async {
     Logger.d("MOCK: verifyPhoneOtp, code: $code");
+    _currentUserAuth = AuthUserDataSourceModel(
+      id: _currentUserId,
+      phone: "+33834763058",
+    );
     return Future<
         Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
@@ -346,6 +376,7 @@ class MockService
   @override
   Future<void> signOut() async {
     Logger.d("MOCK: signOut");
+    _currentUserAuth = null;
   }
 
   //#endregion
@@ -353,6 +384,7 @@ class MockService
   //#region UserProfileActivityDataModel impl
   @override
   Future<List<UserProfileActivityDataModel>> getActivities() {
+    Logger.d("MOCK: getActivities");
     final List<UserProfileActivityDataModel> result =
     List<UserProfileActivityDataModel>.empty(growable: true);
 
@@ -381,6 +413,7 @@ class MockService
   //#region UserProfileBannerDataModel impl
   @override
   Future<UserProfileBannerDataModel> getUserInformation() {
+    Logger.d("MOCK: getUserInformation");
     return Future<UserProfileBannerDataModel>.value(
       UserProfileBannerDataModel(
         birthdate: DateTime.utc(1993, 9, 8),
