@@ -6,9 +6,8 @@ import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
+import 'package:moony_app/common/presentation/validation_interactor.dart';
 import 'package:moony_app/common/util/date_format_ext.dart';
-import 'package:moony_app/registration/presentation/registration_controller.dart';
-import 'package:moony_app/registration/domain/usecase/registration_use_case.dart';
 import 'package:moony_app/registration/resources/strings.dart';
 
 /// The set name widget
@@ -58,23 +57,10 @@ class SetBirthDateWidget extends SetInfoBaseWidget<SetBirthdateController> {
 }
 
 /// SetBirthdate controller
-class SetBirthdateController extends GetxController {
+class SetBirthdateController extends ValidationInteractor {
   /// Public constructor
-  SetBirthdateController(
-      this._registrationController, this._registrationUseCase) {
-    _currentPageDisposable =
-        ever(_registrationController.currentPage, (Widget? page) {
-      if (page is SetBirthDateWidget) {
-        birthDate.value != lastDate
-            ? _registrationController.enableNextButton()
-            : _registrationController.disableNextButton();
-      }
-    });
-  }
+  SetBirthdateController(this._registrationUseCase);
 
-  late final Worker _currentPageDisposable;
-
-  final RegistrationController _registrationController;
   final AsyncParamUseCase<Birthdate, void> _registrationUseCase;
 
   /// first date used in date picker
@@ -93,13 +79,7 @@ class SetBirthdateController extends GetxController {
     if (date != lastDate && Birthdate(input: date).isValid) {
       _birthDate.value = date;
       _registrationUseCase(input: Birthdate(input: date));
-      _registrationController.enableNextButton();
+      validationController.add(true);
     }
-  }
-
-  @override
-  void onClose() {
-    _currentPageDisposable.dispose();
-    super.onClose();
   }
 }

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_rx/src/rx_workers/rx_workers.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/base/widgets/common.dart';
 import 'package:moony_app/common/base/widgets/set_infos_base_widget.dart';
 import 'package:moony_app/common/domain/user/model/name.dart';
+import 'package:moony_app/common/presentation/validation_interactor.dart';
 import 'package:moony_app/common/resources/strings.dart';
-import 'package:moony_app/registration/presentation/registration_controller.dart';
 import 'package:moony_app/registration/domain/usecase/save_user_infos.dart';
 import 'package:moony_app/registration/resources/strings.dart';
 
@@ -63,22 +61,11 @@ class SetNameWidget extends SetInfoBaseWidget<SetNameController> {
 }
 
 /// SetName Controller
-class SetNameController extends GetxController {
+class SetNameController extends ValidationInteractor {
   /// Public constructor
-  SetNameController(this._registrationController, this._registrationUseCase) {
-    _currentPageDisposable =
-        ever(_registrationController.currentPage, (Widget? page) {
-      if (page is SetNameWidget) {
-        _firstName != null && _familyName != null
-            ? _registrationController.enableNextButton()
-            : _registrationController.disableNextButton();
-      }
-    });
-  }
+  SetNameController(this._registrationUseCase);
 
-  late final Worker _currentPageDisposable;
   final AsyncParamUseCase<SaveUserNameUseCaseParam, void> _registrationUseCase;
-  final RegistrationController _registrationController;
 
   String? _firstName;
   String? _familyName;
@@ -92,7 +79,7 @@ class SetNameController extends GetxController {
   /// first name form controller
   String? firstNameValidator(String? text) => text
       ?.let((String it) => Name(input: it).value.fold((NameFailure failure) {
-            _registrationController.disableNextButton();
+            validationController.add(false);
             _firstName = null;
             return failure.message;
           }, (String text) {
@@ -102,7 +89,7 @@ class SetNameController extends GetxController {
                   input: SaveUserNameUseCaseParam(
                       first: Name(input: _firstName!),
                       family: Name(input: _familyName!)));
-              _registrationController.enableNextButton();
+              validationController.add(true);
             }
             return null;
           }));
@@ -110,7 +97,7 @@ class SetNameController extends GetxController {
   /// family name form controller
   String? lastNameValidator(String? text) => text
       ?.let((String it) => Name(input: it).value.fold((NameFailure failure) {
-            _registrationController.disableNextButton();
+            validationController.add(false);
             _familyName = null;
             return failure.message;
           }, (String text) {
@@ -120,7 +107,7 @@ class SetNameController extends GetxController {
                   input: SaveUserNameUseCaseParam(
                       first: Name(input: _firstName!),
                       family: Name(input: _familyName!)));
-              _registrationController.enableNextButton();
+              validationController.add(true);
             }
             return null;
           }));
@@ -129,7 +116,6 @@ class SetNameController extends GetxController {
   void onClose() {
     firstNameController.dispose();
     lastNameController.dispose();
-    _currentPageDisposable.dispose();
     super.onClose();
   }
 }
