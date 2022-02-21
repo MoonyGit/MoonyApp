@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart' hide Router;
 import 'package:get/get.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/common/util/logger.dart';
-import 'package:moony_app/home/resources/router.dart' as home_router;
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
 import 'package:moony_app/common/domain/user/model/user.dart';
+import 'package:moony_app/common/presentation/validation_interactor.dart';
 import 'package:moony_app/common/resources/strings.dart';
+import 'package:moony_app/common/util/collection_ext.dart';
+import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/home/resources/router.dart' as home_router;
 import 'package:moony_app/registration/domain/usecase/registration_use_case.dart';
 import 'package:moony_app/registration/domain/usecase/save_user_infos.dart';
+import 'package:moony_app/registration/presentation/set_birthdate/set_birthdate_widget.dart';
+import 'package:moony_app/registration/presentation/set_gender/set_gender_widget.dart';
+import 'package:moony_app/registration/presentation/set_name/set_name_widget.dart';
+import 'package:moony_app/registration/presentation/set_photo/set_photo_widget.dart';
+import 'package:moony_app/registration/presentation/set_relation_state/set_relation_state_widget.dart';
 import 'package:moony_app/registration/resources/strings.dart';
-
-import 'set_birthdate/set_birthdate_widget.dart';
-import 'set_gender/set_gender_widget.dart';
-import 'set_name/set_name_widget.dart';
-import 'set_photo/set_photo_widget.dart';
-import 'set_relation_state/set_relation_state_widget.dart';
 
 /// Class to define UserRegistrationPage dependencies by dependency injection
 class RegistrationBindings extends Bindings {
@@ -23,52 +24,65 @@ class RegistrationBindings extends Bindings {
     Get.lazyPut<RegisterUser>(() => RegisterUser(Get.find()), fenix: true);
 
     Get.lazyPut<SaveUserNameUseCase>(() => SaveUserNameUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
     Get.lazyPut<SaveUserBirthdateUseCase>(
         () => SaveUserBirthdateUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
     Get.lazyPut<SaveUserPhoneUseCase>(() => SaveUserPhoneUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
     Get.lazyPut<SaveUserGenderUseCase>(() => SaveUserGenderUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
     Get.lazyPut<SaveUserRelationStateUseCase>(
         () => SaveUserRelationStateUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
     Get.lazyPut<SaveUserSecondaryPhotoListStateUseCase>(
         () => SaveUserSecondaryPhotoListStateUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
     Get.lazyPut<SaveUserProfilePhotoStateUseCase>(
         () => SaveUserProfilePhotoStateUseCase(Get.find()),
-        fenix: true);
+        fenix: true,);
 
-    Get.lazyPut(() => RegistrationController(Get.find<RegisterUser>()));
+    Get.lazyPut(() => SetNameController(Get.find<SaveUserNameUseCase>()));
     Get.lazyPut(
-        () => SetNameController(Get.find(), Get.find<SaveUserNameUseCase>()));
-    Get.lazyPut(() => SetBirthdateController(
-        Get.find(), Get.find<SaveUserBirthdateUseCase>()));
+        () => SetBirthdateController(Get.find<SaveUserBirthdateUseCase>()),);
     Get.lazyPut(() => SetPhotoController(
-        Get.find(),
         Get.find<SaveUserSecondaryPhotoListStateUseCase>(),
-        Get.find<SaveUserProfilePhotoStateUseCase>()));
-    Get.lazyPut(() => SetRelationStateController(
-        Get.find(), Get.find<SaveUserRelationStateUseCase>()));
+        Get.find<SaveUserProfilePhotoStateUseCase>(),),);
     Get.lazyPut(() =>
-        SetGenderController(Get.find(), Get.find<SaveUserGenderUseCase>()));
+        SetRelationStateController(Get.find<SaveUserRelationStateUseCase>()),);
+    Get.lazyPut(() => SetGenderController(Get.find<SaveUserGenderUseCase>()));
+
+    final Map<Widget, ValidationInteractor> _pages = <Widget, ValidationInteractor>{
+      SetNameWidget(): Get.find<SetNameController>(),
+      SetBirthDateWidget(): Get.find<SetBirthdateController>(),
+      SetGenderWidget(): Get.find<SetGenderController>(),
+      SetRelationStateWidget(): Get.find<SetRelationStateController>(),
+      SetPhotoWidget(): Get.find<SetPhotoController>(),
+    };
+
+    Get.lazyPut(() => RegistrationController(Get.find<RegisterUser>(), _pages));
   }
 }
 
 /// The RegistrationController viewModel of login page
 class RegistrationController extends GetxController {
   /// public constructor
-  RegistrationController(this._registrationUseCase) {
+  RegistrationController(this._registrationUseCase, this.pages) {
     pageController.addListener(() {
       final int? currentPageIndex = pageController.page?.toInt();
+
+      // set new enabled state on next button
+      currentPageIndex?.let((int index) {
+        pages.entries.elementAt(index).value.getValidatedInput().value
+            ? _enableNextButton()
+            : _disableNextButton();
+      });
 
       // if is last page
       if (currentPageIndex == pages.length - 1) {
@@ -83,13 +97,18 @@ class RegistrationController extends GetxController {
       } else {
         isFirstPage.value = false;
       }
-
-      currentPageIndex?.let((int index) {
-        currentPage.value = pages[index];
+    });
+    pages.forEachIndexed((int index, Widget key, ValidationInteractor value) {
+      value.getValidatedInput().listen((bool event) {
+        if (index == pageController.page?.toInt()) {
+          event ? _enableNextButton() : _disableNextButton();
+        }
       });
     });
   }
 
+  /// Page list
+  final Map<Widget, ValidationInteractor> pages;
   final AsyncUseCase<ErrorCreatingUserFailure?> _registrationUseCase;
 
   /// Page animation duration
@@ -97,15 +116,6 @@ class RegistrationController extends GetxController {
 
   /// Handle page controller at viewModel level to dispose it in onClose
   final PageController pageController = PageController();
-
-  /// Page list
-  final List<Widget> pages = <Widget>[
-    SetNameWidget(),
-    SetBirthDateWidget(),
-    SetGenderWidget(),
-    SetRelationStateWidget(),
-    SetPhotoWidget()
-  ];
 
   /// Next button reactive text
   RxString nextButtonText = RxString(AppStrings.goToNext);
@@ -115,9 +125,6 @@ class RegistrationController extends GetxController {
 
   /// is first page reactive state
   RxBool isFirstPage = RxBool(true);
-
-  /// current page reactive type
-  Rxn<Widget> currentPage = Rxn<Widget>();
 
   @override
   void onClose() {
@@ -171,12 +178,12 @@ class RegistrationController extends GetxController {
   }
 
   /// page validator enable next button
-  void enableNextButton() {
+  void _enableNextButton() {
     nextButtonEnabled.value = true;
   }
 
   /// page validator disable next button
-  void disableNextButton() {
+  void _disableNextButton() {
     nextButtonEnabled.value = false;
   }
 }
