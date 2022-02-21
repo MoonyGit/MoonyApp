@@ -35,7 +35,7 @@ class UserProfileActivityBinding extends Bindings {
         {
           /// Data source
           Get.lazyPut<UserProfileActivitiesDataSource>(
-                () => MockService(),
+                () => Get.find<MockService>(),
           );
           break;
         }
