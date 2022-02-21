@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:moony_app/activity_swipe/presentation/list/swipe_card_model.dart';
+import 'package:moony_app/activity_swipe/presentation/list/swipe_card_widget.dart';
 import 'package:moony_app/activity_swipe/presentation/list/swipe_controller.dart';
 import 'package:moony_app/activity_swipe/resources/assets.dart';
 import 'package:moony_app/activity_swipe/resources/strings.dart';
@@ -9,10 +11,8 @@ import 'package:moony_app/common/base/widgets/constrained_page.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/resources/themes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:swipable_stack/src/model/swipe_properties.dart';
 import 'package:swipable_stack/swipable_stack.dart';
-
-import 'swipe_card_model.dart';
-import 'swipe_card_widget.dart';
 
 /// The swipe page
 class SwipePage extends ConstrainedPage<SwipeController> {
@@ -51,17 +51,18 @@ class SwipePage extends ConstrainedPage<SwipeController> {
                 Widget>[
                 SwipableStack(
                   itemCount: controller.swipeCardList.length,
-                  builder: (BuildContext context, int index,
-                      BoxConstraints constraints) {
+                  builder:
+                      (BuildContext context, ItemSwipeProperties properties) {
                     return Padding(
                         padding: _padding,
                         child: Center(
                             child: Obx(() => AnimatedSwitcher(
                                   transitionBuilder: _flipTransitionBuilder,
-                                  layoutBuilder: (Widget? widget,
-                                          List<Widget> list) =>
-                                      Stack(
-                                          children: <Widget>[widget!, ...list]),
+                                  layoutBuilder:
+                                      (Widget? widget, List<Widget> list) =>
+                                          Stack(
+                                    children: <Widget>[widget!, ...list],
+                                  ),
                                   duration: const Duration(milliseconds: 600),
                                   // switchInCurve: Curves.easeInBack,
                                   // switchOutCurve: Curves.easeOutBack.flipped,
@@ -69,54 +70,57 @@ class SwipePage extends ConstrainedPage<SwipeController> {
                                       ? _showFrontCard(
                                           pageController: controller
                                               .swipeCardList.entries
-                                              .elementAt(index)
+                                              .elementAt(properties.index)
                                               .key,
-                                          cardHeight: constraints.maxHeight,
+                                          cardHeight:
+                                              properties.constraints.maxHeight,
                                           activityCategoryImageUri: controller
                                               .swipeCardList.entries
-                                              .elementAt(index)
+                                              .elementAt(properties.index)
                                               .value
                                               .activityCategoryImageUri,
                                           infoList: controller
                                               .swipeCardList.entries
-                                              .elementAt(index)
+                                              .elementAt(properties.index)
                                               .value
                                               .userImagesWithInfo,
                                           onTopCardTap: (
                                               {required bool isRight}) {
                                             controller.onTopCardTap(
-                                                cardIndex: index,
+                                                cardIndex: properties.index,
                                                 isRight: isRight);
                                           },
                                           onActivityCategoryImageTap: () {
                                             controller.flipCard(
-                                                cardIndex: index);
+                                                cardIndex: properties.index);
                                           },
                                           onInfoCardTap: () {
                                             controller.onInfoCardTap(
-                                                cardIndex: index);
+                                                cardIndex: properties.index);
                                           },
                                           onDotTap: ({required int pageIndex}) {
                                             controller.onDotClicked(
-                                                cardIndex: index,
+                                                cardIndex: properties.index,
                                                 cardPageIndex: pageIndex);
-                                          })
+                                          },
+                                        )
                                       : _showBackCard(
                                           onPeopleImageTap: () {
                                             controller.flipCard(
-                                                cardIndex: index);
+                                                cardIndex: properties.index);
                                           },
                                           onInfoCardTap: () {
                                             controller.onInfoCardTap(
-                                                cardIndex: index);
+                                                cardIndex: properties.index);
                                           },
-                                          cardHeight: constraints.maxHeight,
+                                          cardHeight:
+                                              properties.constraints.maxHeight,
                                           info: controller.swipeCardList.entries
-                                              .elementAt(index)
+                                              .elementAt(properties.index)
                                               .value
                                               .activityImagesWithInfo,
                                         ),
-                                ))));
+                                ),),),);
                   },
                   onWillMoveNext: (int index, SwipeDirection direction) {
                     return true;
@@ -129,16 +133,15 @@ class SwipePage extends ConstrainedPage<SwipeController> {
                   controller: controller.swipableStackController,
                   overlayBuilder: (
                     BuildContext context,
-                    BoxConstraints constraints,
-                    int index,
-                    SwipeDirection direction,
-                    double swipeProgress,
+                    OverlaySwipeProperties properties,
                   ) {
-                    final double opacity = min(swipeProgress, 1.0);
+                    final double opacity = min(properties.swipeProgress, 1.0);
 
-                    final bool isRight = direction == SwipeDirection.right;
-                    final bool isLeft = direction == SwipeDirection.left;
-                    final bool isUp = direction == SwipeDirection.up;
+                    final bool isRight =
+                        properties.direction == SwipeDirection.right;
+                    final bool isLeft =
+                        properties.direction == SwipeDirection.left;
+                    final bool isUp = properties.direction == SwipeDirection.up;
                     return Padding(
                       padding: _padding * 3,
                       child: Stack(
@@ -151,12 +154,12 @@ class SwipePage extends ConstrainedPage<SwipeController> {
                           Opacity(
                             opacity: isLeft ? opacity : 0,
                             child: Text(AppStrings.translate(
-                                message: swipeOverlayTextLeft)),
+                                message: swipeOverlayTextLeft,),),
                           ),
                           Opacity(
                             opacity: isUp ? opacity : 0,
                             child: Text(AppStrings.translate(
-                                message: swipeOverlayTextUp)),
+                                message: swipeOverlayTextUp,),),
                           ),
                         ],
                       ),

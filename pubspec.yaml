@@ -65,7 +65,7 @@ dependencies:
   # reactive forms to make async
   reactive_forms: ^10.6.0
   # swappable list widget
-  swipable_stack: ^0.7.1
+  swipable_stack: ^1.2.0
   # allow user to open link into browser
   url_launcher: ^6.0.12
   # for cached image
