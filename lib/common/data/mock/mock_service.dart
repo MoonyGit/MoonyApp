@@ -5,10 +5,10 @@ import 'package:dartz/dartz.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/budget_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_creator_info_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart';
-import 'package:moony_app/common/data/model/location_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/domain/model/decision.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
+import 'package:moony_app/common/data/model/location_data_model.dart';
 import 'package:moony_app/common/data/services/storage/storage_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
 import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
@@ -17,6 +17,8 @@ import 'package:moony_app/common/data/user/remote/user_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/profile/activity/data/model/user_profile_activity_data_model.dart';
+import 'package:moony_app/profile/activity/data/source/user_profile_activities_data_source.dart';
 import 'package:moony_app/profile/common/banner/data/model/user_profile_banner_data_model.dart';
 import 'package:moony_app/profile/common/banner/data/source/user_profile_banner_data_source.dart';
 import 'package:rxdart/rxdart.dart';
@@ -29,6 +31,7 @@ class MockService
         ISwipeRemoteSource,
         StorageRemoteSource,
         AuthDataSource,
+        UserProfileActivitiesDataSource,
         UserProfileBannerDataSource {
   /// A mock list of swipe user
   final List<SwipeItemDataModel> _swipeMockUserList = <SwipeItemDataModel>[];
@@ -166,60 +169,60 @@ class MockService
   }
 
   SwipeItemDataModel _generateSwipeItemMock() => SwipeItemDataModel(
-        creator: _generateCreatorInfo(),
-        activityId: const Uuid().v4(),
-        activityTitle: "Concert Shakira",
-        activityBudget: BudgetDataModel(
-          currency: "euros",
-          isFree: false,
-          lowerRange: 10,
-          higherRange: 20,
-        ),
-        activityLocation: LocationDataModel(
-          city: "Paris",
-          zipCode: "78000",
-          region: "Ile de France",
-          country: "France",
-        ),
-        activityExpectedStartingDate:
-            DateTime.now().add(const Duration(days: 40)),
-        activityLinkReference:
-            "https://www.sortiraparis.com/loisirs/cinema/articles/197150-le-concert-el-dorado-de-shakira-au-cinema",
-        activityImage:
-            "https://www.cine-vox.com/evenement/Affiche_A3_-_Shakira_-_El_Dorado_World_Tour.jpg",
-        activityParticipantNumber: 4,
-        activityCategory: HobbyDataModel(
-          id: const Uuid().v4(),
-          title: "Concert",
-          image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-          expirationDate: DateTime.now(),
-        ),
-        activityDesc:
-            "Lorem ipsum dolor sit amet. Ad eius velit in deleniti officiis "
-            "qui adipisci veniam ab totam quae. Ut architecto ipsa et "
-            "voluptas inventore qui minus dolore nam repudiandae error "
-            "non libero numquam ea rerum distinctio est laborum iusto. "
-            "Id velit aliquam id exercitationem quos in blanditiis maxime? "
-            "Vel architecto esse et voluptate consequatur "
-            "eum quasi temporibus.",
-      );
+    creator: _generateCreatorInfo(),
+    activityId: const Uuid().v4(),
+    activityTitle: "Concert Shakira",
+    activityBudget: BudgetDataModel(
+      currency: "euros",
+      isFree: false,
+      lowerRange: 10,
+      higherRange: 20,
+    ),
+    activityLocation: LocationDataModel(
+      city: "Paris",
+      zipCode: "78000",
+      region: "Ile de France",
+      country: "France",
+    ),
+    activityExpectedStartingDate:
+    DateTime.now().add(const Duration(days: 40)),
+    activityLinkReference:
+    "https://www.sortiraparis.com/loisirs/cinema/articles/197150-le-concert-el-dorado-de-shakira-au-cinema",
+    activityImage:
+    "https://www.cine-vox.com/evenement/Affiche_A3_-_Shakira_-_El_Dorado_World_Tour.jpg",
+    activityParticipantNumber: 4,
+    activityCategory: HobbyDataModel(
+      id: const Uuid().v4(),
+      title: "Concert",
+      image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
+      expirationDate: DateTime.now(),
+    ),
+    activityDesc:
+    "Lorem ipsum dolor sit amet. Ad eius velit in deleniti officiis "
+        "qui adipisci veniam ab totam quae. Ut architecto ipsa et "
+        "voluptas inventore qui minus dolore nam repudiandae error "
+        "non libero numquam ea rerum distinctio est laborum iusto. "
+        "Id velit aliquam id exercitationem quos in blanditiis maxime? "
+        "Vel architecto esse et voluptate consequatur "
+        "eum quasi temporibus.",
+  );
 
   SwipeCreatorInfoDataModel _generateCreatorInfo() => SwipeCreatorInfoDataModel(
-        id: _swipeMockUser.id,
-        name: _swipeMockUser.firstName,
-        imageList: <String>[..._swipeMockUser.secondaryPhotos]
-          ..insert(0, _swipeMockUser.profilePhoto),
-        birthdate: Birthdate.minSecurityDate(),
-        hobbyList: <HobbyDataModel>[..._generateHobbyList()],
-        gender: GenderDataModel.female,
-        verified: true,
-        location: LocationDataModel(
-          city: "Versailles",
-          zipCode: "78000",
-          region: "Ile de France",
-          country: "France",
-        ),
-      );
+    id: _swipeMockUser.id,
+    name: _swipeMockUser.firstName,
+    imageList: <String>[..._swipeMockUser.secondaryPhotos]
+      ..insert(0, _swipeMockUser.profilePhoto),
+    birthdate: Birthdate.minSecurityDate(),
+    hobbyList: <HobbyDataModel>[..._generateHobbyList()],
+    gender: GenderDataModel.female,
+    verified: true,
+    location: LocationDataModel(
+      city: "Versailles",
+      zipCode: "78000",
+      region: "Ile de France",
+      country: "France",
+    ),
+  );
 
   List<HobbyDataModel> _generateHobbyList() => _swipeMockUser.hobbies;
 
@@ -296,53 +299,81 @@ class MockService
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
-      signInWithApple() {
+  signInWithApple() {
     Logger.d("MOCK: signInWithApple");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+          id: "MyUserId",
+        )));
   }
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
-      signInWithEmailAndPassword(
-          {required String emailAddress, required String password}) {
+  signInWithEmailAndPassword(
+      {required String emailAddress, required String password}) {
     Logger.d("MOCK: signInWithEmailAndPassword, emailAddress: $emailAddress," +
         "password: $password");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+          id: "MyUserId",
+        )));
   }
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
-      signInWithFacebook() {
+  signInWithFacebook() {
     Logger.d("MOCK: signInWithFacebook");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+          id: "MyUserId",
+        )));
   }
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
-      signInWithGoogle() {
+  signInWithGoogle() {
     Logger.d("MOCK: signInWithGoogle");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+          id: "MyUserId",
+        )));
   }
 
   @override
   Future<void> signOut() async {
     Logger.d("MOCK: signOut");
+  }
+
+  //#endregion
+
+  //#region UserProfileActivityDataModel impl
+  @override
+  Future<List<UserProfileActivityDataModel>> getActivities() {
+    final List<UserProfileActivityDataModel> result =
+    List<UserProfileActivityDataModel>.empty(growable: true);
+
+    for (int i = 0; i < 20; i++) {
+      result.add(
+        UserProfileActivityDataModel(
+          activityId: "$i",
+          activityName: "Party number $i",
+          delay: i,
+          location: LocationDataModel(
+            city: "Paris",
+            country: "France",
+            region: "Ile de France",
+            zipCode: "75000",
+          ),
+          numberWaitingPartner: i,
+        ),
+      );
+    }
+
+    return Future<List<UserProfileActivityDataModel>>.value(result);
   }
 
   //#endregion
