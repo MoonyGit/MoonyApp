@@ -1,4 +1,4 @@
-import 'package:moony_app/activity_swipe/domain/model/location.dart';
+import 'package:moony_app/common/domain/model/location.dart';
 import 'package:moony_app/common/domain/model/user_activity.dart';
 import 'package:moony_app/common/domain/model/user_froony.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';

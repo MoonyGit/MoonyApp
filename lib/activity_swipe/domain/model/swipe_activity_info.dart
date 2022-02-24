@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:moony_app/activity_swipe/domain/model/location.dart';
 import 'package:moony_app/common/base/domain/model/entity.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
+import 'package:moony_app/common/domain/model/location.dart';
 import 'package:moony_app/common/domain/user/model/hobby.dart';
 
 import 'budget.dart';
@@ -52,7 +52,6 @@ class SwipeActivityInfo extends Entity<String> {
   final Uri? image;
 }
 
-
 /// Participant number failure
 class ParticipantNumberFailure extends Failure {}
 
@@ -78,6 +77,7 @@ class ParticipantNumber extends ValueObject<ParticipantNumberFailure, int> {
 
   /// Max participant number in general
   static const int maxParticipantNumber = 19;
+
   /// Min participant number in general
   static const int minParticipantNumber = 1;
 }
@@ -132,6 +132,7 @@ class ActivityTitle extends ValueObject<ActivityTitleFailure, String> {
 
   /// Max characters in title
   static const int maxChar = 50;
+
   /// Min characters in title
   static const int minChar = 10;
 }
@@ -162,6 +163,7 @@ class ActivityDescription
 
   /// Max characters in desc
   static const int maxChar = 300;
+
   /// Min characters in desc
   static const int minChar = 30;
 }

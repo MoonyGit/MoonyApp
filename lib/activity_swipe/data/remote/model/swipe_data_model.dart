@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/activity_swipe/data/remote/model/swipe_location_data_model.dart';
+import 'package:moony_app/common/data/model/location_data_model.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_activity_info.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_item.dart';
 import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';

@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/activity_swipe/domain/model/location.dart';
+import 'package:moony_app/common/domain/model/location.dart';
 
-part 'swipe_location_data_model.g.dart';
+part 'location_data_model.g.dart';
 
 /// Location data model
 @JsonSerializable()

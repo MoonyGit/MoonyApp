@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'swipe_location_data_model.dart';
+part of 'location_data_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
