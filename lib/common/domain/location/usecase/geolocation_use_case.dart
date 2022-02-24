@@ -1,14 +1,14 @@
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/domain/usecase/usecase.dart';
-import 'package:moony_app/common/domain/location/repository/location_repository.dart';
+import 'package:moony_app/common/domain/location/repository/geolocation_repository.dart';
 import 'package:moony_app/common/util/logger.dart';
 
 /// Give connected state
-class IsLocationActivatedUseCase extends ReactiveUseCase<bool> {
+class GeolocationActivatedUseCase extends ReactiveUseCase<bool> {
   /// Constructor
-  IsLocationActivatedUseCase(this._locationRepository);
+  GeolocationActivatedUseCase(this._locationRepository);
 
-  final ILocationRepository _locationRepository;
+  final IGeolocationRepository _locationRepository;
 
   @override
   Stream<bool> call({void input}) => _locationRepository

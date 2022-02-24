@@ -20,7 +20,7 @@ import 'package:moony_app/common/data/mock/mock_service.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source_impl.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
-import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
+import 'package:moony_app/common/domain/location/usecase/geolocation_use_case.dart';
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/flavors.dart';
@@ -58,7 +58,7 @@ class SwipeDetailBinding extends Bindings {
         () => SwipeDetailController(<Constraint>[
               NoInternetConstraint(Get.find<IsConnectedUseCase>().call()),
               NoLocationConstraint(
-                  Get.find<IsLocationActivatedUseCase>().call(),)
+                  Get.find<GeolocationActivatedUseCase>().call(),)
             ], Get.find<GetSwipeItemDetailUseCase>(),
                 Get.find<SetSwipeDecisionUseCase>()),
         fenix: true);

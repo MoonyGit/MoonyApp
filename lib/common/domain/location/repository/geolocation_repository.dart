@@ -1,6 +1,5 @@
-
 /// Location repository facade
-abstract class ILocationRepository {
+abstract class IGeolocationRepository {
 
   /// Get location activated state to listen
   Stream<bool> getLocationState();
