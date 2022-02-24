@@ -51,8 +51,14 @@ abstract class AppStrings {
   static const String genericFailure = "Something went wrong";
 
   /// Method to translate strings
+  @Deprecated("Please use extension on string : Translate")
   static String translate({required String message}) {
     return message.tr;
   }
+}
 
+/// extension for translate any string
+extension Translation on String {
+  /// Translate the string in current locale on mobile
+  String translate() => tr;
 }
