@@ -17,6 +17,8 @@ import 'package:moony_app/common/data/user/remote/user_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/util/logger.dart';
+import 'package:moony_app/profile/common/banner/data/model/user_profile_banner_data_model.dart';
+import 'package:moony_app/profile/common/banner/data/source/user_profile_banner_data_source.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uuid/uuid.dart';
 
@@ -26,7 +28,8 @@ class MockService
         UserRemoteSource,
         ISwipeRemoteSource,
         StorageRemoteSource,
-        AuthDataSource {
+        AuthDataSource,
+        UserProfileBannerDataSource {
   /// A mock list of swipe user
   final List<SwipeItemDataModel> _swipeMockUserList = <SwipeItemDataModel>[];
 
@@ -41,7 +44,7 @@ class MockService
     gender: GenderDataModel.female,
     relationState: RelationStateDataModel.alone,
     profilePhoto:
-        "https://buzzly.info/upload/1763/25f8013708de185b6ae457e8ec15fefb.jpg",
+    "https://buzzly.info/upload/1763/25f8013708de185b6ae457e8ec15fefb.jpg",
     secondaryPhotos: <String>[
       "https://buzzly.info/upload/1097/a06730741dcc104a7108ba9356c12cb2.jpg",
       "https://buzzly.info/upload/1846/72fdca9a09b2868368cb14527ba98193.jpg"
@@ -86,11 +89,11 @@ class MockService
   AuthUserDataSourceModel? _currentUser;
   final String _smsOtp = "123456";
   final StreamController<VerifyPhoneStateDataSourceEvent>
-      _phoneAuthenticationState =
-      BehaviorSubject<VerifyPhoneStateDataSourceEvent>();
+  _phoneAuthenticationState =
+  BehaviorSubject<VerifyPhoneStateDataSourceEvent>();
 
   final StreamController<AuthUserDataSourceModel?> _userAuthState =
-      BehaviorSubject<AuthUserDataSourceModel>();
+  BehaviorSubject<AuthUserDataSourceModel>();
 
   //#region UserRemoteSource impl
   @override
@@ -132,7 +135,7 @@ class MockService
     );
     return Future<List<SwipeItemDataModel>>.delayed(
       const Duration(seconds: 3),
-      () => _swipeMockUserList
+          () => _swipeMockUserList
         ..clear()
         ..addAll(<SwipeItemDataModel>[
           for (int i = 0; i < number; i++) _generateSwipeItemMock(),
@@ -146,18 +149,18 @@ class MockService
       "MOCK: getSwipeItemById, id: $id",
     );
     return _swipeMockUserList.firstWhereOrNull(
-      (SwipeItemDataModel element) => element.activityId == id,
+          (SwipeItemDataModel element) => element.activityId == id,
     );
   }
 
   @override
   Future<bool> setSwipeDecision(
       {required String userId,
-      required String activityId,
-      required Decision decision}) {
+        required String activityId,
+        required Decision decision}) {
     Logger.d(
       "MOCK: setSwipeDecision userid: $userId, "
-      "activityId: $activityId, decision: $decision",
+          "activityId: $activityId, decision: $decision",
     );
     return Future<bool>.value(true);
   }
@@ -269,26 +272,26 @@ class MockService
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
-      verifyPhoneOtp({required String code}) async {
+  verifyPhoneOtp({required String code}) async {
     Logger.d("MOCK: verifyPhoneOtp, code: $code");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
-      id: "MyUserId",
-      phone: "+33834763058",
-    )));
+          id: "MyUserId",
+          phone: "+33834763058",
+        )));
   }
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
-      registerWithEmailAndPassword(
-          {required String emailAddress, required String password}) {
+  registerWithEmailAndPassword(
+      {required String emailAddress, required String password}) {
     Logger.d("MOCK: registerWithEmailAndPassword");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
         right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+          id: "MyUserId",
+        )));
   }
 
   @override
@@ -342,5 +345,28 @@ class MockService
     Logger.d("MOCK: signOut");
   }
 
+  //#endregion
+
+  //#region UserProfileBannerDataModel impl
+  @override
+  Future<UserProfileBannerDataModel> getUserInformation() {
+    return Future<UserProfileBannerDataModel>.value(
+      UserProfileBannerDataModel(
+        birthdate: DateTime.utc(1993, 9, 8),
+        firstName: "Jordane",
+        lastName: "Serreau",
+        location: LocationDataModel(
+          city: "Paris",
+          country: "France",
+          region: "Ile de France",
+          zipCode: "75000",
+        ),
+        pictures:
+        "https://www.ecranlarge.com/uploads/image/001/152/peepoodo-the-super-fuck-friends-affiche-fr-peepoodo-the-super-fuck-friends-saison-1-1152342.jpg",
+        froonysNumber: 456,
+        activityNumber: 42,
+      ),
+    );
+  }
 //#endregion
 }
