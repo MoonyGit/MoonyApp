@@ -11,7 +11,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_ticket_provider_mixin.da
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/common/base/widgets/constrained_page.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
-import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
+import 'package:moony_app/common/domain/location/usecase/geolocation_use_case.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/main/resources/router.dart' as main_router;
 
@@ -24,7 +24,7 @@ class HomeBinding extends Bindings {
         <Constraint>[
           NoInternetConstraint(Get.find<IsConnectedUseCase>().call()),
           NoLocationConstraint(
-            Get.find<IsLocationActivatedUseCase>().call(),
+            Get.find<GeolocationActivatedUseCase>().call(),
           )
         ],
       ),

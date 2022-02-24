@@ -1,10 +1,10 @@
 import 'package:moony_app/common/data/services/geolocation/service/location.dart';
-import 'package:moony_app/common/domain/location/repository/location_repository.dart';
+import 'package:moony_app/common/domain/location/repository/geolocation_repository.dart';
 
 /// The GeoLocation repository
-class LocationRepository implements ILocationRepository {
+class GeolocationRepository implements IGeolocationRepository {
   /// Constructor
-  LocationRepository(this._location);
+  GeolocationRepository(this._location);
 
   final ILocationDataSource _location;
 

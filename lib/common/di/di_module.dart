@@ -21,8 +21,8 @@ import 'package:moony_app/common/data/user/remote/user_remote_source_impl.dart';
 import 'package:moony_app/common/data/user/repository/user_repository_impl.dart';
 import 'package:moony_app/common/domain/connectivity/repository/connectivity_repository.dart';
 import 'package:moony_app/common/domain/connectivity/usecase/connectivity_use_case.dart';
-import 'package:moony_app/common/domain/location/repository/location_repository.dart';
-import 'package:moony_app/common/domain/location/usecase/location_use_case.dart';
+import 'package:moony_app/common/domain/location/repository/geolocation_repository.dart';
+import 'package:moony_app/common/domain/location/usecase/geolocation_use_case.dart';
 import 'package:moony_app/common/domain/user/repository/user_repositories_facade.dart';
 import 'package:moony_app/flavors.dart';
 
@@ -41,10 +41,10 @@ void loadModule() {
       fenix: true);
 
   Get.lazyPut<ILocationDataSource>(() => LocationService(), fenix: true);
-  Get.lazyPut<ILocationRepository>(() => LocationRepository(Get.find()),
+  Get.lazyPut<IGeolocationRepository>(() => GeolocationRepository(Get.find()),
       fenix: true);
-  Get.lazyPut<IsLocationActivatedUseCase>(
-      () => IsLocationActivatedUseCase(Get.find()),
+  Get.lazyPut<GeolocationActivatedUseCase>(
+      () => GeolocationActivatedUseCase(Get.find()),
       fenix: true);
 
   Get.lazyPut<ILocalStorage>(
