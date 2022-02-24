@@ -40,4 +40,9 @@ class Birthdate extends ValueObject<BirthdateFailure, DateTime> {
   /// max age for legal as date format
   static DateTime maxSecurityDate() => DateTime.now().let(
   (DateTime now) => DateTime(now.year - maxAgeOffset, now.month, now.day));
+
+  /// get age of user in year
+  int getAge() {
+    return DateTime.now().difference(getOrCrash()).inDays ~/ 365;
+  }
 }
