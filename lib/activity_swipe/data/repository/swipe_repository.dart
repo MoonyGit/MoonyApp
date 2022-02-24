@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart';
-import 'package:moony_app/activity_swipe/data/remote/model/swipe_location_data_model.dart';
+import 'package:moony_app/common/data/model/location_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/domain/model/decision.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_creator_info_detail.dart';

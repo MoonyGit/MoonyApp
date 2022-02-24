@@ -1,5 +1,5 @@
-import 'package:moony_app/activity_swipe/domain/model/location.dart';
 import 'package:moony_app/common/base/domain/model/entity.dart';
+import 'package:moony_app/common/domain/model/location.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/gender.dart';
 import 'package:moony_app/common/domain/user/model/hobby.dart';
@@ -16,7 +16,7 @@ class SwipeCreatorInfo extends Entity<String> {
         required this.location,
         required this.imageList,
         required this.hobbyList,
-      required this.gender});
+        required this.gender});
 
   @override
   final String id;

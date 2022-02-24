@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/budget_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_creator_info_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart';
-import 'package:moony_app/activity_swipe/data/remote/model/swipe_location_data_model.dart';
+import 'package:moony_app/common/data/model/location_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/domain/model/decision.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
