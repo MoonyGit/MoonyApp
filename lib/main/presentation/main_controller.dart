@@ -8,7 +8,7 @@ import 'package:moony_app/chat/presentation/chat_list_controller.dart';
 import 'package:moony_app/common/util/logger.dart';
 import 'package:moony_app/gift/presentation/gift_controller.dart';
 import 'package:moony_app/main/resources/assets.dart';
-import 'package:moony_app/profile/presentation/user_profile_controller.dart';
+import 'package:moony_app/profile/activity/di/user_profile_activity_bindings.dart';
 
 /// Enum order define page order
 enum PageType {
@@ -47,7 +47,7 @@ class MainPageBindings extends Bindings {
     GiftBinding().dependencies();
     SwipeBinding().dependencies();
     ChatListBinding().dependencies();
-    UserProfileBinding().dependencies();
+    UserProfileActivityBinding().dependencies();
   }
 }
 
