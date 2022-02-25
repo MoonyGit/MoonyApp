@@ -12,7 +12,8 @@ import 'package:moony_app/profile/common/banner/domain/repository/user_profile_b
 class UserProfileBannerRepositoryImpl extends UserProfileBannerRepository {
   /// Constructor
   UserProfileBannerRepositoryImpl(
-      this._userProfileActivityInformationDataSource);
+      this._userProfileActivityInformationDataSource,
+      );
 
   /// UserProfileInformationDataSource instance
   final UserProfileBannerDataSource _userProfileActivityInformationDataSource;
