@@ -43,7 +43,7 @@ class UserProfileActivityPage extends GetView<UserProfileActivityController> {
             children: <Widget>[
               UserProfileBannerWidget(
                 showEdit: false,
-                onClick: controller.goToSetting,
+                onClick: controller.goToUserProfileViewer,
               ),
               const Padding(padding: EdgeInsets.only(top: 8, bottom: 8)),
               Container(
@@ -96,7 +96,9 @@ class UserProfileActivityPage extends GetView<UserProfileActivityController> {
               ),
             ],
           ),
-          UserProfileEditTabsWidget(onTabsClick: controller.goToSetting),
+          UserProfileEditTabsWidget(
+            onTabsClick: controller.goToUserProfileViewer,
+          ),
         ],
       ),
     );
@@ -138,7 +140,7 @@ class UserProfileActivityPage extends GetView<UserProfileActivityController> {
                 shadowColor: Colors.transparent,
                 textStyle: const TextStyle(fontSize: 14),
               ),
-              onPressed: controller.goToSetting,
+              onPressed: () => throw NotImplementedException(),
               child: Text(
                 userProfileActivityCreate.translate(),
               ),

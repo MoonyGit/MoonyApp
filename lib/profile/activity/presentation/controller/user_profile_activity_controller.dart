@@ -5,7 +5,8 @@ import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/profile/activity/domain/model/user_profile_activity_entity.dart';
 import 'package:moony_app/profile/activity/presentation/model/user_profile_activity_item_ui.dart';
 import 'package:moony_app/profile/resources/strings.dart';
-import 'package:moony_app/settings/resources/router.dart';
+import 'package:moony_app/settings/resources/router.dart' as settingsRouter;
+import 'package:moony_app/profile/resources/router.dart' as profileRouter;
 
 /// user profile activity controller
 class UserProfileActivityController extends GetxController {
@@ -45,7 +46,12 @@ class UserProfileActivityController extends GetxController {
 
   /// Redirect to the setting page
   void goToSetting() {
-    Get.toNamed(Router.setting);
+    Get.toNamed(settingsRouter.Router.setting);
+  }
+
+  /// Redirect to the user profile viewer page
+  void goToUserProfileViewer() {
+    Get.toNamed(profileRouter.Router.userProfileViewer);
   }
 }
 
