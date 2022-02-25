@@ -52,9 +52,9 @@ class SetRelationStateController extends ValidationInteractor {
   Set<String> relationStateChoices = RelationState.values.toUi();
 
   /// onRelationStateSelected callback
-  void onRelationStateSelected(String relationStateInput) {
+  void onRelationStateSelected(int index, String relationStateInput) {
     try {
-      _registrationUseCase(input: relationStateInput.toRelationState());
+      _registrationUseCase(input: RelationState.values[index]);
       currentRelationState = relationStateInput;
       validationController.add(true);
     } catch (e, s) {

@@ -51,9 +51,9 @@ class SetGenderController extends ValidationInteractor {
   Set<String> genderChoices = Gender.values.toUi();
 
   /// onGenderSelected callback
-  void onGenderSelected(String genderInput) {
+  void onGenderSelected(int index, String genderInput) {
     try {
-      _registrationUseCase(input: genderInput.toGender());
+      _registrationUseCase(input: Gender.values[index]);
       currentGender = genderInput;
       validationController.add(true);
     } catch (e, s) {
