@@ -1,10 +1,8 @@
 import 'package:moony_app/activity_swipe/domain/model/swipe_item_detail.dart';
-import 'package:moony_app/activity_swipe/resources/strings.dart';
 import 'package:moony_app/common/domain/user/model/hobby.dart';
 import 'package:moony_app/common/domain/user/model/language.dart';
 import 'package:moony_app/common/domain/user/model/zodiac_sign.dart';
-import 'package:moony_app/common/resources/strings.dart';
-import 'package:moony_app/common/util/string_dynamic_interpolation.dart';
+import 'package:moony_app/common/presentation/budget_formatter.dart';
 
 /// Model ui for swipe card
 class SwipeDetailModel {
@@ -21,16 +19,17 @@ class SwipeDetailModel {
 /// Activity detail ui model
 class ActivitySwipeDetailModel {
   /// Constructor
-  ActivitySwipeDetailModel(
-      {required this.imgUri,
-      required this.name,
-      required this.categoryImgUri,
-      this.targetDate,
-      this.location,
-      required this.budget,
-      required this.participantNumber,
-      this.link,
-      required this.description});
+  ActivitySwipeDetailModel({
+    required this.imgUri,
+    required this.name,
+    required this.categoryImgUri,
+    this.targetDate,
+    this.location,
+    required this.budget,
+    required this.participantNumber,
+    this.link,
+    required this.description,
+  });
 
   /// activity image
   final String imgUri;
@@ -63,18 +62,19 @@ class ActivitySwipeDetailModel {
 /// User detail model
 class UserSwipeDetailModel {
   /// Constructor
-  UserSwipeDetailModel(
-      {required this.gender,
-      this.orientation,
-      this.relationState,
-      required this.languages,
-      required this.hobbies,
-      this.job,
-      this.foodCategory,
-      required this.zodiacSign,
-      this.doSmoke,
-      this.doDrinkAlcohol,
-      this.petPrefered});
+  UserSwipeDetailModel({
+    required this.gender,
+    this.orientation,
+    this.relationState,
+    required this.languages,
+    required this.hobbies,
+    this.job,
+    this.foodCategory,
+    required this.zodiacSign,
+    this.doSmoke,
+    this.doDrinkAlcohol,
+    this.petPrefered,
+  });
 
   /// user gender
   final String gender;
@@ -114,22 +114,19 @@ class UserSwipeDetailModel {
 extension SwipeDetailMapper on SwipeItemDetail {
   /// Mapper method
   SwipeDetailModel toUi() => SwipeDetailModel(
-      activity: ActivitySwipeDetailModel(
+        activity: ActivitySwipeDetailModel(
           imgUri:
               activity.image?.toString() ?? creator.imageList.first.toString(),
           name: activity.title.getOrCrash(),
           categoryImgUri: activity.category.image.toString(),
-          budget: swipeDetailBudgetTemplate.format(<String>[
-            activity.budget.currency,
-            "${activity.budget.lowerRange}",
-            "${activity.budget.higherRange}"
-          ]),
+          budget: activity.budget.format(),
           targetDate: activity.expectedStartingDate?.getOrCrash(),
           link: activity.linkReference?.toString(),
           location: activity.location.city.getOrCrash(),
           participantNumber: activity.participantNumber.getOrCrash(),
-          description: activity.desc.getOrCrash()),
-      user: UserSwipeDetailModel(
+          description: activity.desc.getOrCrash(),
+        ),
+        user: UserSwipeDetailModel(
           gender: creator.gender.toString().split(".")[1],
           languages:
               creator.languageList?.map((Language lang) => lang.title).toList(),
@@ -142,5 +139,7 @@ extension SwipeDetailMapper on SwipeItemDetail {
           petPrefered: creator.petPrefered?.toString().split(".")[1],
           zodiacSign:
               ZodiacSignMapper.fromBirthdate(birthdate: creator.birthdate)
-                  .getName()));
+                  .getName(),
+        ),
+      );
 }

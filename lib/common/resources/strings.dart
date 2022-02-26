@@ -49,7 +49,10 @@ abstract class AppStrings {
 
   /// The generic string for failures
   static const String genericFailure = "Something went wrong";
-  
+
+  /// The free present emoji
+  static const String freeEmoji = "🎁";
+
   /// Method to translate strings
   @Deprecated("Please use extension on string : Translate")
   static String translate({required String message}) {
