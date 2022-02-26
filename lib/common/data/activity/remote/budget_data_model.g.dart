@@ -8,16 +8,12 @@ part of 'budget_data_model.dart';
 
 BudgetDataModel _$BudgetDataModelFromJson(Map<String, dynamic> json) =>
     BudgetDataModel(
-      currency: json['currency'] as String,
-      lowerRange: json['lowerRange'] as int?,
-      higherRange: json['higherRange'] as int?,
-      isFree: json['isFree'] as bool,
+      currencyCode: json['currencyCode'] as String,
+      weight: json['weight'] as int,
     );
 
 Map<String, dynamic> _$BudgetDataModelToJson(BudgetDataModel instance) =>
     <String, dynamic>{
-      'currency': instance.currency,
-      'lowerRange': instance.lowerRange,
-      'higherRange': instance.higherRange,
-      'isFree': instance.isFree,
+      'currencyCode': instance.currencyCode,
+      'weight': instance.weight,
     };

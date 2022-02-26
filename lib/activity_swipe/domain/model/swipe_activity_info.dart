@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:moony_app/common/base/domain/model/entity.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
+import 'package:moony_app/common/domain/activity/model/budget.dart';
 import 'package:moony_app/common/domain/model/location.dart';
 import 'package:moony_app/common/domain/user/model/hobby.dart';
 
-import 'budget.dart';
 
 /// Small user part for activity swipe
 class SwipeActivityInfo extends Entity<String> {

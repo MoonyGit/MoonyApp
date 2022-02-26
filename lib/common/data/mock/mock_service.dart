@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
-import 'package:moony_app/activity_swipe/data/remote/model/budget_data_model.dart';
+import 'package:moony_app/common/data/activity/remote/budget_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_creator_info_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
@@ -199,10 +199,8 @@ class MockService
     activityId: const Uuid().v4(),
     activityTitle: "Concert Shakira",
     activityBudget: BudgetDataModel(
-      currency: "euros",
-      isFree: false,
-      lowerRange: 10,
-      higherRange: 20,
+      currencyCode: "EUR",
+      weight: 2,
     ),
     activityLocation: LocationDataModel(
       city: "Paris",
