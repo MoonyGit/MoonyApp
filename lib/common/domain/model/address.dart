@@ -1,22 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
 
-/// Location failure
-class LocationFailure extends Failure {
+/// Address failure
+class AddressFailure extends Failure {
   /// Public constructor
-  const LocationFailure({required String message}) : super(message: message);
+  const AddressFailure({required String message}) : super(message: message);
 }
 
-/// Location class
-class Location {
+/// Address class
+class Address {
   /// Constructor
-  Location(
+  Address(
       {this.streetNumber,
-      this.streetName,
-      required this.zipCode,
-      required this.city,
-      required this.region,
-      required this.country});
+        this.streetName,
+        required this.zipCode,
+        required this.city,
+        required this.region,
+        required this.country,
+      });
 
   /// Street number, required for activity but optional for user
   final StreetNumber? streetNumber;
@@ -32,8 +33,8 @@ class Location {
   final Country country;
 }
 
-/// Location value object class
-class StreetNumber extends ValueObject<LocationFailure, String> {
+/// Address value object class
+class StreetNumber extends ValueObject<AddressFailure, String> {
   const StreetNumber._(this.value);
 
   /// Factory constructor
@@ -41,7 +42,7 @@ class StreetNumber extends ValueObject<LocationFailure, String> {
     if (input.isEmpty) {
       return StreetNumber._(
         left(
-          const LocationFailure(message: ""),
+          const AddressFailure(message: ""),
         ),
       );
     } else {
@@ -50,11 +51,11 @@ class StreetNumber extends ValueObject<LocationFailure, String> {
   }
 
   @override
-  final Either<LocationFailure, String> value;
+  final Either<AddressFailure, String> value;
 }
 
-/// Location value object class
-class StreetName extends ValueObject<LocationFailure, String> {
+/// Address value object class
+class StreetName extends ValueObject<AddressFailure, String> {
   const StreetName._(this.value);
 
   /// Factory constructor
@@ -62,7 +63,7 @@ class StreetName extends ValueObject<LocationFailure, String> {
     if (input.isEmpty) {
       return StreetName._(
         left(
-          const LocationFailure(message: ""),
+          const AddressFailure(message: ""),
         ),
       );
     } else {
@@ -71,11 +72,11 @@ class StreetName extends ValueObject<LocationFailure, String> {
   }
 
   @override
-  final Either<LocationFailure, String> value;
+  final Either<AddressFailure, String> value;
 }
 
-/// Location value object class
-class ZipCode extends ValueObject<LocationFailure, String> {
+/// Address value object class
+class ZipCode extends ValueObject<AddressFailure, String> {
   const ZipCode._(this.value);
 
   /// Factory constructor
@@ -83,7 +84,7 @@ class ZipCode extends ValueObject<LocationFailure, String> {
     if (input.isEmpty) {
       return ZipCode._(
         left(
-          const LocationFailure(message: ""),
+          const AddressFailure(message: ""),
         ),
       );
     } else {
@@ -92,11 +93,11 @@ class ZipCode extends ValueObject<LocationFailure, String> {
   }
 
   @override
-  final Either<LocationFailure, String> value;
+  final Either<AddressFailure, String> value;
 }
 
-/// Location value object class
-class City extends ValueObject<LocationFailure, String> {
+/// Address value object class
+class City extends ValueObject<AddressFailure, String> {
   const City._(this.value);
 
   /// Factory constructor
@@ -104,7 +105,7 @@ class City extends ValueObject<LocationFailure, String> {
     if (input.isEmpty) {
       return City._(
         left(
-          const LocationFailure(message: ""),
+          const AddressFailure(message: ""),
         ),
       );
     } else {
@@ -113,11 +114,11 @@ class City extends ValueObject<LocationFailure, String> {
   }
 
   @override
-  final Either<LocationFailure, String> value;
+  final Either<AddressFailure, String> value;
 }
 
-/// Location value object class
-class Region extends ValueObject<LocationFailure, String> {
+/// Address value object class
+class Region extends ValueObject<AddressFailure, String> {
   const Region._(this.value);
 
   /// Factory constructor
@@ -125,7 +126,7 @@ class Region extends ValueObject<LocationFailure, String> {
     if (input.isEmpty) {
       return Region._(
         left(
-          const LocationFailure(message: ""),
+          const AddressFailure(message: ""),
         ),
       );
     } else {
@@ -134,11 +135,11 @@ class Region extends ValueObject<LocationFailure, String> {
   }
 
   @override
-  final Either<LocationFailure, String> value;
+  final Either<AddressFailure, String> value;
 }
 
-/// Location value object class
-class Country extends ValueObject<LocationFailure, String> {
+/// Address value object class
+class Country extends ValueObject<AddressFailure, String> {
   const Country._(this.value);
 
   /// Factory constructor
@@ -146,7 +147,7 @@ class Country extends ValueObject<LocationFailure, String> {
     if (input.isEmpty) {
       return Country._(
         left(
-          const LocationFailure(message: ""),
+          const AddressFailure(message: ""),
         ),
       );
     } else {
@@ -155,5 +156,5 @@ class Country extends ValueObject<LocationFailure, String> {
   }
 
   @override
-  final Either<LocationFailure, String> value;
+  final Either<AddressFailure, String> value;
 }

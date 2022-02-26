@@ -1,4 +1,4 @@
-import 'package:moony_app/common/data/model/location_data_model.dart';
+import 'package:moony_app/common/data/model/address_data_model.dart';
 import 'package:moony_app/common/domain/model/activity_delay.dart';
 import 'package:moony_app/common/domain/model/activity_name.dart';
 import 'package:moony_app/common/domain/model/activity_waiting_participant_number.dart';

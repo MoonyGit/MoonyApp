@@ -14,7 +14,7 @@ SwipeCreatorInfoDataModel _$SwipeCreatorInfoDataModelFromJson(
       birthdate: DateTime.parse(json['birthdate'] as String),
       verified: json['verified'] as bool,
       location:
-          LocationDataModel.fromJson(json['location'] as Map<String, dynamic>),
+          AddressDataModel.fromJson(json['location'] as Map<String, dynamic>),
       imageList:
           (json['imageList'] as List<dynamic>).map((e) => e as String).toList(),
       hobbyList: (json['hobbyList'] as List<dynamic>)

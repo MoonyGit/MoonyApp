@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'location_data_model.dart';
+part of 'address_data_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LocationDataModel _$LocationDataModelFromJson(Map<String, dynamic> json) =>
-    LocationDataModel(
+AddressDataModel _$AddressDataModelFromJson(Map<String, dynamic> json) =>
+    AddressDataModel(
       streetNumber: json['streetNumber'] as String?,
       streetName: json['streetName'] as String?,
       zipCode: json['zipCode'] as String,
@@ -16,7 +16,7 @@ LocationDataModel _$LocationDataModelFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String,
     );
 
-Map<String, dynamic> _$LocationDataModelToJson(LocationDataModel instance) =>
+Map<String, dynamic> _$AddressDataModelToJson(AddressDataModel instance) =>
     <String, dynamic>{
       'streetNumber': instance.streetNumber,
       'streetName': instance.streetName,

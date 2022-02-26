@@ -1,4 +1,4 @@
-import 'package:moony_app/common/data/model/location_data_model.dart';
+import 'package:moony_app/common/data/model/address_data_model.dart';
 import 'package:moony_app/common/domain/model/user_activity.dart';
 import 'package:moony_app/common/domain/model/user_froony.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';

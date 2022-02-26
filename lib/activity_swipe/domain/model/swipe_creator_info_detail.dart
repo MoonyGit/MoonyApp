@@ -1,5 +1,5 @@
 import 'package:moony_app/activity_swipe/domain/model/swipe_creator_info.dart';
-import 'package:moony_app/common/domain/model/location.dart';
+import 'package:moony_app/common/domain/model/address.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/civil_status.dart';
 import 'package:moony_app/common/domain/user/model/food_category.dart';
@@ -14,32 +14,33 @@ import 'package:moony_app/common/domain/user/model/relation_state.dart';
 /// Small user part for swipe
 class SwipeCreatorInfoDetail extends SwipeCreatorInfo {
   /// Constructor
-  SwipeCreatorInfoDetail(
-      {required String id,
-        required Name name,
-        required Birthdate birthdate,
-        required bool verified,
-        required Location location,
-        required List<Uri> imageList,
-        required List<Hobby> hobbyList,
-        required Gender gender,
-        this.orientation,
-        this.relationState,
-        this.languageList,
-        this.civilStatus,
-        this.foodCategory,
-        this.doSmoke,
-        this.doDrink,
-        this.petPrefered})
-      : super(
-      id: id,
-      name: name,
-      birthdate: birthdate,
-      verified: verified,
-      location: location,
-      imageList: imageList,
-      hobbyList: hobbyList,
-      gender: gender);
+  SwipeCreatorInfoDetail({
+    required String id,
+    required Name name,
+    required Birthdate birthdate,
+    required bool verified,
+    required Address location,
+    required List<Uri> imageList,
+    required List<Hobby> hobbyList,
+    required Gender gender,
+    this.orientation,
+    this.relationState,
+    this.languageList,
+    this.civilStatus,
+    this.foodCategory,
+    this.doSmoke,
+    this.doDrink,
+    this.petPrefered,
+  }) : super(
+          id: id,
+          name: name,
+          birthdate: birthdate,
+          verified: verified,
+          location: location,
+          imageList: imageList,
+          hobbyList: hobbyList,
+          gender: gender,
+        );
 
   /// Orientation of user
   final Orientation? orientation;
