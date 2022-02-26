@@ -1,10 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/standard.dart';
-import 'package:moony_app/common/data/model/location_data_model.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_activity_info.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_item.dart';
 import 'package:moony_app/common/data/activity/remote/budget_data_model.dart';
+import 'package:moony_app/common/data/model/address_data_model.dart';
 import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
+import 'package:moony_app/common/domain/activity/model/description.dart';
+import 'package:moony_app/common/domain/activity/model/participant_number.dart';
+import 'package:moony_app/common/domain/activity/model/starting_date.dart';
+import 'package:moony_app/common/domain/activity/model/title.dart';
 
 import 'swipe_creator_info_data_model.dart';
 
@@ -65,7 +69,7 @@ class SwipeItemDataModel {
 
   /// location of activity or user by default
   @JsonKey(name: "location")
-  final LocationDataModel activityLocation;
+  final AddressDataModel activityLocation;
 
   /// Optional: date of activity should happened
   @JsonKey(name: "expectedStartingDate")

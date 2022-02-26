@@ -19,7 +19,7 @@ SwipeItemDataModel _$SwipeItemDataModelFromJson(Map<String, dynamic> json) =>
           HobbyDataModel.fromJson(json['category'] as Map<String, dynamic>),
       activityParticipantNumber: json['maxParticipant'] as int,
       activityLocation:
-          LocationDataModel.fromJson(json['location'] as Map<String, dynamic>),
+          AddressDataModel.fromJson(json['location'] as Map<String, dynamic>),
       activityExpectedStartingDate: json['expectedStartingDate'] == null
           ? null
           : DateTime.parse(json['expectedStartingDate'] as String),

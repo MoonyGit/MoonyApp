@@ -1,4 +1,4 @@
-import 'package:moony_app/common/domain/model/location.dart';
+import 'package:moony_app/common/domain/model/address.dart';
 import 'package:moony_app/common/domain/model/user_activity.dart';
 import 'package:moony_app/common/domain/model/user_froony.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
@@ -30,7 +30,7 @@ class UserProfileBannerEntity {
   final Uri pictures;
 
   /// User's location
-  final Location location;
+  final Address location;
 
   /// User's froonys number
   final UserFroony froonysNumber;

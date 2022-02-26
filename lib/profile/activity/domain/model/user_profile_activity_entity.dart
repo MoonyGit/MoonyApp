@@ -1,7 +1,7 @@
 import 'package:moony_app/common/domain/model/activity_delay.dart';
 import 'package:moony_app/common/domain/model/activity_name.dart';
 import 'package:moony_app/common/domain/model/activity_waiting_participant_number.dart';
-import 'package:moony_app/common/domain/model/location.dart';
+import 'package:moony_app/common/domain/model/address.dart';
 
 /// User profile activity information entity
 class UserProfileActivityEntity {
@@ -21,7 +21,7 @@ class UserProfileActivityEntity {
   final ActivityName activityName;
 
   /// activity location name
-  final Location location;
+  final Address location;
 
   /// activity maximum partner
   final ActivityWaitingParticipant activityWaitingParticipant;

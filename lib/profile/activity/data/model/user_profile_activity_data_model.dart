@@ -1,4 +1,5 @@
-import 'package:moony_app/common/data/model/location_data_model.dart';
+
+import 'package:moony_app/common/data/model/address_data_model.dart';
 
 /// User profile activity information entity
 class UserProfileActivityDataModel {
@@ -18,7 +19,7 @@ class UserProfileActivityDataModel {
   final String activityName;
 
   /// activity location name
-  final LocationDataModel location;
+  final AddressDataModel location;
 
   /// activity number waiting partner
   final int numberWaitingPartner;
