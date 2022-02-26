@@ -96,8 +96,8 @@ class HomeController extends ConstrainedController
 
   @override
   void onClose() {
-    super.onClose();
     _earthAnimationController.dispose();
+    super.onClose();
   }
 
   /// Methode paste from flutter_cube earth example
