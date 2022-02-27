@@ -54,6 +54,9 @@ class MainPage extends GetView<MainController> {
                 ),
                 splashColor: Colors.transparent,
               ),
+              ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: 48, maxWidth: 48),
+              ),
               IconButton(
                 onPressed: () {
                   controller.tabsManager(PageType.values[2]);
