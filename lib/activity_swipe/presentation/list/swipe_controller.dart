@@ -99,13 +99,14 @@ class SwipeController extends ConstrainedController {
 
   @override
   void onClose() {
-    super.onClose();
     swipableStackController.dispose();
 
     for (final MapEntry<PageController, SwipeCardModel> element
-        in swipeCardList.entries) {
+    in swipeCardList.entries) {
       element.key.dispose();
     }
+
+    super.onClose();
   }
 
   /// Method to load more swipe items
