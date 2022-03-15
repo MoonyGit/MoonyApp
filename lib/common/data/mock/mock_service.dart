@@ -24,6 +24,8 @@ import 'package:moony_app/profile/activity/data/model/user_profile_activity_data
 import 'package:moony_app/profile/activity/data/source/user_profile_activities_data_source.dart';
 import 'package:moony_app/profile/common/banner/data/model/user_profile_banner_data_model.dart';
 import 'package:moony_app/profile/common/banner/data/source/user_profile_banner_data_source.dart';
+import 'package:moony_app/profile/viewer/data/model/user_profile_information_data_model.dart';
+import 'package:moony_app/profile/viewer/data/source/remote/user_profile_information_datasource_impl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:uuid/uuid.dart';
 
@@ -36,6 +38,7 @@ class MockService
         AuthDataSource,
         UserProfileActivitiesDataSource,
         UserProfileBannerDataSource,
+        UserProfileInformationDataSource,
         IActivityCreationRemoteSource {
   static const String _currentUserId = "myCurrentUserId";
   static const String _swipeMockUserId = "mySwipeUser";
@@ -424,6 +427,20 @@ class MockService
     );
   }
 
+
+  //#endregion
+
+  //#region UserProfileInformationDataSource impl
+  @override
+  Future<UserProfileInformationDataModel> getUserViewerInformation({
+    required String id,
+  }) {
+    return Future<UserProfileInformationDataModel>.value(
+      UserProfileInformationDataModel(
+        description: "This is sample of description for the user",
+      ),
+    );
+  }
 //#endregion
 
 //#region Activity creation impl

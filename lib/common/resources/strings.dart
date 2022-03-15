@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 /// This class is used to provide all string constant in a statical way
 abstract class AppStrings {
-
   ///////////////////////////
   ///////// Global /////////
   //////////////////////////
@@ -145,6 +144,9 @@ abstract class AppStrings {
   /// Book a date
   static const String bookDate = 'Booking date';
 
+  /// Generic message for loading content by moony
+  static const String moonyLoadingMessage = "I'm thinking";
+
   /// Method to translate strings
   @Deprecated("Please use extension on string : Translate")
   static String translate({required String message}) {
@@ -156,4 +158,12 @@ abstract class AppStrings {
 extension Translation on String {
   /// Translate the string in current locale on mobile
   String translate() => tr;
+}
+
+/// extension to capitalize the string
+extension Capitalize on String {
+  /// Upper case for the first letter
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
 }

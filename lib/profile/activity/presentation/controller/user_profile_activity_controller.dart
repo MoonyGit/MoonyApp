@@ -4,9 +4,9 @@ import 'package:moony_app/common/domain/model/activity_waiting_participant_numbe
 import 'package:moony_app/common/resources/strings.dart';
 import 'package:moony_app/profile/activity/domain/model/user_profile_activity_entity.dart';
 import 'package:moony_app/profile/activity/presentation/model/user_profile_activity_item_ui.dart';
+import 'package:moony_app/profile/resources/router.dart' as profileRouter;
 import 'package:moony_app/profile/resources/strings.dart';
 import 'package:moony_app/settings/resources/router.dart' as settingsRouter;
-import 'package:moony_app/profile/resources/router.dart' as profileRouter;
 
 /// user profile activity controller
 class UserProfileActivityController extends GetxController {
@@ -59,11 +59,10 @@ class UserProfileActivityController extends GetxController {
 extension UserProfileActivityEntityMapper on UserProfileActivityEntity {
   /// mapper domain to ui
   UserProfileActivityItemUi toUi() => UserProfileActivityItemUi(
-    numberWaitingPartner: activityWaitingParticipant.getOrCrash(),
-    maxWaitingPartner: ActivityWaitingParticipant.maxParticipant,
-    location: location.city.getOrCrash(),
-    delay: delayInDays.getOrCrash(),
-    activityName: activityName.getOrCrash(),
-      activityId : activityId
-  );
+      numberWaitingPartner: activityWaitingParticipant.getOrCrash(),
+      maxWaitingPartner: ActivityWaitingParticipant.maxParticipant,
+      location: location.city.getOrCrash(),
+      delay: delayInDays.getOrCrash(),
+      activityName: activityName.getOrCrash(),
+      activityId: activityId);
 }

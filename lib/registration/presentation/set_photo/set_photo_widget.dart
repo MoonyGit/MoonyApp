@@ -55,28 +55,28 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
 
   Widget _getPhotoSlot(
       {required BuildContext context,
-      required Color colorBegin,
-      required int slotNumber,
-      Widget? child,
-      Color? colorEnd,
-      Color? colorMiddle,
-      double width = 150,
-      double height = 200,
-      Alignment alignmentBegin = Alignment.centerLeft,
-      Alignment alignmentEnd = Alignment.centerRight,
-      double borderRadius = 10}) {
+        required Color colorBegin,
+        required int slotNumber,
+        Widget? child,
+        Color? colorEnd,
+        Color? colorMiddle,
+        double width = 150,
+        double height = 200,
+        Alignment alignmentBegin = Alignment.centerLeft,
+        Alignment alignmentEnd = Alignment.centerRight,
+        double borderRadius = 10}) {
     return Stack(clipBehavior: Clip.none, children: [
       Ink(
         decoration: ShapeDecoration(
           gradient: colorMiddle == null
               ? LinearGradient(
-                  colors: [colorBegin, colorEnd ?? colorBegin],
-                  begin: alignmentBegin,
-                  end: alignmentEnd)
+              colors: [colorBegin, colorEnd ?? colorBegin],
+              begin: alignmentBegin,
+              end: alignmentEnd)
               : LinearGradient(
-                  colors: [colorBegin, colorMiddle, colorEnd ?? colorBegin],
-                  begin: alignmentBegin,
-                  end: alignmentEnd),
+              colors: [colorBegin, colorMiddle, colorEnd ?? colorBegin],
+              begin: alignmentBegin,
+              end: alignmentEnd),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius)),
         ),
@@ -90,7 +90,7 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
         child: FloatingActionButton.small(
             elevation: 5,
             onPressed: () =>
-                {_showBottomSheet(context: context, slotNumber: slotNumber)},
+            {_showBottomSheet(context: context, slotNumber: slotNumber)},
             child: Text(AppStrings.translate(message: AppStrings.addFab))),
       )
     ]);
@@ -109,7 +109,7 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
                       Text(AppStrings.takePhotoFromCamera.translate()),
                   onTap: () async {
                     final String? path = (await ImagePicker()
-                            .pickImage(source: ImageSource.camera))
+                        .pickImage(source: ImageSource.camera))
                         ?.path;
                     if (path != null) {
                       switch (slotNumber) {
@@ -130,7 +130,7 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
                       Text(AppStrings.takePhotoFromGallery.translate()),
                   onTap: () async {
                     final String? path = (await ImagePicker()
-                            .pickImage(source: ImageSource.gallery))
+                        .pickImage(source: ImageSource.gallery))
                         ?.path;
                     if (path != null) {
                       switch (slotNumber) {

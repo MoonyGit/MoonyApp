@@ -24,36 +24,36 @@ class RegistrationBindings extends Bindings {
     Get.lazyPut<RegisterUser>(() => RegisterUser(Get.find()), fenix: true);
 
     Get.lazyPut<SaveUserNameUseCase>(() => SaveUserNameUseCase(Get.find()),
-        fenix: true,);
+      fenix: true,);
 
     Get.lazyPut<SaveUserBirthdateUseCase>(
-        () => SaveUserBirthdateUseCase(Get.find()),
-        fenix: true,);
+          () => SaveUserBirthdateUseCase(Get.find()),
+      fenix: true,);
 
     Get.lazyPut<SaveUserPhoneUseCase>(() => SaveUserPhoneUseCase(Get.find()),
-        fenix: true,);
+      fenix: true,);
 
     Get.lazyPut<SaveUserGenderUseCase>(() => SaveUserGenderUseCase(Get.find()),
-        fenix: true,);
+      fenix: true,);
 
     Get.lazyPut<SaveUserRelationStateUseCase>(
-        () => SaveUserRelationStateUseCase(Get.find()),
-        fenix: true,);
+          () => SaveUserRelationStateUseCase(Get.find()),
+      fenix: true,);
 
     Get.lazyPut<SaveUserSecondaryPhotoListStateUseCase>(
-        () => SaveUserSecondaryPhotoListStateUseCase(Get.find()),
-        fenix: true,);
+          () => SaveUserSecondaryPhotoListStateUseCase(Get.find()),
+      fenix: true,);
 
     Get.lazyPut<SaveUserProfilePhotoStateUseCase>(
-        () => SaveUserProfilePhotoStateUseCase(Get.find()),
-        fenix: true,);
+          () => SaveUserProfilePhotoStateUseCase(Get.find()),
+      fenix: true,);
 
     Get.lazyPut(() => SetNameController(Get.find<SaveUserNameUseCase>()));
     Get.lazyPut(
-        () => SetBirthdateController(Get.find<SaveUserBirthdateUseCase>()),);
+          () => SetBirthdateController(Get.find<SaveUserBirthdateUseCase>()),);
     Get.lazyPut(() => SetPhotoController(
-        Get.find<SaveUserSecondaryPhotoListStateUseCase>(),
-        Get.find<SaveUserProfilePhotoStateUseCase>(),),);
+      Get.find<SaveUserSecondaryPhotoListStateUseCase>(),
+      Get.find<SaveUserProfilePhotoStateUseCase>(),),);
     Get.lazyPut(() =>
         SetRelationStateController(Get.find<SaveUserRelationStateUseCase>()),);
     Get.lazyPut(() => SetGenderController(Get.find<SaveUserGenderUseCase>()));
