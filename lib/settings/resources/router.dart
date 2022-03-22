@@ -1,22 +1,22 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:moony_app/settings/di/notification/settings_notification_bindings.dart';
-import 'package:moony_app/settings/presentation/home/setting_home_controller.dart';
-import 'package:moony_app/settings/presentation/home/setting_home_page.dart';
-import 'package:moony_app/settings/presentation/invoke/setting_invoke_controller.dart';
-import 'package:moony_app/settings/presentation/invoke/setting_invoke_page.dart';
-import 'package:moony_app/settings/presentation/location/setting_location_controller.dart';
-import 'package:moony_app/settings/presentation/location/setting_location_page.dart';
-import 'package:moony_app/settings/presentation/notification/setting_notification_page.dart';
-import 'package:moony_app/settings/presentation/payment/setting_payment_controller.dart';
-import 'package:moony_app/settings/presentation/payment/setting_payment_page.dart';
-import 'package:moony_app/settings/presentation/profile/setting_profile_controller.dart';
-import 'package:moony_app/settings/presentation/profile/setting_profile_page.dart';
-import 'package:moony_app/settings/presentation/rules/setting_rules_controller.dart';
-import 'package:moony_app/settings/presentation/rules/setting_rules_page.dart';
-import 'package:moony_app/settings/presentation/security/setting_security_controller.dart';
-import 'package:moony_app/settings/presentation/security/setting_security_page.dart';
-import 'package:moony_app/settings/presentation/setting_controller.dart';
-import 'package:moony_app/settings/presentation/setting_page.dart';
+import 'package:moony_app/settings/homepage/presentation/setting_controller.dart';
+import 'package:moony_app/settings/homepage/presentation/setting_page.dart';
+import 'package:moony_app/settings/invoke/presentation/setting_invoke_controller.dart';
+import 'package:moony_app/settings/invoke/presentation/setting_invoke_page.dart';
+import 'package:moony_app/settings/location/presentation/setting_location_controller.dart';
+import 'package:moony_app/settings/location/presentation/setting_location_page.dart';
+import 'package:moony_app/settings/moonyhome/presentation/view/setting_home_controller.dart';
+import 'package:moony_app/settings/moonyhome/presentation/view/setting_home_page.dart';
+import 'package:moony_app/settings/notification/di/notification/settings_notification_bindings.dart';
+import 'package:moony_app/settings/notification/presentation/setting_notification_page.dart';
+import 'package:moony_app/settings/payment/presentation/setting_payment_controller.dart';
+import 'package:moony_app/settings/payment/presentation/setting_payment_page.dart';
+import 'package:moony_app/settings/profile/presentation/setting_profile_controller.dart';
+import 'package:moony_app/settings/profile/presentation/setting_profile_page.dart';
+import 'package:moony_app/settings/rules/presentation/setting_rules_controller.dart';
+import 'package:moony_app/settings/rules/presentation/setting_rules_page.dart';
+import 'package:moony_app/settings/security/presentation/setting_security_controller.dart';
+import 'package:moony_app/settings/security/presentation/setting_security_page.dart';
 
 /// Router for setting feature
 abstract class Router {
@@ -45,43 +45,54 @@ abstract class Router {
   static const String settingInvoke = '$setting/invoke';
 
   /// The "Froony's Home" route path
-  static const String settingHome = '$setting/home';
+  static const String settingHome = '$setting/moonyhome';
 
   /// Router for user setting
-  static final List<GetPage<dynamic>> routes = [
+  static final List<GetPage<dynamic>> routes = <GetPage<dynamic>>[
     GetPage<dynamic>(
-        name: setting, page: () => SettingPage(), binding: SettingBindings()),
+      name: setting,
+      page: () => SettingPage(),
+      binding: SettingBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingProfile,
-        page: () => SettingProfilePage(),
-        binding: SettingProfileBindings()),
+      name: settingProfile,
+      page: () => SettingProfilePage(),
+      binding: SettingProfileBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingLocation,
-        page: () => SettingLocationPage(),
-        binding: SettingLocationBindings()),
+      name: settingLocation,
+      page: () => SettingLocationPage(),
+      binding: SettingLocationBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingNotification,
-        page: () => SettingNotificationPage(),
-        binding: SettingNotificationBindings()),
+      name: settingNotification,
+      page: () => SettingNotificationPage(),
+      binding: SettingNotificationBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingPayment,
-        page: () => SettingPaymentPage(),
-        binding: SettingPaymentBindings()),
+      name: settingPayment,
+      page: () => SettingPaymentPage(),
+      binding: SettingPaymentBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingRules,
-        page: () => SettingRulesPage(),
-        binding: SettingRulesBindings()),
+      name: settingRules,
+      page: () => SettingRulesPage(),
+      binding: SettingRulesBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingSecurity,
-        page: () => SettingSecurityPage(),
-        binding: SettingSecurityBindings()),
+      name: settingSecurity,
+      page: () => SettingSecurityPage(),
+      binding: SettingSecurityBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingInvoke,
-        page: () => SettingInvokePage(),
-        binding: SettingInvokeBindings()),
+      name: settingInvoke,
+      page: () => SettingInvokePage(),
+      binding: SettingInvokeBindings(),
+    ),
     GetPage<dynamic>(
-        name: settingHome,
-        page: () => SettingHomePage(),
-        binding: SettingHomeBindings()),
+      name: settingHome,
+      page: () => SettingHomePage(),
+      binding: SettingHomeBindings(),
+    ),
   ];
 }
