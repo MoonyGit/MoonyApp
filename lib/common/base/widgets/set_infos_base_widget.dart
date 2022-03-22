@@ -29,18 +29,23 @@ abstract class SetInfoBaseWidget<C extends GetxController> extends GetView<C> {
       child: Column(children: [
         Icon(
           getPageIconHint(),
-          size: 50,
+          size: 25,
         ),
         const Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 10),
         ),
         makeRoundedTextWithMoonyGradient(
             context: context,
-            text: AppStrings.translate(message: getPageTextHint())),
+            text: AppStrings.translate(message: getPageTextHint()),),
         const Padding(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 10),
         ),
-        ...getWidgets(context)
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            children: getWidgets(context),
+          ),
+        ),
       ]),
     );
   }
@@ -76,18 +81,23 @@ abstract class SetInfoModalBasePage<C extends GetxController>
           child: Column(children: [
             Icon(
               getPageIconHint(),
-              size: 50,
+              size: 25,
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 10),
             ),
             makeRoundedTextWithMoonyGradient(
                 context: context,
                 text: AppStrings.translate(message: getPageTextHint())),
             const Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(top: 10),
             ),
-            ...getWidgets(context),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: getWidgets(context),
+              ),
+            ),
             const Spacer(),
             getMoonyImage(),
             const Padding(padding: EdgeInsets.only(bottom: 10)),
@@ -100,7 +110,7 @@ abstract class SetInfoModalBasePage<C extends GetxController>
                     textAlign: TextAlign.center,
                   )),
                 )),
-            const Padding(padding: EdgeInsets.only(bottom: 20)),
+            const Padding(padding: EdgeInsets.only(bottom: 10)),
           ]),
         ),
       ),

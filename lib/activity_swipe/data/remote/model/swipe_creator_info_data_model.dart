@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_creator_info.dart';
+import 'package:moony_app/common/data/activity/remote/activity_type.dart';
 import 'package:moony_app/common/data/model/address_data_model.dart';
 import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
-import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/name.dart';
 
@@ -46,7 +46,7 @@ class SwipeCreatorInfoDataModel {
   final List<String> imageList;
 
   /// hobby list
-  final List<HobbyDataModel> hobbyList;
+  final Set<ActivityTypeData> hobbyList;
 
   /// gender
   final GenderDataModel gender;

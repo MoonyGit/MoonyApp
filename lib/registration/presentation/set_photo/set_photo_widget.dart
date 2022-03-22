@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_rx/src/rx_workers/rx_workers.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kt_dart/standard.dart';
@@ -107,7 +106,7 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
               ListTile(
                   leading: const Icon(Icons.photo_camera),
                   title:
-                      Text(AppStrings.translate(message: takePhotoFromCamera)),
+                      Text(AppStrings.takePhotoFromCamera.translate()),
                   onTap: () async {
                     final String? path = (await ImagePicker()
                             .pickImage(source: ImageSource.camera))
@@ -128,7 +127,7 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
               ListTile(
                   leading: const Icon(Icons.photo),
                   title:
-                      Text(AppStrings.translate(message: takePhotoFromGallery)),
+                      Text(AppStrings.takePhotoFromGallery.translate()),
                   onTap: () async {
                     final String? path = (await ImagePicker()
                             .pickImage(source: ImageSource.gallery))
@@ -149,12 +148,12 @@ class SetPhotoWidget extends SetInfoBaseWidget<SetPhotoController> {
               ListTile(
                 leading: const Icon(FontAwesomeIcons.facebook),
                 title:
-                    Text(AppStrings.translate(message: takePhotoFromFacebook)),
+                    Text(AppStrings.takePhotoFromFacebook.translate()),
               ),
               ListTile(
                 leading: const Icon(FontAwesomeIcons.instagram),
                 title:
-                    Text(AppStrings.translate(message: takePhotoFromInstagram)),
+                    Text(AppStrings.takePhotoFromInstagram.translate()),
               ),
             ],
           );

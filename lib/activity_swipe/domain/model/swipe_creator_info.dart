@@ -1,8 +1,8 @@
 import 'package:moony_app/common/base/domain/model/entity.dart';
+import 'package:moony_app/common/domain/activity/model/category.dart';
 import 'package:moony_app/common/domain/model/address.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/gender.dart';
-import 'package:moony_app/common/domain/user/model/hobby.dart';
 import 'package:moony_app/common/domain/user/model/name.dart';
 
 /// Small user part for swipe
@@ -38,7 +38,7 @@ class SwipeCreatorInfo extends Entity<String> {
   final List<Uri> imageList;
 
   /// Hobby list
-  final List<Hobby> hobbyList;
+  final Set<ActivityType> hobbyList;
 
   /// Gender
   final Gender gender;

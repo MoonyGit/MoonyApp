@@ -77,7 +77,7 @@ dependencies:
   responsive_framework: ^0.1.5
 
   # Adds support for immutable objects
-  freezed_annotation: ^0.14.2
+  freezed_annotation: ^1.1.0
 
   ## Device service features
   # Adds internet checking support
@@ -107,7 +107,7 @@ dev_dependencies:
 
   # For code generation
   build_runner:
-  freezed: ^0.14.2
+  freezed: ^1.1.1
 
   # For launch icon generation script, to execute with flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
   flutter_launcher_icons: ^0.9.0

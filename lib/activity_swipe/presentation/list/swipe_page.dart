@@ -16,6 +16,9 @@ import 'package:swipable_stack/swipable_stack.dart';
 
 /// The swipe page
 class SwipePage extends ConstrainedPage<SwipeController> {
+  /// Constructor
+  const SwipePage({Key? key}) : super(key: key);
+
   static const double _bottomAreaHeight = 100;
   static const EdgeInsets _padding =
       EdgeInsets.only(top: 50, left: 20, right: 20);
@@ -45,161 +48,177 @@ class SwipePage extends ConstrainedPage<SwipeController> {
   @override
   Widget buildWidget(BuildContext context) {
     return Scaffold(
-        body: Obx(() => controller.swipeCardList.isEmpty
+      body: Obx(
+        () => controller.swipeCardList.isEmpty
             ? const Center(child: CircularProgressIndicator())
-            : Stack(alignment: AlignmentDirectional.bottomCenter, children: <
-                Widget>[
-                SwipableStack(
-                  itemCount: controller.swipeCardList.length,
-                  builder:
-                      (BuildContext context, ItemSwipeProperties properties) {
-                    return Padding(
+            : Stack(
+                alignment: AlignmentDirectional.bottomCenter,
+                children: <Widget>[
+                  SwipableStack(
+                    itemCount: controller.swipeCardList.length,
+                    builder:
+                        (BuildContext context, ItemSwipeProperties properties) {
+                      return Padding(
                         padding: _padding,
                         child: Center(
-                            child: Obx(() => AnimatedSwitcher(
-                                  transitionBuilder: _flipTransitionBuilder,
-                                  layoutBuilder:
-                                      (Widget? widget, List<Widget> list) =>
-                                          Stack(
-                                    children: <Widget>[widget!, ...list],
-                                  ),
-                                  duration: const Duration(milliseconds: 600),
-                                  // switchInCurve: Curves.easeInBack,
-                                  // switchOutCurve: Curves.easeOutBack.flipped,
-                                  child: controller.isFontCard.value
-                                      ? _showFrontCard(
-                                          pageController: controller
-                                              .swipeCardList.entries
-                                              .elementAt(properties.index)
-                                              .key,
-                                          cardHeight:
-                                              properties.constraints.maxHeight,
-                                          activityCategoryImageUri: controller
-                                              .swipeCardList.entries
-                                              .elementAt(properties.index)
-                                              .value
-                                              .activityCategoryImageUri,
-                                          infoList: controller
-                                              .swipeCardList.entries
-                                              .elementAt(properties.index)
-                                              .value
-                                              .userImagesWithInfo,
-                                          onTopCardTap: (
-                                              {required bool isRight}) {
-                                            controller.onTopCardTap(
-                                                cardIndex: properties.index,
-                                                isRight: isRight);
-                                          },
-                                          onActivityCategoryImageTap: () {
-                                            controller.flipCard(
-                                                cardIndex: properties.index);
-                                          },
-                                          onInfoCardTap: () {
-                                            controller.onInfoCardTap(
-                                                cardIndex: properties.index);
-                                          },
-                                          onDotTap: ({required int pageIndex}) {
-                                            controller.onDotClicked(
-                                                cardIndex: properties.index,
-                                                cardPageIndex: pageIndex);
-                                          },
-                                        )
-                                      : _showBackCard(
-                                          onPeopleImageTap: () {
-                                            controller.flipCard(
-                                                cardIndex: properties.index);
-                                          },
-                                          onInfoCardTap: () {
-                                            controller.onInfoCardTap(
-                                                cardIndex: properties.index);
-                                          },
-                                          cardHeight:
-                                              properties.constraints.maxHeight,
-                                          info: controller.swipeCardList.entries
-                                              .elementAt(properties.index)
-                                              .value
-                                              .activityImagesWithInfo,
-                                        ),
-                                ),),),);
-                  },
-                  onWillMoveNext: (int index, SwipeDirection direction) {
-                    return true;
-                  },
-                  onSwipeCompleted: (int index, SwipeDirection direction) {
-                    controller.onSwipeCompleted(
-                        cardIndex: index, direction: direction);
-                  },
-                  stackClipBehaviour: Clip.none,
-                  controller: controller.swipableStackController,
-                  overlayBuilder: (
-                    BuildContext context,
-                    OverlaySwipeProperties properties,
-                  ) {
-                    final double opacity = min(properties.swipeProgress, 1.0);
+                          child: Obx(
+                            () => AnimatedSwitcher(
+                              transitionBuilder: _flipTransitionBuilder,
+                              layoutBuilder:
+                                  (Widget? widget, List<Widget> list) => Stack(
+                                children: <Widget>[widget!, ...list],
+                              ),
+                              duration: const Duration(milliseconds: 600),
+                              // switchInCurve: Curves.easeInBack,
+                              // switchOutCurve: Curves.easeOutBack.flipped,
+                              child: controller.isFontCard.value
+                                  ? _showFrontCard(
+                                      pageController: controller
+                                          .swipeCardList.entries
+                                          .elementAt(properties.index)
+                                          .key,
+                                      cardHeight:
+                                          properties.constraints.maxHeight,
+                                      activityCategoryImage: controller
+                                          .swipeCardList.entries
+                                          .elementAt(properties.index)
+                                          .value
+                                          .activityCategoryImage,
+                                      infoList: controller.swipeCardList.entries
+                                          .elementAt(properties.index)
+                                          .value
+                                          .userImagesWithInfo,
+                                      onTopCardTap: ({required bool isRight}) {
+                                        controller.onTopCardTap(
+                                          cardIndex: properties.index,
+                                          isRight: isRight,
+                                        );
+                                      },
+                                      onActivityCategoryImageTap: () {
+                                        controller.flipCard(
+                                          cardIndex: properties.index,
+                                        );
+                                      },
+                                      onInfoCardTap: () {
+                                        controller.onInfoCardTap(
+                                          cardIndex: properties.index,
+                                        );
+                                      },
+                                      onDotTap: ({required int pageIndex}) {
+                                        controller.onDotClicked(
+                                          cardIndex: properties.index,
+                                          cardPageIndex: pageIndex,
+                                        );
+                                      },
+                                    )
+                                  : _showBackCard(
+                                      onPeopleImageTap: () {
+                                        controller.flipCard(
+                                          cardIndex: properties.index,
+                                        );
+                                      },
+                                      onInfoCardTap: () {
+                                        controller.onInfoCardTap(
+                                          cardIndex: properties.index,
+                                        );
+                                      },
+                                      cardHeight:
+                                          properties.constraints.maxHeight,
+                                      info: controller.swipeCardList.entries
+                                          .elementAt(properties.index)
+                                          .value
+                                          .activityImagesWithInfo,
+                                    ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    onWillMoveNext: (int index, SwipeDirection direction) {
+                      return true;
+                    },
+                    onSwipeCompleted: (int index, SwipeDirection direction) {
+                      controller.onSwipeCompleted(
+                        cardIndex: index,
+                        direction: direction,
+                      );
+                    },
+                    stackClipBehaviour: Clip.none,
+                    controller: controller.swipableStackController,
+                    overlayBuilder: (
+                      BuildContext context,
+                      OverlaySwipeProperties properties,
+                    ) {
+                      final double opacity = min(properties.swipeProgress, 1.0);
 
-                    final bool isRight =
-                        properties.direction == SwipeDirection.right;
-                    final bool isLeft =
-                        properties.direction == SwipeDirection.left;
-                    final bool isUp = properties.direction == SwipeDirection.up;
-                    return Padding(
-                      padding: _padding * 3,
-                      child: Stack(
-                        children: <Widget>[
-                          Opacity(
-                            opacity: isRight ? opacity : 0,
-                            child: Text(AppStrings.translate(
-                                message: swipeOverlayTextRight)),
-                          ),
-                          Opacity(
-                            opacity: isLeft ? opacity : 0,
-                            child: Text(AppStrings.translate(
-                                message: swipeOverlayTextLeft,),),
-                          ),
-                          Opacity(
-                            opacity: isUp ? opacity : 0,
-                            child: Text(AppStrings.translate(
-                                message: swipeOverlayTextUp,),),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: _bottomAreaHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      IconButton(
-                        onPressed: () {
-                          controller.swipableStackController
-                              .next(swipeDirection: SwipeDirection.left);
-                        },
-                        iconSize: 80,
-                        icon: Image.asset(
-                          moonySwipeLeft,
-                          width: 80,
-                          height: 80,
+                      final bool isRight =
+                          properties.direction == SwipeDirection.right;
+                      final bool isLeft =
+                          properties.direction == SwipeDirection.left;
+                      final bool isUp =
+                          properties.direction == SwipeDirection.up;
+                      return Padding(
+                        padding: _padding * 3,
+                        child: Stack(
+                          children: <Widget>[
+                            Opacity(
+                              opacity: isRight ? opacity : 0,
+                              child: Text(swipeOverlayTextRight.translate()),
+                            ),
+                            Opacity(
+                              opacity: isLeft ? opacity : 0,
+                              child: Text(
+                                swipeOverlayTextLeft.translate(),
+                              ),
+                            ),
+                            Opacity(
+                              opacity: isUp ? opacity : 0,
+                              child: Text(
+                                swipeOverlayTextUp.translate(),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      IconButton(
-                        iconSize: 80,
-                        icon: Image.asset(
-                          moonySwipeRight,
-                          width: 80,
-                          height: 80,
-                        ),
-                        onPressed: () {
-                          controller.swipableStackController.next(
-                            swipeDirection: SwipeDirection.right,
-                          );
-                        },
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                ),
-              ])));
+                  SizedBox(
+                    height: _bottomAreaHeight,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        IconButton(
+                          onPressed: () {
+                            controller.swipableStackController
+                                .next(swipeDirection: SwipeDirection.left);
+                          },
+                          iconSize: 80,
+                          icon: Image.asset(
+                            moonySwipeLeft,
+                            width: 80,
+                            height: 80,
+                          ),
+                        ),
+                        IconButton(
+                          iconSize: 80,
+                          icon: Image.asset(
+                            moonySwipeRight,
+                            width: 80,
+                            height: 80,
+                          ),
+                          onPressed: () {
+                            controller.swipableStackController.next(
+                              swipeDirection: SwipeDirection.right,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
   }
 
   Widget _showBackCard({
@@ -209,45 +228,50 @@ class SwipePage extends ConstrainedPage<SwipeController> {
     required Function() onPeopleImageTap,
   }) =>
       Card(
-          key: const ValueKey<bool>(false),
-          shadowColor: AppTheme.tertiary,
-          clipBehavior: Clip.antiAlias,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
-          child: Stack(
-              alignment: AlignmentDirectional.topCenter,
-              children: <Widget>[
-                SwipeCardWidget(
-                  model: info,
-                  cardHeight: cardHeight,
-                  infoCardTapCallback: onInfoCardTap,
+        key: const ValueKey<bool>(false),
+        shadowColor: AppTheme.tertiary,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
+        child: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: <Widget>[
+            SwipeCardWidget(
+              model: info,
+              cardHeight: cardHeight,
+              infoCardTapCallback: onInfoCardTap,
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                onTap: onPeopleImageTap,
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: AppTheme.primaryHalfOpacity,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(180),
+                      topLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(5),
+                    ),
+                  ),
+                  child: const Align(
+                    child: Icon(
+                      Icons.person,
+                      size: 48,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-                Align(
-                    alignment: Alignment.topRight,
-                    child: InkWell(
-                        onTap: onPeopleImageTap,
-                        child: Container(
-                          width: 80,
-                          height: 80,
-                          decoration: const BoxDecoration(
-                              color: AppTheme.primaryHalfOpacity,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(180),
-                                topLeft: Radius.circular(5),
-                                bottomRight: Radius.circular(5),
-                              )),
-                          child: const Align(
-                              child: Icon(
-                            Icons.person,
-                            size: 48,
-                            color: Colors.white,
-                          )),
-                        ))),
-              ]));
+              ),
+            ),
+          ],
+        ),
+      );
 
   Widget _showFrontCard({
     required PageController pageController,
-    required String activityCategoryImageUri,
+    required IconData activityCategoryImage,
     required List<CardInfoModel> infoList,
     required double cardHeight,
     required Function({required bool isRight}) onTopCardTap,
@@ -256,58 +280,61 @@ class SwipePage extends ConstrainedPage<SwipeController> {
     required Function({required int pageIndex}) onDotTap,
   }) =>
       Card(
-          key: const ValueKey<bool>(true),
-          shadowColor: AppTheme.tertiary,
-          clipBehavior: Clip.antiAlias,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
-          child: Stack(
-              alignment: AlignmentDirectional.topCenter,
-              children: <Widget>[
-                PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: pageController,
-                  children: _createUserCardPageChildrenFromList(
-                    userImagesWithInfos: infoList,
-                    cardHeight: cardHeight,
-                    topCardTapCallback: onTopCardTap,
-                    infoCardTapCallback: onInfoCardTap,
+        key: const ValueKey<bool>(true),
+        shadowColor: AppTheme.tertiary,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80)),
+        child: Stack(
+          alignment: AlignmentDirectional.topCenter,
+          children: <Widget>[
+            PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: pageController,
+              children: _createUserCardPageChildrenFromList(
+                userImagesWithInfos: infoList,
+                cardHeight: cardHeight,
+                topCardTapCallback: onTopCardTap,
+                infoCardTapCallback: onInfoCardTap,
+              ),
+            ),
+            SmoothPageIndicator(
+              controller: pageController,
+              count: infoList.length,
+              onDotClicked: (int pageIndex) => onDotTap(pageIndex: pageIndex),
+              effect: const WormEffect(
+                activeDotColor: AppTheme.primary,
+                dotWidth: 50,
+                dotHeight: 10,
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: InkWell(
+                onTap: onActivityCategoryImageTap,
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: AppTheme.primaryHalfOpacity,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(180),
+                      topLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(5),
+                    ),
+                  ),
+                  child: Align(
+                    child: Icon(
+                      activityCategoryImage,
+                      size: 48,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                SmoothPageIndicator(
-                  controller: pageController,
-                  count: infoList.length,
-                  onDotClicked: (int pageIndex) =>
-                      onDotTap(pageIndex: pageIndex),
-                  effect: const WormEffect(
-                      activeDotColor: AppTheme.primary,
-                      dotWidth: 50,
-                      dotHeight: 10),
-                ),
-                Align(
-                    alignment: Alignment.topRight,
-                    child: InkWell(
-                        onTap: onActivityCategoryImageTap,
-                        child: Container(
-                          width: 80,
-                          height: 80,
-                          decoration: const BoxDecoration(
-                              color: AppTheme.primaryHalfOpacity,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(180),
-                                topLeft: Radius.circular(5),
-                                bottomRight: Radius.circular(5),
-                              )),
-                          child: Align(
-                              child: Image.network(
-                            activityCategoryImageUri,
-                            height: 48,
-                            width: 48,
-                            color: Colors.white,
-                            colorBlendMode: BlendMode.srcATop,
-                          )),
-                        ))),
-              ]));
+              ),
+            ),
+          ],
+        ),
+      );
 
   List<Widget> _createUserCardPageChildrenFromList({
     required List<CardInfoModel> userImagesWithInfos,
@@ -316,12 +343,14 @@ class SwipePage extends ConstrainedPage<SwipeController> {
     required Function() infoCardTapCallback,
   }) {
     return userImagesWithInfos
-        .map((CardInfoModel item) => SwipeCardWidget(
-              model: item,
-              cardHeight: cardHeight,
-              topCardTapCallback: topCardTapCallback,
-              infoCardTapCallback: infoCardTapCallback,
-            ))
+        .map(
+          (CardInfoModel item) => SwipeCardWidget(
+            model: item,
+            cardHeight: cardHeight,
+            topCardTapCallback: topCardTapCallback,
+            infoCardTapCallback: infoCardTapCallback,
+          ),
+        )
         .toList();
   }
 }

@@ -106,7 +106,7 @@ class SetNameController extends ValidationInteractor {
               _registrationUseCase(
                   input: SaveUserNameUseCaseParam(
                       first: Name(input: _firstName!),
-                      family: Name(input: _familyName!)));
+                      family: Name(input: _familyName!),),);
               validationController.add(true);
             }
             return null;

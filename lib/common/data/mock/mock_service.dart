@@ -7,11 +7,11 @@ import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
 import 'package:moony_app/activity_swipe/domain/model/decision.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
+import 'package:moony_app/common/data/activity/remote/activity_type.dart';
 import 'package:moony_app/common/data/activity/remote/budget_data_model.dart';
 import 'package:moony_app/common/data/model/address_data_model.dart';
 import 'package:moony_app/common/data/services/storage/storage_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
-import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
 import 'package:moony_app/common/data/user/remote/relation_state_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_remote_source.dart';
@@ -58,40 +58,20 @@ class MockService
     verified: true,
     creationDate: DateTime.now(),
     lastUpdateDate: DateTime.now(),
-    hobbies: <HobbyDataModel>[
-      HobbyDataModel(
-        id: const Uuid().v4(),
-        title: "Concert",
-        image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-        expirationDate: DateTime.now(),
-      ),
-      HobbyDataModel(
-        id: const Uuid().v4(),
-        title: "Foot",
-        image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-        expirationDate: DateTime.now(),
-      ),
-      HobbyDataModel(
-        id: const Uuid().v4(),
-        title: "Bar",
-        image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-        expirationDate: DateTime.now(),
-      ),
-      HobbyDataModel(
-        id: const Uuid().v4(),
-        title: "Cinema",
-        image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-        expirationDate: DateTime.now(),
-      ),
-      HobbyDataModel(
-        id: const Uuid().v4(),
-        title: "Voyage",
-        image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-        expirationDate: DateTime.now(),
-      )
+    hobbies: <ActivityTypeData>[
+      const ActivityTypeData.athletic(),
+      const ActivityTypeData.dinner(),
+      const ActivityTypeData.drink(),
+      const ActivityTypeData.cinema(),
+      const ActivityTypeData.exploration(),
     ],
   );
 
+  /// Uncomment to enable access feature by custom route
+  // AuthUserDataSourceModel? _currentUserAuth = AuthUserDataSourceModel(
+  //   id: _currentUserId,
+  //   phone: "+33834763058",
+  // );
   AuthUserDataSourceModel? _currentUserAuth;
   UserDataModel? _currentUser;
   final String _smsOtp = "123456";
@@ -213,20 +193,9 @@ class MockService
         activityImage:
             "https://www.cine-vox.com/evenement/Affiche_A3_-_Shakira_-_El_Dorado_World_Tour.jpg",
         activityParticipantNumber: 4,
-        activityCategory: HobbyDataModel(
-          id: const Uuid().v4(),
-          title: "Concert",
-          image: "https://cdn-icons-png.flaticon.com/128/77/77358.png",
-          expirationDate: DateTime.now(),
-        ),
+        activityCategory: const ActivityTypeData.exploration(),
         activityDesc:
-            "Lorem ipsum dolor sit amet. Ad eius velit in deleniti officiis "
-            "qui adipisci veniam ab totam quae. Ut architecto ipsa et "
-            "voluptas inventore qui minus dolore nam repudiandae error "
-            "non libero numquam ea rerum distinctio est laborum iusto. "
-            "Id velit aliquam id exercitationem quos in blanditiis maxime? "
-            "Vel architecto esse et voluptate consequatur "
-            "eum quasi temporibus.",
+            "J'aimerais bien aller explorer cet endroit avec toi, si ça te dis",
       );
 
   SwipeCreatorInfoDataModel _generateCreatorInfo() => SwipeCreatorInfoDataModel(
@@ -235,7 +204,7 @@ class MockService
         imageList: <String>[..._swipeMockUser.secondaryPhotos]
           ..insert(0, _swipeMockUser.profilePhoto),
         birthdate: Birthdate.minSecurityDate(),
-        hobbyList: <HobbyDataModel>[..._generateHobbyList()],
+        hobbyList: <ActivityTypeData>{..._generateHobbyList()},
         gender: GenderDataModel.female,
         verified: true,
         location: AddressDataModel(
@@ -246,7 +215,7 @@ class MockService
         ),
       );
 
-  List<HobbyDataModel> _generateHobbyList() => _swipeMockUser.hobbies;
+  List<ActivityTypeData> _generateHobbyList() => _swipeMockUser.hobbies;
 
   //#endregion
 

@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_item_detail.dart';
-import 'package:moony_app/common/domain/user/model/hobby.dart';
+import 'package:moony_app/common/domain/activity/model/category.dart';
 import 'package:moony_app/common/domain/user/model/language.dart';
 import 'package:moony_app/common/domain/user/model/zodiac_sign.dart';
+import 'package:moony_app/common/presentation/activity_type_mapper.dart';
 import 'package:moony_app/common/presentation/budget_formatter.dart';
 
 /// Model ui for swipe card
@@ -22,7 +24,7 @@ class ActivitySwipeDetailModel {
   ActivitySwipeDetailModel({
     required this.imgUri,
     required this.name,
-    required this.categoryImgUri,
+    required this.categoryImg,
     this.targetDate,
     this.location,
     required this.budget,
@@ -38,7 +40,7 @@ class ActivitySwipeDetailModel {
   final String name;
 
   /// activity category image
-  final String categoryImgUri;
+  final IconData categoryImg;
 
   /// activity targeted date
   final DateTime? targetDate;
@@ -118,7 +120,7 @@ extension SwipeDetailMapper on SwipeItemDetail {
           imgUri:
               activity.image?.toString() ?? creator.imageList.first.toString(),
           name: activity.title.getOrCrash(),
-          categoryImgUri: activity.category.image.toString(),
+          categoryImg: activity.category.category.getIcon(),
           budget: activity.budget.format(),
           targetDate: activity.expectedStartingDate?.getOrCrash(),
           link: activity.linkReference?.toString(),
@@ -130,7 +132,11 @@ extension SwipeDetailMapper on SwipeItemDetail {
           gender: creator.gender.toString().split(".")[1],
           languages:
               creator.languageList?.map((Language lang) => lang.title).toList(),
-          hobbies: creator.hobbyList.map((Hobby hobby) => hobby.title).toList(),
+          hobbies: creator.hobbyList
+              .map(
+                (ActivityType hobby) => hobby.getTitle(),
+              )
+              .toList(),
           orientation: creator.orientation?.toString().split(".")[1],
           job: creator.civilStatus?.toString().split(".")[1],
           foodCategory: creator.foodCategory?.toString().split(".")[1],

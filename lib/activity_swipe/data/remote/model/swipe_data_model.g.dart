@@ -16,7 +16,7 @@ SwipeItemDataModel _$SwipeItemDataModelFromJson(Map<String, dynamic> json) =>
       activityBudget:
           BudgetDataModel.fromJson(json['budget'] as Map<String, dynamic>),
       activityCategory:
-          HobbyDataModel.fromJson(json['category'] as Map<String, dynamic>),
+          ActivityTypeData.fromJson(json['category'] as Map<String, dynamic>),
       activityParticipantNumber: json['maxParticipant'] as int,
       activityLocation:
           AddressDataModel.fromJson(json['location'] as Map<String, dynamic>),

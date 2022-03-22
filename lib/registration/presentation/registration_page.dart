@@ -38,7 +38,7 @@ class RegistrationPage extends GetView<RegistrationController> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 10),
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(),
                   controller: controller.pageController,
@@ -70,7 +70,7 @@ class RegistrationPage extends GetView<RegistrationController> {
                 ),
               ),
             ),
-            const Padding(padding: EdgeInsets.only(bottom: 20)),
+            const Padding(padding: EdgeInsets.only(bottom: 10)),
           ],
         ),
       ),

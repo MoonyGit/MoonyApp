@@ -2,9 +2,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_activity_info.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_item.dart';
+import 'package:moony_app/common/data/activity/remote/activity_type.dart';
 import 'package:moony_app/common/data/activity/remote/budget_data_model.dart';
 import 'package:moony_app/common/data/model/address_data_model.dart';
-import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
 import 'package:moony_app/common/domain/activity/model/description.dart';
 import 'package:moony_app/common/domain/activity/model/participant_number.dart';
 import 'package:moony_app/common/domain/activity/model/starting_date.dart';
@@ -61,7 +61,7 @@ class SwipeItemDataModel {
 
   /// Category
   @JsonKey(name: "category")
-  final HobbyDataModel activityCategory;
+  final ActivityTypeData activityCategory;
 
   /// number of participants
   @JsonKey(name: "maxParticipant")
@@ -98,7 +98,7 @@ extension SwipeItemMapper on SwipeItemDataModel {
       title: ActivityTitle(input: activityTitle),
       desc: ActivityDescription(input: activityDesc),
       budget: activityBudget.toDomain(),
-      category: activityCategory.toEntity(),
+      category: activityCategory.toDomain(),
       participantNumber: ParticipantNumber(input: activityParticipantNumber),
       location: activityLocation.toDomain(),
       expectedStartingDate: activityExpectedStartingDate

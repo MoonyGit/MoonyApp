@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'swipe_card_model.dart';
@@ -19,7 +20,7 @@ class _$CardInfoModelTearOff {
 
   CardInfoModelActivityInfo mainInfo(
       {required String imageUrl,
-      required String activityCategoryImageUri,
+      required IconData activityCategoryImage,
       required String userName,
       required int userAge,
       required bool userVerified,
@@ -29,7 +30,7 @@ class _$CardInfoModelTearOff {
       required DateTime? activityTargetDate}) {
     return CardInfoModelActivityInfo(
       imageUrl: imageUrl,
-      activityCategoryImageUri: activityCategoryImageUri,
+      activityCategoryImage: activityCategoryImage,
       userName: userName,
       userAge: userAge,
       userVerified: userVerified,
@@ -75,13 +76,13 @@ class _$CardInfoModelTearOff {
   CardInfoModelActivityDesc activityDesc(
       {required String imageUrl,
       required String activityName,
-      required String activityCategoryImageUri,
+      required IconData activityCategoryImage,
       required String? activityMoreInfoLink,
       required String activityDesc}) {
     return CardInfoModelActivityDesc(
       imageUrl: imageUrl,
       activityName: activityName,
-      activityCategoryImageUri: activityCategoryImageUri,
+      activityCategoryImage: activityCategoryImage,
       activityMoreInfoLink: activityMoreInfoLink,
       activityDesc: activityDesc,
     );
@@ -99,7 +100,7 @@ mixin _$CardInfoModel {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -117,7 +118,7 @@ mixin _$CardInfoModel {
     required TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)
         activityDesc,
@@ -127,7 +128,7 @@ mixin _$CardInfoModel {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -145,7 +146,7 @@ mixin _$CardInfoModel {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -155,7 +156,7 @@ mixin _$CardInfoModel {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -173,7 +174,7 @@ mixin _$CardInfoModel {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -250,7 +251,7 @@ abstract class $CardInfoModelActivityInfoCopyWith<$Res>
   @override
   $Res call(
       {String imageUrl,
-      String activityCategoryImageUri,
+      IconData activityCategoryImage,
       String userName,
       int userAge,
       bool userVerified,
@@ -275,7 +276,7 @@ class _$CardInfoModelActivityInfoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? imageUrl = freezed,
-    Object? activityCategoryImageUri = freezed,
+    Object? activityCategoryImage = freezed,
     Object? userName = freezed,
     Object? userAge = freezed,
     Object? userVerified = freezed,
@@ -289,10 +290,10 @@ class _$CardInfoModelActivityInfoCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      activityCategoryImageUri: activityCategoryImageUri == freezed
-          ? _value.activityCategoryImageUri
-          : activityCategoryImageUri // ignore: cast_nullable_to_non_nullable
-              as String,
+      activityCategoryImage: activityCategoryImage == freezed
+          ? _value.activityCategoryImage
+          : activityCategoryImage // ignore: cast_nullable_to_non_nullable
+              as IconData,
       userName: userName == freezed
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
@@ -330,7 +331,7 @@ class _$CardInfoModelActivityInfoCopyWithImpl<$Res>
 class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
   const _$CardInfoModelActivityInfo(
       {required this.imageUrl,
-      required this.activityCategoryImageUri,
+      required this.activityCategoryImage,
       required this.userName,
       required this.userAge,
       required this.userVerified,
@@ -342,7 +343,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
   @override
   final String imageUrl;
   @override
-  final String activityCategoryImageUri;
+  final IconData activityCategoryImage;
   @override
   final String userName;
   @override
@@ -360,56 +361,43 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
 
   @override
   String toString() {
-    return 'CardInfoModel.mainInfo(imageUrl: $imageUrl, activityCategoryImageUri: $activityCategoryImageUri, userName: $userName, userAge: $userAge, userVerified: $userVerified, activityName: $activityName, activityTargetNumber: $activityTargetNumber, activityLocation: $activityLocation, activityTargetDate: $activityTargetDate)';
+    return 'CardInfoModel.mainInfo(imageUrl: $imageUrl, activityCategoryImage: $activityCategoryImage, userName: $userName, userAge: $userAge, userVerified: $userVerified, activityName: $activityName, activityTargetNumber: $activityTargetNumber, activityLocation: $activityLocation, activityTargetDate: $activityTargetDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CardInfoModelActivityInfo &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
-            (identical(
-                    other.activityCategoryImageUri, activityCategoryImageUri) ||
-                const DeepCollectionEquality().equals(
-                    other.activityCategoryImageUri,
-                    activityCategoryImageUri)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.userAge, userAge) ||
-                const DeepCollectionEquality()
-                    .equals(other.userAge, userAge)) &&
-            (identical(other.userVerified, userVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.userVerified, userVerified)) &&
-            (identical(other.activityName, activityName) ||
-                const DeepCollectionEquality()
-                    .equals(other.activityName, activityName)) &&
-            (identical(other.activityTargetNumber, activityTargetNumber) ||
-                const DeepCollectionEquality().equals(
-                    other.activityTargetNumber, activityTargetNumber)) &&
-            (identical(other.activityLocation, activityLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.activityLocation, activityLocation)) &&
-            (identical(other.activityTargetDate, activityTargetDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.activityTargetDate, activityTargetDate)));
+        (other.runtimeType == runtimeType &&
+            other is CardInfoModelActivityInfo &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.activityCategoryImage, activityCategoryImage) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
+            const DeepCollectionEquality().equals(other.userAge, userAge) &&
+            const DeepCollectionEquality()
+                .equals(other.userVerified, userVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.activityName, activityName) &&
+            const DeepCollectionEquality()
+                .equals(other.activityTargetNumber, activityTargetNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.activityLocation, activityLocation) &&
+            const DeepCollectionEquality()
+                .equals(other.activityTargetDate, activityTargetDate));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(activityCategoryImageUri) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(userAge) ^
-      const DeepCollectionEquality().hash(userVerified) ^
-      const DeepCollectionEquality().hash(activityName) ^
-      const DeepCollectionEquality().hash(activityTargetNumber) ^
-      const DeepCollectionEquality().hash(activityLocation) ^
-      const DeepCollectionEquality().hash(activityTargetDate);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(activityCategoryImage),
+      const DeepCollectionEquality().hash(userName),
+      const DeepCollectionEquality().hash(userAge),
+      const DeepCollectionEquality().hash(userVerified),
+      const DeepCollectionEquality().hash(activityName),
+      const DeepCollectionEquality().hash(activityTargetNumber),
+      const DeepCollectionEquality().hash(activityLocation),
+      const DeepCollectionEquality().hash(activityTargetDate));
 
   @JsonKey(ignore: true)
   @override
@@ -422,7 +410,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -440,14 +428,14 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
     required TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)
         activityDesc,
   }) {
     return mainInfo(
         imageUrl,
-        activityCategoryImageUri,
+        activityCategoryImage,
         userName,
         userAge,
         userVerified,
@@ -462,7 +450,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -480,14 +468,14 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
   }) {
     return mainInfo?.call(
         imageUrl,
-        activityCategoryImageUri,
+        activityCategoryImage,
         userName,
         userAge,
         userVerified,
@@ -502,7 +490,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -520,7 +508,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -529,7 +517,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
     if (mainInfo != null) {
       return mainInfo(
           imageUrl,
-          activityCategoryImageUri,
+          activityCategoryImage,
           userName,
           userAge,
           userVerified,
@@ -582,7 +570,7 @@ class _$CardInfoModelActivityInfo implements CardInfoModelActivityInfo {
 abstract class CardInfoModelActivityInfo implements CardInfoModel {
   const factory CardInfoModelActivityInfo(
       {required String imageUrl,
-      required String activityCategoryImageUri,
+      required IconData activityCategoryImage,
       required String userName,
       required int userAge,
       required bool userVerified,
@@ -592,15 +580,15 @@ abstract class CardInfoModelActivityInfo implements CardInfoModel {
       required DateTime? activityTargetDate}) = _$CardInfoModelActivityInfo;
 
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get activityCategoryImageUri => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
-  int get userAge => throw _privateConstructorUsedError;
-  bool get userVerified => throw _privateConstructorUsedError;
-  String get activityName => throw _privateConstructorUsedError;
-  int get activityTargetNumber => throw _privateConstructorUsedError;
-  String? get activityLocation => throw _privateConstructorUsedError;
-  DateTime? get activityTargetDate => throw _privateConstructorUsedError;
+  String get imageUrl;
+  IconData get activityCategoryImage;
+  String get userName;
+  int get userAge;
+  bool get userVerified;
+  String get activityName;
+  int get activityTargetNumber;
+  String? get activityLocation;
+  DateTime? get activityTargetDate;
   @override
   @JsonKey(ignore: true)
   $CardInfoModelActivityInfoCopyWith<CardInfoModelActivityInfo> get copyWith =>
@@ -704,36 +692,26 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CardInfoModelUserInfo &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.userAge, userAge) ||
-                const DeepCollectionEquality()
-                    .equals(other.userAge, userAge)) &&
-            (identical(other.userVerified, userVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.userVerified, userVerified)) &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)) &&
-            (identical(other.distance, distance) ||
-                const DeepCollectionEquality()
-                    .equals(other.distance, distance)));
+        (other.runtimeType == runtimeType &&
+            other is CardInfoModelUserInfo &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
+            const DeepCollectionEquality().equals(other.userAge, userAge) &&
+            const DeepCollectionEquality()
+                .equals(other.userVerified, userVerified) &&
+            const DeepCollectionEquality().equals(other.location, location) &&
+            const DeepCollectionEquality().equals(other.distance, distance));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(userAge) ^
-      const DeepCollectionEquality().hash(userVerified) ^
-      const DeepCollectionEquality().hash(location) ^
-      const DeepCollectionEquality().hash(distance);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(userName),
+      const DeepCollectionEquality().hash(userAge),
+      const DeepCollectionEquality().hash(userVerified),
+      const DeepCollectionEquality().hash(location),
+      const DeepCollectionEquality().hash(distance));
 
   @JsonKey(ignore: true)
   @override
@@ -746,7 +724,7 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -764,7 +742,7 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
     required TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)
         activityDesc,
@@ -778,7 +756,7 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -796,7 +774,7 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -810,7 +788,7 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -828,7 +806,7 @@ class _$CardInfoModelUserInfo implements CardInfoModelUserInfo {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -889,12 +867,12 @@ abstract class CardInfoModelUserInfo implements CardInfoModel {
       required int distance}) = _$CardInfoModelUserInfo;
 
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
-  int get userAge => throw _privateConstructorUsedError;
-  bool get userVerified => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
-  int get distance => throw _privateConstructorUsedError;
+  String get imageUrl;
+  String get userName;
+  int get userAge;
+  bool get userVerified;
+  String get location;
+  int get distance;
   @override
   @JsonKey(ignore: true)
   $CardInfoModelUserInfoCopyWith<CardInfoModelUserInfo> get copyWith =>
@@ -989,32 +967,25 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CardInfoModelUserHobby &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.userName, userName) ||
-                const DeepCollectionEquality()
-                    .equals(other.userName, userName)) &&
-            (identical(other.userAge, userAge) ||
-                const DeepCollectionEquality()
-                    .equals(other.userAge, userAge)) &&
-            (identical(other.userVerified, userVerified) ||
-                const DeepCollectionEquality()
-                    .equals(other.userVerified, userVerified)) &&
-            (identical(other.userHobbyList, userHobbyList) ||
-                const DeepCollectionEquality()
-                    .equals(other.userHobbyList, userHobbyList)));
+        (other.runtimeType == runtimeType &&
+            other is CardInfoModelUserHobby &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.userName, userName) &&
+            const DeepCollectionEquality().equals(other.userAge, userAge) &&
+            const DeepCollectionEquality()
+                .equals(other.userVerified, userVerified) &&
+            const DeepCollectionEquality()
+                .equals(other.userHobbyList, userHobbyList));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(userName) ^
-      const DeepCollectionEquality().hash(userAge) ^
-      const DeepCollectionEquality().hash(userVerified) ^
-      const DeepCollectionEquality().hash(userHobbyList);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(userName),
+      const DeepCollectionEquality().hash(userAge),
+      const DeepCollectionEquality().hash(userVerified),
+      const DeepCollectionEquality().hash(userHobbyList));
 
   @JsonKey(ignore: true)
   @override
@@ -1027,7 +998,7 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -1045,7 +1016,7 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
     required TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)
         activityDesc,
@@ -1058,7 +1029,7 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -1076,7 +1047,7 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -1090,7 +1061,7 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -1108,7 +1079,7 @@ class _$CardInfoModelUserHobby implements CardInfoModelUserHobby {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
@@ -1168,11 +1139,11 @@ abstract class CardInfoModelUserHobby implements CardInfoModel {
       required List<String> userHobbyList}) = _$CardInfoModelUserHobby;
 
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get userName => throw _privateConstructorUsedError;
-  int get userAge => throw _privateConstructorUsedError;
-  bool get userVerified => throw _privateConstructorUsedError;
-  List<String> get userHobbyList => throw _privateConstructorUsedError;
+  String get imageUrl;
+  String get userName;
+  int get userAge;
+  bool get userVerified;
+  List<String> get userHobbyList;
   @override
   @JsonKey(ignore: true)
   $CardInfoModelUserHobbyCopyWith<CardInfoModelUserHobby> get copyWith =>
@@ -1189,7 +1160,7 @@ abstract class $CardInfoModelActivityDescCopyWith<$Res>
   $Res call(
       {String imageUrl,
       String activityName,
-      String activityCategoryImageUri,
+      IconData activityCategoryImage,
       String? activityMoreInfoLink,
       String activityDesc});
 }
@@ -1210,7 +1181,7 @@ class _$CardInfoModelActivityDescCopyWithImpl<$Res>
   $Res call({
     Object? imageUrl = freezed,
     Object? activityName = freezed,
-    Object? activityCategoryImageUri = freezed,
+    Object? activityCategoryImage = freezed,
     Object? activityMoreInfoLink = freezed,
     Object? activityDesc = freezed,
   }) {
@@ -1223,10 +1194,10 @@ class _$CardInfoModelActivityDescCopyWithImpl<$Res>
           ? _value.activityName
           : activityName // ignore: cast_nullable_to_non_nullable
               as String,
-      activityCategoryImageUri: activityCategoryImageUri == freezed
-          ? _value.activityCategoryImageUri
-          : activityCategoryImageUri // ignore: cast_nullable_to_non_nullable
-              as String,
+      activityCategoryImage: activityCategoryImage == freezed
+          ? _value.activityCategoryImage
+          : activityCategoryImage // ignore: cast_nullable_to_non_nullable
+              as IconData,
       activityMoreInfoLink: activityMoreInfoLink == freezed
           ? _value.activityMoreInfoLink
           : activityMoreInfoLink // ignore: cast_nullable_to_non_nullable
@@ -1245,7 +1216,7 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
   const _$CardInfoModelActivityDesc(
       {required this.imageUrl,
       required this.activityName,
-      required this.activityCategoryImageUri,
+      required this.activityCategoryImage,
       required this.activityMoreInfoLink,
       required this.activityDesc});
 
@@ -1254,7 +1225,7 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
   @override
   final String activityName;
   @override
-  final String activityCategoryImageUri;
+  final IconData activityCategoryImage;
   @override
   final String? activityMoreInfoLink;
   @override
@@ -1262,40 +1233,33 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
 
   @override
   String toString() {
-    return 'CardInfoModel.activityDesc(imageUrl: $imageUrl, activityName: $activityName, activityCategoryImageUri: $activityCategoryImageUri, activityMoreInfoLink: $activityMoreInfoLink, activityDesc: $activityDesc)';
+    return 'CardInfoModel.activityDesc(imageUrl: $imageUrl, activityName: $activityName, activityCategoryImage: $activityCategoryImage, activityMoreInfoLink: $activityMoreInfoLink, activityDesc: $activityDesc)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is CardInfoModelActivityDesc &&
-            (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
-            (identical(other.activityName, activityName) ||
-                const DeepCollectionEquality()
-                    .equals(other.activityName, activityName)) &&
-            (identical(
-                    other.activityCategoryImageUri, activityCategoryImageUri) ||
-                const DeepCollectionEquality().equals(
-                    other.activityCategoryImageUri,
-                    activityCategoryImageUri)) &&
-            (identical(other.activityMoreInfoLink, activityMoreInfoLink) ||
-                const DeepCollectionEquality().equals(
-                    other.activityMoreInfoLink, activityMoreInfoLink)) &&
-            (identical(other.activityDesc, activityDesc) ||
-                const DeepCollectionEquality()
-                    .equals(other.activityDesc, activityDesc)));
+        (other.runtimeType == runtimeType &&
+            other is CardInfoModelActivityDesc &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.activityName, activityName) &&
+            const DeepCollectionEquality()
+                .equals(other.activityCategoryImage, activityCategoryImage) &&
+            const DeepCollectionEquality()
+                .equals(other.activityMoreInfoLink, activityMoreInfoLink) &&
+            const DeepCollectionEquality()
+                .equals(other.activityDesc, activityDesc));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(activityName) ^
-      const DeepCollectionEquality().hash(activityCategoryImageUri) ^
-      const DeepCollectionEquality().hash(activityMoreInfoLink) ^
-      const DeepCollectionEquality().hash(activityDesc);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(activityName),
+      const DeepCollectionEquality().hash(activityCategoryImage),
+      const DeepCollectionEquality().hash(activityMoreInfoLink),
+      const DeepCollectionEquality().hash(activityDesc));
 
   @JsonKey(ignore: true)
   @override
@@ -1308,7 +1272,7 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -1326,12 +1290,12 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
     required TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)
         activityDesc,
   }) {
-    return activityDesc(imageUrl, activityName, activityCategoryImageUri,
+    return activityDesc(imageUrl, activityName, activityCategoryImage,
         activityMoreInfoLink, this.activityDesc);
   }
 
@@ -1340,7 +1304,7 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -1358,12 +1322,12 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
   }) {
-    return activityDesc?.call(imageUrl, activityName, activityCategoryImageUri,
+    return activityDesc?.call(imageUrl, activityName, activityCategoryImage,
         activityMoreInfoLink, this.activityDesc);
   }
 
@@ -1372,7 +1336,7 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             String imageUrl,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String userName,
             int userAge,
             bool userVerified,
@@ -1390,14 +1354,14 @@ class _$CardInfoModelActivityDesc implements CardInfoModelActivityDesc {
     TResult Function(
             String imageUrl,
             String activityName,
-            String activityCategoryImageUri,
+            IconData activityCategoryImage,
             String? activityMoreInfoLink,
             String activityDesc)?
         activityDesc,
     required TResult orElse(),
   }) {
     if (activityDesc != null) {
-      return activityDesc(imageUrl, activityName, activityCategoryImageUri,
+      return activityDesc(imageUrl, activityName, activityCategoryImage,
           activityMoreInfoLink, this.activityDesc);
     }
     return orElse();
@@ -1445,16 +1409,16 @@ abstract class CardInfoModelActivityDesc implements CardInfoModel {
   const factory CardInfoModelActivityDesc(
       {required String imageUrl,
       required String activityName,
-      required String activityCategoryImageUri,
+      required IconData activityCategoryImage,
       required String? activityMoreInfoLink,
       required String activityDesc}) = _$CardInfoModelActivityDesc;
 
   @override
-  String get imageUrl => throw _privateConstructorUsedError;
-  String get activityName => throw _privateConstructorUsedError;
-  String get activityCategoryImageUri => throw _privateConstructorUsedError;
-  String? get activityMoreInfoLink => throw _privateConstructorUsedError;
-  String get activityDesc => throw _privateConstructorUsedError;
+  String get imageUrl;
+  String get activityName;
+  IconData get activityCategoryImage;
+  String? get activityMoreInfoLink;
+  String get activityDesc;
   @override
   @JsonKey(ignore: true)
   $CardInfoModelActivityDescCopyWith<CardInfoModelActivityDesc> get copyWith =>
