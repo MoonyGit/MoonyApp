@@ -14,7 +14,7 @@ const String settingPayment = "Payment and subscription";
 const String settingRules = "Froonies regulations";
 /// setting homepage invoke moony
 const String settingInvoke = "Summon Froony";
-/// setting homepage Mopony's home
+/// setting homepage Mopony's moonyhome
 const String settingHome = "Froony's house";
 /// setting homepage disconnect 
 const String settingDisconnect = "Disconnect";
