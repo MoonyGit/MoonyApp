@@ -1,10 +1,10 @@
 import 'package:moony_app/activity_swipe/domain/model/swipe_creator_info.dart';
+import 'package:moony_app/common/domain/activity/model/category.dart';
 import 'package:moony_app/common/domain/model/address.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/civil_status.dart';
 import 'package:moony_app/common/domain/user/model/food_category.dart';
 import 'package:moony_app/common/domain/user/model/gender.dart';
-import 'package:moony_app/common/domain/user/model/hobby.dart';
 import 'package:moony_app/common/domain/user/model/language.dart';
 import 'package:moony_app/common/domain/user/model/name.dart';
 import 'package:moony_app/common/domain/user/model/orientation.dart';
@@ -21,7 +21,7 @@ class SwipeCreatorInfoDetail extends SwipeCreatorInfo {
     required bool verified,
     required Address location,
     required List<Uri> imageList,
-    required List<Hobby> hobbyList,
+    required Set<ActivityType> hobbyList,
     required Gender gender,
     this.orientation,
     this.relationState,

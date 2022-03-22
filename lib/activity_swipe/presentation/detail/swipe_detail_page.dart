@@ -178,10 +178,9 @@ class SwipeDetailPage extends ConstrainedPage<SwipeDetailController> {
           ),
         ));
         column.add(ListTile(
-          leading: Image.network(
-            model.categoryImgUri,
-            height: 24,
-            width: 24,
+          leading: Icon(
+            model.categoryImg,
+            size: 24,
           ),
           title: Text(model.name),
         ));

@@ -25,7 +25,7 @@ UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) =>
       creationDate: DateTime.parse(json['creationDate'] as String),
       lastUpdateDate: DateTime.parse(json['lastUpdateDate'] as String),
       hobbies: (json['hobbies'] as List<dynamic>)
-          .map((e) => HobbyDataModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => ActivityTypeData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

@@ -32,11 +32,6 @@ const String setEmailHint =
     "back to you with your email address! 💌";
 const String emailHint = "(email address)";
 
-const String takePhotoFromCamera = 'Selfie';
-const String takePhotoFromGallery = 'Gallery';
-const String takePhotoFromFacebook = 'Facebook';
-const String takePhotoFromInstagram = 'Instagram';
-
 const String settingAccountTitle = "Creating account";
 const String settingAccountMessage =
     "We are setting up your account, please wait...";

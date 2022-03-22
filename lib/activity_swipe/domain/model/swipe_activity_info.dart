@@ -1,11 +1,11 @@
 import 'package:moony_app/common/domain/activity/model/budget.dart';
 import 'package:moony_app/common/base/domain/model/entity.dart';
+import 'package:moony_app/common/domain/activity/model/category.dart';
 import 'package:moony_app/common/domain/activity/model/description.dart';
 import 'package:moony_app/common/domain/activity/model/participant_number.dart';
 import 'package:moony_app/common/domain/activity/model/starting_date.dart';
 import 'package:moony_app/common/domain/activity/model/title.dart';
 import 'package:moony_app/common/domain/model/address.dart';
-import 'package:moony_app/common/domain/user/model/hobby.dart';
 
 
 /// Small user part for activity swipe
@@ -36,7 +36,7 @@ class SwipeActivityInfo extends Entity<String> {
   final Budget budget;
 
   /// Categories
-  final Hobby category;
+  final ActivityType category;
 
   /// number of participants
   final ParticipantNumber participantNumber;

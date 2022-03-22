@@ -1,8 +1,8 @@
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/activity_swipe/domain/model/swipe_activity_info.dart';
+import 'package:moony_app/common/data/activity/remote/activity_type.dart';
 import 'package:moony_app/common/data/activity/remote/budget_data_model.dart';
 import 'package:moony_app/common/data/model/address_data_model.dart';
-import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
 import 'package:moony_app/common/domain/activity/model/description.dart';
 import 'package:moony_app/common/domain/activity/model/participant_number.dart';
 import 'package:moony_app/common/domain/activity/model/starting_date.dart';
@@ -37,7 +37,7 @@ class SwipeActivityInfoDataModel {
   final BudgetDataModel budget;
 
   /// Category
-  final HobbyDataModel category;
+  final ActivityTypeData category;
 
   /// number of participants
   final int participantNumber;
@@ -63,7 +63,7 @@ extension SwipeActivityInfoMapper on SwipeActivityInfoDataModel {
         title: ActivityTitle(input: title),
         desc: ActivityDescription(input: desc),
         budget: budget.toDomain(),
-        category: category.toEntity(),
+        category: category.toDomain(),
         participantNumber: ParticipantNumber(input: participantNumber),
         location: location.toDomain(),
         expectedStartingDate: expectedStartingDate

@@ -1,12 +1,12 @@
 import 'package:moony_app/common/base/domain/model/entity.dart';
 import 'package:moony_app/common/base/domain/model/value_object.dart';
+import 'package:moony_app/common/domain/activity/model/category.dart';
 import 'package:moony_app/common/domain/user/model/birthdate.dart';
 import 'package:moony_app/common/domain/user/model/phone_number.dart';
 import 'package:moony_app/common/domain/user/model/relation_state.dart';
 
 import 'email.dart';
 import 'gender.dart';
-import 'hobby.dart';
 import 'name.dart';
 
 /// Error during the user creation
@@ -75,5 +75,5 @@ class User extends Entity<String> {
   late final DateTime lastUpdateDate;
 
   /// User hobby list
-  late final List<Hobby> hobbies;
+  late final List<ActivityType> hobbies;
 }

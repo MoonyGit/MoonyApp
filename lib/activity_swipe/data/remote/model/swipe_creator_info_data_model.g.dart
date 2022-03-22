@@ -18,8 +18,8 @@ SwipeCreatorInfoDataModel _$SwipeCreatorInfoDataModelFromJson(
       imageList:
           (json['imageList'] as List<dynamic>).map((e) => e as String).toList(),
       hobbyList: (json['hobbyList'] as List<dynamic>)
-          .map((e) => HobbyDataModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+          .map((e) => ActivityTypeData.fromJson(e as Map<String, dynamic>))
+          .toSet(),
       gender: $enumDecode(_$GenderDataModelEnumMap, json['gender']),
     );
 
@@ -32,7 +32,7 @@ Map<String, dynamic> _$SwipeCreatorInfoDataModelToJson(
       'verified': instance.verified,
       'location': instance.location,
       'imageList': instance.imageList,
-      'hobbyList': instance.hobbyList,
+      'hobbyList': instance.hobbyList.toList(),
       'gender': _$GenderDataModelEnumMap[instance.gender],
     };
 

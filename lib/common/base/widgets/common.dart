@@ -56,7 +56,7 @@ Widget makeRoundedTextWithMoonyGradient(
       borderRadius: 30);
 }
 
-Widget getMoonyImage({double size = 150}) {
+Widget getMoonyImage({double size = 80}) {
   return Image.asset(
     AppAsset.moonyShadow,
     width: size,

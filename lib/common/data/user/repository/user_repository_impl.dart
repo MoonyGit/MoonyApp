@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/standard.dart';
 import 'package:moony_app/authentication/data/remote/authentication_data_source.dart';
+import 'package:moony_app/common/data/activity/remote/activity_type.dart';
 import 'package:moony_app/common/data/user/local/user_local_source.dart';
 import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
-import 'package:moony_app/common/data/user/remote/hobby_data_model.dart';
 import 'package:moony_app/common/data/user/remote/photo_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/relation_state_data_model.dart';
 import 'package:moony_app/common/data/user/remote/user_data_model.dart';
@@ -99,7 +99,7 @@ class UserRepositoryImpl implements IUserRepository {
           secondaryPhotos: secondaryPhotosUrl,
           creationDate: DateTime.now(),
           lastUpdateDate: DateTime.now(),
-          hobbies: <HobbyDataModel>[],
+          hobbies: <ActivityTypeData>[],
           verified: false);
       await _userRemoteSource.create(user: user);
       return null;
