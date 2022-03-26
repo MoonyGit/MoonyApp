@@ -68,3 +68,16 @@ const String settingHomeBook = "Moony's book";
 const String settingHomeHeaderFroony="And the Froony's";
 /// string for setting home invit new user
 const String settingHomeSponsor="Invite your Froonys";
+
+/// string for setting invoke title
+const String settingInvokeTitle = "Invoke";
+/// string for setting invoke header contact
+const String settingInvokeHeaderContact = "Contact Moony";
+/// string for setting invoke guide
+const String settingInvokeGuide = "Moony's guide";
+/// string for setting invoke faq
+const String settingInvokeFaq = "FAQ";
+/// string for setting contact guide
+const String settingInvokeContact = "Contact";
+/// string for setting help guide
+const String settingInvokeHelp = "Help";
