@@ -47,3 +47,24 @@ const String settingNotificationPromotion = "Promotion";
 const String settingNotificationNews = "News";
 /// string for setting notification survey
 const String settingNotificationSurvey = "Survey";
+
+/// string for setting home title
+const String settingHomeTitle = "Moony's home";
+/// string for setting home me header
+const String settingHomeHeaderMe = "Me";
+/// string for setting home moony guide
+const String settingHomeGuideMoony ="Moony's guide";
+/// string for setting home moony header
+const String settingHomeHeaderMoon="Moony";
+/// string for setting home shop
+const String settingHomeShop = "Moony's shop";
+/// string for setting home blog
+const String settingHomeBlog = "Moony's blog";
+/// string for setting home instagram
+const String settingHomeGram = "Moony's gram";
+/// string for setting home facebook
+const String settingHomeBook = "Moony's book";
+/// string for setting home froony header
+const String settingHomeHeaderFroony="And the Froony's";
+/// string for setting home invit new user
+const String settingHomeSponsor="Invite your Froonys";
