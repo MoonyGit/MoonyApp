@@ -33,4 +33,9 @@ class SettingController extends GetxController {
   void disconnectUser() {
     Logger.d("disconnect");
   }
+
+  /// Exit setting
+  void back() {
+    Get.back();
+  }
 }
