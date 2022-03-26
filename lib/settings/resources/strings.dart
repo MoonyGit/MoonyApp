@@ -81,3 +81,16 @@ const String settingInvokeFaq = "FAQ";
 const String settingInvokeContact = "Contact";
 /// string for setting help guide
 const String settingInvokeHelp = "Help";
+
+/// string for setting rules title
+const String settingRuleTitle = "Froony's settlement";
+/// string for setting rule header legal
+const String settingRuleHeaderLegal = "Legal mentions";
+/// string for setting rule privacy policy
+const String settingRulePrivacyPolicy = "Privacy policy";
+/// string for setting rule term of use
+const String settingRuleTermOfUse = "Term of use";
+/// string for setting rule licences
+const String settingRuleLicences = "Licences";
+/// string for setting rule settlement
+const String settingRuleSettlement  = "Froony's settlement";
