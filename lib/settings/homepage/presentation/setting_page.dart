@@ -7,12 +7,20 @@ import 'package:moony_app/settings/resources/strings.dart';
 
 /// The setting page
 class SettingPage extends GetView<SettingController> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(settingHomepageTitle.translate()),
+        title: Text(
+          settingHomepageTitle.translate(),
+          style: const TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => controller.back(),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, bottom: 32),
