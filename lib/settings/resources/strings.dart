@@ -94,3 +94,12 @@ const String settingRuleTermOfUse = "Term of use";
 const String settingRuleLicences = "Licences";
 /// string for setting rule settlement
 const String settingRuleSettlement  = "Froony's settlement";
+
+/// string for setting location title
+const String settingLocationTitle = "Where is Moony ?";
+/// string for setting location header distance
+const String settingLocationHeaderDistance = "DISTANCE:";
+/// string for setting location header distance unit
+const String settingLocationHeaderDistanceUnit = "km";
+/// string for setting location update button
+const String settingLocationUpdate = "Update";
