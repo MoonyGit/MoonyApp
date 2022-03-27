@@ -108,6 +108,19 @@ abstract class AppTheme {
     );
   }
 
+  static SliderThemeData sliderTheme(BuildContext context) {
+    return  SliderTheme.of(context).copyWith(
+        activeTrackColor: Colors.black,
+        inactiveTrackColor: Colors.white,
+        trackShape: const RectangularSliderTrackShape(),
+        trackHeight: 4.0,
+        thumbColor: Colors.black,
+        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
+        overlayColor: Colors.red.withAlpha(32),
+        overlayShape: const RoundSliderOverlayShape(overlayRadius: 28.0),
+    );
+  }
+
   static OutlinedButtonThemeData _outlinedButtonThemeData({
     Color? primaryColor,
     Color? overlayColor,
