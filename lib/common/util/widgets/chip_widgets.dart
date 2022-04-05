@@ -33,6 +33,9 @@ class SingleChoiceChipWidget extends ChipContainerWidget {
     required Set<String> chipChoices,
     this.listener,
     this.chipSelected,
+    this.spacing = 3000,
+    this.chipWidth = 280,
+
   }) : super(choices: chipChoices);
 
   /// Triggered when a chip is selected to update the selected chip
@@ -40,6 +43,9 @@ class SingleChoiceChipWidget extends ChipContainerWidget {
 
   /// Contain the selected chip
   final String? chipSelected;
+
+  final int spacing;
+  final int? chipWidth;
 
   @override
   _SingleChoiceChipState createState() {
@@ -55,7 +61,7 @@ class _SingleChoiceChipState
   Widget build(BuildContext context) {
     return Wrap(
       alignment: WrapAlignment.center,
-      spacing: 3000.0,
+      spacing: widget.spacing.toDouble(),
       runSpacing: 20.0,
       children: buildChipList(),
     );
@@ -66,7 +72,7 @@ class _SingleChoiceChipState
     return widget.choices.map((String item) {
       return ChoiceChip(
         label: SizedBox(
-          width: 280,
+          width: widget.chipWidth?.toDouble(),
           child: Text(
             item,
             textAlign: TextAlign.center,
@@ -155,7 +161,8 @@ class _MultipleChipState extends _ChipContainerState<MultipleChoiceChipWidget> {
   late final double padding = widget.padding ?? 4.0;
   late final OutlinedBorder? shape = widget.shape;
   late final Color textColorSelected = widget.textColorSelected ?? Colors.white;
-  late final Color textColorUnSelected = widget.textColorUnSelected ?? Colors.black;
+  late final Color textColorUnSelected =
+      widget.textColorUnSelected ?? Colors.black;
   late final Color backgroundColorSelected =
       widget.backgroundColorSelected ?? AppTheme.primary;
   late final Color backgroundColorUnSelected =
@@ -187,7 +194,7 @@ class _MultipleChipState extends _ChipContainerState<MultipleChoiceChipWidget> {
             : textColorUnSelected,
         shape: shape,
         labelPadding:
-        EdgeInsets.symmetric(vertical: padding, horizontal: padding),
+            EdgeInsets.symmetric(vertical: padding, horizontal: padding),
         backgroundColor: backgroundColorUnSelected,
         selectedColor: backgroundColorSelected,
         selected: selectedItems.contains(item),

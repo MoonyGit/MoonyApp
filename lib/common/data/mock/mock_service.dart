@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:dartz/dartz.dart';
+import 'package:moony_app/activity_creation/data/remote/activity_creation_remote_source.dart';
+import 'package:moony_app/activity_creation/data/remote/model/activity_creation_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_creator_info_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/model/swipe_data_model.dart';
 import 'package:moony_app/activity_swipe/data/remote/swipe_remote_source.dart';
@@ -10,6 +12,7 @@ import 'package:moony_app/authentication/data/remote/authentication_data_source.
 import 'package:moony_app/common/data/activity/remote/activity_type.dart';
 import 'package:moony_app/common/data/activity/remote/budget_data_model.dart';
 import 'package:moony_app/common/data/model/address_data_model.dart';
+import 'package:moony_app/common/data/remote/failure/http_exception.dart';
 import 'package:moony_app/common/data/services/storage/storage_remote_source.dart';
 import 'package:moony_app/common/data/user/remote/gender_data_model.dart';
 import 'package:moony_app/common/data/user/remote/relation_state_data_model.dart';
@@ -32,7 +35,8 @@ class MockService
         StorageRemoteSource,
         AuthDataSource,
         UserProfileActivitiesDataSource,
-        UserProfileBannerDataSource {
+        UserProfileBannerDataSource,
+        IActivityCreationRemoteSource {
   static const String _currentUserId = "myCurrentUserId";
   static const String _swipeMockUserId = "mySwipeUser";
 
@@ -68,11 +72,12 @@ class MockService
   );
 
   /// Uncomment to enable access feature by custom route
-  // AuthUserDataSourceModel? _currentUserAuth = AuthUserDataSourceModel(
-  //   id: _currentUserId,
-  //   phone: "+33834763058",
-  // );
-  AuthUserDataSourceModel? _currentUserAuth;
+  AuthUserDataSourceModel? _currentUserAuth = AuthUserDataSourceModel(
+    id: _currentUserId,
+    phone: "+33834763058",
+  );
+
+// AuthUserDataSourceModel? _currentUserAuth;
   UserDataModel? _currentUser;
   final String _smsOtp = "123456";
   final StreamController<VerifyPhoneStateDataSourceEvent>
@@ -82,27 +87,28 @@ class MockService
   final StreamController<AuthUserDataSourceModel?> _userAuthState =
       BehaviorSubject<AuthUserDataSourceModel>();
 
-  //#region UserRemoteSource impl
+//#region UserRemoteSource impl
   @override
   Future<void> create({required UserDataModel user}) async {
     Logger.d(
       "MOCK: create user: $user",
     );
     _currentUser = UserDataModel(
-        id: _currentUserId,
-        firstName: "on s'en",
-        familyName: "balek",
-        birthdate: Birthdate.minSecurityDate(),
-        emailAddress: "toto@tata.com",
-        phoneNumber: "+33134768970",
-        gender: GenderDataModel.female,
-        relationState: RelationStateDataModel.alone,
-        profilePhoto: "http://marchepa.fr",
-        secondaryPhotos: ["http://truc.ez"],
-        verified: true,
-        creationDate: DateTime.now(),
-        lastUpdateDate: DateTime.now(),
-        hobbies: []);
+      id: _currentUserId,
+      firstName: "on s'en",
+      familyName: "balek",
+      birthdate: Birthdate.minSecurityDate(),
+      emailAddress: "toto@tata.com",
+      phoneNumber: "+33134768970",
+      gender: GenderDataModel.female,
+      relationState: RelationStateDataModel.alone,
+      profilePhoto: "http://marchepa.fr",
+      secondaryPhotos: ["http://truc.ez"],
+      verified: true,
+      creationDate: DateTime.now(),
+      lastUpdateDate: DateTime.now(),
+      hobbies: [],
+    );
   }
 
   @override
@@ -129,9 +135,9 @@ class MockService
     );
   }
 
-  //#endregion
+//#endregion
 
-  //#region ISwipeRemoteSource impl
+//#region ISwipeRemoteSource impl
   @override
   Future<List<SwipeItemDataModel>> getNextSwipeItemList({
     required int number,
@@ -217,9 +223,9 @@ class MockService
 
   List<ActivityTypeData> _generateHobbyList() => _swipeMockUser.hobbies;
 
-  //#endregion
+//#endregion
 
-  //#region StorageRemoteSource impl
+//#region StorageRemoteSource impl
 
   @override
   Future<String?> uploadFile(
@@ -230,9 +236,9 @@ class MockService
     return Future<String>.value("http://toto.com");
   }
 
-  //#endregion
+//#endregion
 
-  //#region AuthDataSource impl
+//#region AuthDataSource impl
 
   @override
   Stream<VerifyPhoneStateDataSourceEvent> getPhoneNumberAuthenticationState() {
@@ -273,11 +279,14 @@ class MockService
       phone: "+33834763058",
     );
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
-        right(AuthUserDataSourceModel(
-      id: "MyUserId",
-      phone: "+33834763058",
-    )));
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+      right(
+        AuthUserDataSourceModel(
+          id: "MyUserId",
+          phone: "+33834763058",
+        ),
+      ),
+    );
   }
 
   @override
@@ -286,10 +295,13 @@ class MockService
           {required String emailAddress, required String password}) {
     Logger.d("MOCK: registerWithEmailAndPassword");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
-        right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+      right(
+        AuthUserDataSourceModel(
+          id: "MyUserId",
+        ),
+      ),
+    );
   }
 
   @override
@@ -297,23 +309,31 @@ class MockService
       signInWithApple() {
     Logger.d("MOCK: signInWithApple");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
-        right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+      right(
+        AuthUserDataSourceModel(
+          id: "MyUserId",
+        ),
+      ),
+    );
   }
 
   @override
   Future<Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>
       signInWithEmailAndPassword(
           {required String emailAddress, required String password}) {
-    Logger.d("MOCK: signInWithEmailAndPassword, emailAddress: $emailAddress," +
-        "password: $password");
+    Logger.d(
+      "MOCK: signInWithEmailAndPassword, emailAddress: $emailAddress," +
+          "password: $password",
+    );
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
-        right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+      right(
+        AuthUserDataSourceModel(
+          id: "MyUserId",
+        ),
+      ),
+    );
   }
 
   @override
@@ -321,10 +341,13 @@ class MockService
       signInWithFacebook() {
     Logger.d("MOCK: signInWithFacebook");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
-        right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+      right(
+        AuthUserDataSourceModel(
+          id: "MyUserId",
+        ),
+      ),
+    );
   }
 
   @override
@@ -332,10 +355,13 @@ class MockService
       signInWithGoogle() {
     Logger.d("MOCK: signInWithGoogle");
     return Future<
-            Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
-        right(AuthUserDataSourceModel(
-      id: "MyUserId",
-    )));
+        Either<AuthFailureDataSourceEvent, AuthUserDataSourceModel>>.value(
+      right(
+        AuthUserDataSourceModel(
+          id: "MyUserId",
+        ),
+      ),
+    );
   }
 
   @override
@@ -344,9 +370,9 @@ class MockService
     _currentUserAuth = null;
   }
 
-  //#endregion
+//#endregion
 
-  //#region UserProfileActivityDataModel impl
+//#region UserProfileActivityDataModel impl
   @override
   Future<List<UserProfileActivityDataModel>> getActivities() {
     Logger.d("MOCK: getActivities");
@@ -373,9 +399,9 @@ class MockService
     return Future<List<UserProfileActivityDataModel>>.value(result);
   }
 
-  //#endregion
+//#endregion
 
-  //#region UserProfileBannerDataModel impl
+//#region UserProfileBannerDataModel impl
   @override
   Future<UserProfileBannerDataModel> getUserInformation() {
     Logger.d("MOCK: getUserInformation");
@@ -396,6 +422,16 @@ class MockService
         activityNumber: 42,
       ),
     );
+  }
+
+//#endregion
+
+//#region Activity creation impl
+  @override
+  Future<HttpFailure?> createActivity({
+    required ActivityCreationDataModel activity,
+  }) async {
+    return null;
   }
 //#endregion
 }
