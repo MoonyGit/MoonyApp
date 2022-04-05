@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// Extension to apply customs text themes
@@ -9,12 +10,44 @@ extension CustomTextStyles on TextTheme {
       color: Colors.white,
     );
   }
+
+  /// Moony message text description style
+  TextStyle get moonyDescription {
+    return const TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.w300,
+      color: Colors.white,
+    );
+  }
+}
+
+/// Get date picker theme
+Widget getDatePickerTheme(
+    {required BuildContext context, required Widget child}) {
+  return Theme(
+    data: Theme.of(context).copyWith(
+      colorScheme: const ColorScheme.light(
+        primary: AppTheme.primaryLight,
+        // header background color
+        onPrimary: AppTheme.secondary,
+        // header text color
+        onSurface: AppTheme.tertiaryDark, // body text color
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          primary: AppTheme.secondary, // button text color
+        ),
+      ),
+    ),
+    child: child,
+  );
 }
 
 /// This class is used to provide all theming elements in a statical way
 abstract class AppTheme {
   /// Palette of `Primary` color's
   static const Color primary = Color(0xffa5224b);
+
   /// Palette of `Primary` color's
   static const Color primaryHalfOpacity = Color(0x99a5224b);
 
@@ -56,6 +89,8 @@ abstract class AppTheme {
 
   /// Other color's
   static const Color background = Color(0xFFF4F5F8);
+
+  static const Color searchbarBackground = Color(0xFFE5E5E5);
 
   // ignore: public_member_api_docs
   static const Color backgroundDark = Color(0xFF1D1B1C);

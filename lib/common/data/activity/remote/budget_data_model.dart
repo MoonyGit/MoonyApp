@@ -29,3 +29,12 @@ extension BudgetMapper on BudgetDataModel {
         weight: BudgetWeight(input: weight),
       );
 }
+
+/// Budget data mapper
+extension BudgetDataMapper on Budget {
+  /// Mapper method
+  BudgetDataModel toData() => BudgetDataModel(
+        currencyCode: currency.getOrCrash(),
+        weight: weight.getOrCrash(),
+      );
+}

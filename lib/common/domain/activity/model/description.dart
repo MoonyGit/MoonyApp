@@ -11,7 +11,7 @@ class ActivityDescription
 
   /// Factory constructor
   factory ActivityDescription({required String input}) {
-    if (input.length > maxChar && input.length < minChar) {
+    if (input.length > maxChar || input.length < minChar) {
       return ActivityDescription._(
         left(
           ActivityDescriptionFailure(),
@@ -28,5 +28,5 @@ class ActivityDescription
   /// Max char
   static const int maxChar = 300;
   /// Min char
-  static const int minChar = 30;
+  static const int minChar = 10;
 }

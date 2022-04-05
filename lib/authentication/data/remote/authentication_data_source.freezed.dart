@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'authentication_data_source.dart';
 
@@ -47,6 +49,13 @@ mixin _$VerifyPhoneStateDataSourceEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String smsCode)? autoLogin,
     TResult Function(String? message)? error,
@@ -59,6 +68,13 @@ mixin _$VerifyPhoneStateDataSourceEvent {
     required TResult Function(VerifyPhoneAutoLoginDataSource value) autoLogin,
     required TResult Function(VerifyPhoneErrorDataSource value) error,
     required TResult Function(VerifyPhoneOtpSentDataSource value) otpSent,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -141,14 +157,14 @@ class _$VerifyPhoneAutoLoginDataSource
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is VerifyPhoneAutoLoginDataSource &&
-            (identical(other.smsCode, smsCode) ||
-                const DeepCollectionEquality().equals(other.smsCode, smsCode)));
+        (other.runtimeType == runtimeType &&
+            other is VerifyPhoneAutoLoginDataSource &&
+            const DeepCollectionEquality().equals(other.smsCode, smsCode));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(smsCode);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(smsCode));
 
   @JsonKey(ignore: true)
   @override
@@ -164,6 +180,16 @@ class _$VerifyPhoneAutoLoginDataSource
     required TResult Function() otpSent,
   }) {
     return autoLogin(smsCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) {
+    return autoLogin?.call(smsCode);
   }
 
   @override
@@ -192,6 +218,16 @@ class _$VerifyPhoneAutoLoginDataSource
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
+  }) {
+    return autoLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
     TResult Function(VerifyPhoneErrorDataSource value)? error,
@@ -210,7 +246,7 @@ abstract class VerifyPhoneAutoLoginDataSource
   const factory VerifyPhoneAutoLoginDataSource({required String smsCode}) =
       _$VerifyPhoneAutoLoginDataSource;
 
-  String get smsCode => throw _privateConstructorUsedError;
+  String get smsCode;
   @JsonKey(ignore: true)
   $VerifyPhoneAutoLoginDataSourceCopyWith<VerifyPhoneAutoLoginDataSource>
       get copyWith => throw _privateConstructorUsedError;
@@ -265,14 +301,14 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is VerifyPhoneErrorDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is VerifyPhoneErrorDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -289,6 +325,16 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
     required TResult Function() otpSent,
   }) {
     return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) {
+    return error?.call(message);
   }
 
   @override
@@ -317,6 +363,16 @@ class _$VerifyPhoneErrorDataSource implements VerifyPhoneErrorDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
     TResult Function(VerifyPhoneErrorDataSource value)? error,
@@ -335,7 +391,7 @@ abstract class VerifyPhoneErrorDataSource
   const factory VerifyPhoneErrorDataSource({String? message}) =
       _$VerifyPhoneErrorDataSource;
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $VerifyPhoneErrorDataSourceCopyWith<VerifyPhoneErrorDataSource>
       get copyWith => throw _privateConstructorUsedError;
@@ -375,7 +431,9 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is VerifyPhoneOtpSentDataSource);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is VerifyPhoneOtpSentDataSource);
   }
 
   @override
@@ -389,6 +447,16 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
     required TResult Function() otpSent,
   }) {
     return otpSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function(String? message)? error,
+    TResult Function()? otpSent,
+  }) {
+    return otpSent?.call();
   }
 
   @override
@@ -413,6 +481,16 @@ class _$VerifyPhoneOtpSentDataSource implements VerifyPhoneOtpSentDataSource {
     required TResult Function(VerifyPhoneOtpSentDataSource value) otpSent,
   }) {
     return otpSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VerifyPhoneAutoLoginDataSource value)? autoLogin,
+    TResult Function(VerifyPhoneErrorDataSource value)? error,
+    TResult Function(VerifyPhoneOtpSentDataSource value)? otpSent,
+  }) {
+    return otpSent?.call(this);
   }
 
   @override
@@ -502,6 +580,17 @@ mixin _$AuthFailureDataSourceEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? credentialsAlreadyUsed,
     TResult Function(String? message)? serverError,
@@ -524,6 +613,18 @@ mixin _$AuthFailureDataSourceEvent {
     required TResult Function(AuthCancelledDataSource value) cancelled,
     required TResult Function(AuthOtpExpiredDataSource value) otpExpired,
     required TResult Function(AuthBadOtpDataSource value) badOtp,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -618,7 +719,7 @@ class _$AuthCredentialsAlreadyUsedDataSource
     implements AuthCredentialsAlreadyUsedDataSource {
   const _$AuthCredentialsAlreadyUsedDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -630,14 +731,14 @@ class _$AuthCredentialsAlreadyUsedDataSource
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthCredentialsAlreadyUsedDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthCredentialsAlreadyUsedDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -658,6 +759,20 @@ class _$AuthCredentialsAlreadyUsedDataSource
     required TResult Function(String? message) badOtp,
   }) {
     return credentialsAlreadyUsed(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return credentialsAlreadyUsed?.call(message);
   }
 
   @override
@@ -696,6 +811,21 @@ class _$AuthCredentialsAlreadyUsedDataSource
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return credentialsAlreadyUsed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -720,7 +850,7 @@ abstract class AuthCredentialsAlreadyUsedDataSource
       _$AuthCredentialsAlreadyUsedDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthCredentialsAlreadyUsedDataSourceCopyWith<
@@ -768,7 +898,7 @@ class _$AuthServerErrorDataSourceCopyWithImpl<$Res>
 class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
   const _$AuthServerErrorDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -780,14 +910,14 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthServerErrorDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthServerErrorDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -807,6 +937,20 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
     required TResult Function(String? message) badOtp,
   }) {
     return serverError(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return serverError?.call(message);
   }
 
   @override
@@ -845,6 +989,21 @@ class _$AuthServerErrorDataSource implements AuthServerErrorDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return serverError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -868,7 +1027,7 @@ abstract class AuthServerErrorDataSource implements AuthFailureDataSourceEvent {
       _$AuthServerErrorDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthServerErrorDataSourceCopyWith<AuthServerErrorDataSource> get copyWith =>
@@ -917,7 +1076,7 @@ class _$AuthBadCredentialsDataSourceCopyWithImpl<$Res>
 class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
   const _$AuthBadCredentialsDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -929,14 +1088,14 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthBadCredentialsDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthBadCredentialsDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -956,6 +1115,20 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
     required TResult Function(String? message) badOtp,
   }) {
     return badCredentials(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return badCredentials?.call(message);
   }
 
   @override
@@ -994,6 +1167,21 @@ class _$AuthBadCredentialsDataSource implements AuthBadCredentialsDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return badCredentials?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -1018,7 +1206,7 @@ abstract class AuthBadCredentialsDataSource
       _$AuthBadCredentialsDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthBadCredentialsDataSourceCopyWith<AuthBadCredentialsDataSource>
@@ -1064,7 +1252,7 @@ class _$AuthUnknownDataSourceCopyWithImpl<$Res>
 class _$AuthUnknownDataSource implements AuthUnknownDataSource {
   const _$AuthUnknownDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -1076,14 +1264,14 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthUnknownDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthUnknownDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -1103,6 +1291,20 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
     required TResult Function(String? message) badOtp,
   }) {
     return unknown(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return unknown?.call(message);
   }
 
   @override
@@ -1141,6 +1343,21 @@ class _$AuthUnknownDataSource implements AuthUnknownDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return unknown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -1164,7 +1381,7 @@ abstract class AuthUnknownDataSource implements AuthFailureDataSourceEvent {
       _$AuthUnknownDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthUnknownDataSourceCopyWith<AuthUnknownDataSource> get copyWith =>
@@ -1210,7 +1427,7 @@ class _$AuthCancelledDataSourceCopyWithImpl<$Res>
 class _$AuthCancelledDataSource implements AuthCancelledDataSource {
   const _$AuthCancelledDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -1222,14 +1439,14 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthCancelledDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthCancelledDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -1249,6 +1466,20 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
     required TResult Function(String? message) badOtp,
   }) {
     return cancelled(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return cancelled?.call(message);
   }
 
   @override
@@ -1287,6 +1518,21 @@ class _$AuthCancelledDataSource implements AuthCancelledDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return cancelled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -1310,7 +1556,7 @@ abstract class AuthCancelledDataSource implements AuthFailureDataSourceEvent {
       _$AuthCancelledDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthCancelledDataSourceCopyWith<AuthCancelledDataSource> get copyWith =>
@@ -1357,7 +1603,7 @@ class _$AuthOtpExpiredDataSourceCopyWithImpl<$Res>
 class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
   const _$AuthOtpExpiredDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -1369,14 +1615,14 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthOtpExpiredDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthOtpExpiredDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -1396,6 +1642,20 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
     required TResult Function(String? message) badOtp,
   }) {
     return otpExpired(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return otpExpired?.call(message);
   }
 
   @override
@@ -1434,6 +1694,21 @@ class _$AuthOtpExpiredDataSource implements AuthOtpExpiredDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return otpExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -1457,7 +1732,7 @@ abstract class AuthOtpExpiredDataSource implements AuthFailureDataSourceEvent {
       _$AuthOtpExpiredDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthOtpExpiredDataSourceCopyWith<AuthOtpExpiredDataSource> get copyWith =>
@@ -1503,7 +1778,7 @@ class _$AuthBadOtpDataSourceCopyWithImpl<$Res>
 class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
   const _$AuthBadOtpDataSource({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -1515,14 +1790,14 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthBadOtpDataSource &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is AuthBadOtpDataSource &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -1542,6 +1817,20 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
     required TResult Function(String? message) badOtp,
   }) {
     return badOtp(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? credentialsAlreadyUsed,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? badCredentials,
+    TResult Function(String? message)? unknown,
+    TResult Function(String? message)? cancelled,
+    TResult Function(String? message)? otpExpired,
+    TResult Function(String? message)? badOtp,
+  }) {
+    return badOtp?.call(message);
   }
 
   @override
@@ -1580,6 +1869,21 @@ class _$AuthBadOtpDataSource implements AuthBadOtpDataSource {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
+        credentialsAlreadyUsed,
+    TResult Function(AuthServerErrorDataSource value)? serverError,
+    TResult Function(AuthBadCredentialsDataSource value)? badCredentials,
+    TResult Function(AuthUnknownDataSource value)? unknown,
+    TResult Function(AuthCancelledDataSource value)? cancelled,
+    TResult Function(AuthOtpExpiredDataSource value)? otpExpired,
+    TResult Function(AuthBadOtpDataSource value)? badOtp,
+  }) {
+    return badOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthCredentialsAlreadyUsedDataSource value)?
         credentialsAlreadyUsed,
@@ -1603,7 +1907,7 @@ abstract class AuthBadOtpDataSource implements AuthFailureDataSourceEvent {
       _$AuthBadOtpDataSource;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $AuthBadOtpDataSourceCopyWith<AuthBadOtpDataSource> get copyWith =>

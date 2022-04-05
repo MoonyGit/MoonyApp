@@ -99,7 +99,6 @@ abstract class SetInfoModalBasePage<C extends GetxController>
               ),
             ),
             const Spacer(),
-            getMoonyImage(),
             const Padding(padding: EdgeInsets.only(bottom: 10)),
             Obx(() => OutlinedButton(
                   onPressed:

@@ -19,18 +19,27 @@ class ActivityCategory with _$ActivityCategory {
 
   /// Food category
   const factory ActivityCategory.food() = CategoryFood;
+
+  /// list of values
+  static Set<ActivityCategory> values = {
+    const CategorySport(),
+    const CategoryCultural(),
+    const CategorySpareTime(),
+    const CategoryTrip(),
+    const CategoryFood(),
+  };
 }
 
 /// Base class Activity type
 abstract class ActivityType {
   /// list of values
-  static List<ActivityType> values = [
+  static Set<ActivityType> values = {
     ...ActivitySport.values,
     ...ActivityCultural.values,
     ...ActivityTrip.values,
     ...ActivitySpareTime.values,
     ...ActivityFood.values,
-  ];
+  };
   /// category
   ActivityCategory get category;
 }
@@ -40,7 +49,7 @@ abstract class ActivityType {
 class ActivitySport with _$ActivitySport implements ActivityType {
   const ActivitySport._();
   /// list of values
-  static List<ActivitySport> values = [
+  static Set<ActivitySport> values = {
     const ActivitySportAquatic(),
     const ActivitySportRacket(),
     const ActivitySportBall(),
@@ -50,7 +59,7 @@ class ActivitySport with _$ActivitySport implements ActivityType {
     const ActivitySportMartial(),
     const ActivitySportCyclist(),
     const ActivitySportNature(),
-  ];
+  };
 
   @override
   final ActivityCategory category = const CategorySport();
@@ -81,14 +90,14 @@ class ActivitySport with _$ActivitySport implements ActivityType {
 class ActivityCultural with _$ActivityCultural implements ActivityType {
   const ActivityCultural._();
   /// list of values
-  static List<ActivityCultural> values = [
+  static Set<ActivityCultural> values = {
     const ActivityCulturalCinema(),
     const ActivityCulturalTheatre(),
     const ActivityCulturalCircus(),
     const ActivityCulturalMuseum(),
     const ActivityCulturalMonument(),
     const ActivityCulturalOther(),
-  ];
+  };
   @override
   final ActivityCategory category = const CategoryCultural();
   /// cinema
@@ -110,13 +119,13 @@ class ActivityCultural with _$ActivityCultural implements ActivityType {
 class ActivityTrip with _$ActivityTrip implements ActivityType {
   const ActivityTrip._();
   /// list of values
-  static List<ActivityTrip> values = [
+  static Set<ActivityTrip> values = {
     const ActivityTripChill(),
     const ActivityTripExploration(),
     const ActivityTripSpiritual(),
     const ActivityTripInfluencing(),
     const ActivityTripOther(),
-  ];
+  };
   @override
   final ActivityCategory category = const CategoryTrip();
   /// vacation
@@ -136,14 +145,14 @@ class ActivityTrip with _$ActivityTrip implements ActivityType {
 class ActivitySpareTime with _$ActivitySpareTime implements ActivityType {
   const ActivitySpareTime._();
   /// list of values
-  static List<ActivitySpareTime> values = [
+  static Set<ActivitySpareTime> values = {
     const ActivitySpareTimeGame(),
     const ActivitySpareTimeParty(),
     const ActivitySpareTimeMusical(),
     const ActivitySpareTimeCooking(),
     const ActivitySpareTimeWalk(),
     const ActivitySpareTimeOther(),
-  ];
+  };
   @override
   final ActivityCategory category = const CategorySpareTime();
   /// game
@@ -165,13 +174,13 @@ class ActivitySpareTime with _$ActivitySpareTime implements ActivityType {
 class ActivityFood with _$ActivityFood implements ActivityType {
   const ActivityFood._();
   /// list of values
-  static List<ActivityFood> values = [
+  static Set<ActivityFood> values = {
     const ActivityFoodTasting(),
     const ActivityFoodDinner(),
     const ActivityFoodBrunch(),
     const ActivityFoodDrink(),
     const ActivityFoodOther(),
-  ];
+  };
   @override
   final ActivityCategory category = const CategoryFood();
   /// degustation
@@ -189,7 +198,7 @@ class ActivityFood with _$ActivityFood implements ActivityType {
 /// Rules
 extension ActivityCategoryRules on ActivityCategory {
   /// get activities list
-  List<ActivityType> getActivities() =>
+  Set<ActivityType> getActivities() =>
       when(
           sport: () => ActivitySport.values,
           cultural: () => ActivityCultural.values,
