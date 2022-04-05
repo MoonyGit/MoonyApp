@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'authentication_state.dart';
 
@@ -57,6 +59,14 @@ mixin _$AuthenticationState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(AuthenticationStatus status)? loading,
     TResult Function(AuthenticationStatus status)? unAuthenticated,
@@ -71,6 +81,14 @@ mixin _$AuthenticationState {
     required TResult Function(UnAuthenticated value) unAuthenticated,
     required TResult Function(Authenticated value) authenticated,
     required TResult Function(AuthenticationFailure value) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -180,14 +198,14 @@ class _$AuthenticationLoading implements AuthenticationLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthenticationLoading &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is AuthenticationLoading &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -204,6 +222,17 @@ class _$AuthenticationLoading implements AuthenticationLoading {
     required TResult Function(AuthenticationStatus status) failure,
   }) {
     return loading(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return loading?.call(status);
   }
 
   @override
@@ -234,6 +263,17 @@ class _$AuthenticationLoading implements AuthenticationLoading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthenticationLoading value)? loading,
     TResult Function(UnAuthenticated value)? unAuthenticated,
@@ -253,7 +293,7 @@ abstract class AuthenticationLoading implements AuthenticationState {
       _$AuthenticationLoading;
 
   @override
-  AuthenticationStatus get status => throw _privateConstructorUsedError;
+  AuthenticationStatus get status;
   @override
   @JsonKey(ignore: true)
   $AuthenticationLoadingCopyWith<AuthenticationLoading> get copyWith =>
@@ -313,14 +353,14 @@ class _$UnAuthenticated implements UnAuthenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UnAuthenticated &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is UnAuthenticated &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -336,6 +376,17 @@ class _$UnAuthenticated implements UnAuthenticated {
     required TResult Function(AuthenticationStatus status) failure,
   }) {
     return unAuthenticated(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return unAuthenticated?.call(status);
   }
 
   @override
@@ -366,6 +417,17 @@ class _$UnAuthenticated implements UnAuthenticated {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return unAuthenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthenticationLoading value)? loading,
     TResult Function(UnAuthenticated value)? unAuthenticated,
@@ -385,7 +447,7 @@ abstract class UnAuthenticated implements AuthenticationState {
       _$UnAuthenticated;
 
   @override
-  AuthenticationStatus get status => throw _privateConstructorUsedError;
+  AuthenticationStatus get status;
   @override
   @JsonKey(ignore: true)
   $UnAuthenticatedCopyWith<UnAuthenticated> get copyWith =>
@@ -445,14 +507,14 @@ class _$Authenticated implements Authenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Authenticated &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is Authenticated &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -468,6 +530,17 @@ class _$Authenticated implements Authenticated {
     required TResult Function(AuthenticationStatus status) failure,
   }) {
     return authenticated(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return authenticated?.call(status);
   }
 
   @override
@@ -498,6 +571,17 @@ class _$Authenticated implements Authenticated {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return authenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthenticationLoading value)? loading,
     TResult Function(UnAuthenticated value)? unAuthenticated,
@@ -517,7 +601,7 @@ abstract class Authenticated implements AuthenticationState {
       _$Authenticated;
 
   @override
-  AuthenticationStatus get status => throw _privateConstructorUsedError;
+  AuthenticationStatus get status;
   @override
   @JsonKey(ignore: true)
   $AuthenticatedCopyWith<Authenticated> get copyWith =>
@@ -577,14 +661,14 @@ class _$AuthenticationFailure implements AuthenticationFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is AuthenticationFailure &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+        (other.runtimeType == runtimeType &&
+            other is AuthenticationFailure &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
@@ -601,6 +685,17 @@ class _$AuthenticationFailure implements AuthenticationFailure {
     required TResult Function(AuthenticationStatus status) failure,
   }) {
     return failure(status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationStatus status)? loading,
+    TResult Function(AuthenticationStatus status)? unAuthenticated,
+    TResult Function(AuthenticationStatus status)? authenticated,
+    TResult Function(AuthenticationStatus status)? failure,
+  }) {
+    return failure?.call(status);
   }
 
   @override
@@ -631,6 +726,17 @@ class _$AuthenticationFailure implements AuthenticationFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AuthenticationLoading value)? loading,
+    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult Function(Authenticated value)? authenticated,
+    TResult Function(AuthenticationFailure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthenticationLoading value)? loading,
     TResult Function(UnAuthenticated value)? unAuthenticated,
@@ -650,7 +756,7 @@ abstract class AuthenticationFailure implements AuthenticationState {
       _$AuthenticationFailure;
 
   @override
-  AuthenticationStatus get status => throw _privateConstructorUsedError;
+  AuthenticationStatus get status;
   @override
   @JsonKey(ignore: true)
   $AuthenticationFailureCopyWith<AuthenticationFailure> get copyWith =>
@@ -742,6 +848,22 @@ mixin _$AuthenticationStatus {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? signedIn,
     TResult Function()? signedOut,
@@ -772,6 +894,22 @@ mixin _$AuthenticationStatus {
     required TResult Function(InProgress value) inProgress,
     required TResult Function(ServerError value) serverError,
     required TResult Function(Unknown value) unknown,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -839,7 +977,8 @@ class _$SignedIn implements SignedIn {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SignedIn);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SignedIn);
   }
 
   @override
@@ -862,6 +1001,25 @@ class _$SignedIn implements SignedIn {
     required TResult Function(String? message) unknown,
   }) {
     return signedIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return signedIn?.call();
   }
 
   @override
@@ -904,6 +1062,25 @@ class _$SignedIn implements SignedIn {
     required TResult Function(Unknown value) unknown,
   }) {
     return signedIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return signedIn?.call(this);
   }
 
   @override
@@ -963,7 +1140,8 @@ class _$SignedOut implements SignedOut {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SignedOut);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SignedOut);
   }
 
   @override
@@ -986,6 +1164,25 @@ class _$SignedOut implements SignedOut {
     required TResult Function(String? message) unknown,
   }) {
     return signedOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return signedOut?.call();
   }
 
   @override
@@ -1028,6 +1225,25 @@ class _$SignedOut implements SignedOut {
     required TResult Function(Unknown value) unknown,
   }) {
     return signedOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return signedOut?.call(this);
   }
 
   @override
@@ -1089,7 +1305,8 @@ class _$SessionExpired implements SessionExpired {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SessionExpired);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SessionExpired);
   }
 
   @override
@@ -1112,6 +1329,25 @@ class _$SessionExpired implements SessionExpired {
     required TResult Function(String? message) unknown,
   }) {
     return sessionExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return sessionExpired?.call();
   }
 
   @override
@@ -1154,6 +1390,25 @@ class _$SessionExpired implements SessionExpired {
     required TResult Function(Unknown value) unknown,
   }) {
     return sessionExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return sessionExpired?.call(this);
   }
 
   @override
@@ -1221,7 +1476,7 @@ class _$BadCredentialsCopyWithImpl<$Res>
 class _$BadCredentials implements BadCredentials {
   const _$BadCredentials({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -1233,14 +1488,14 @@ class _$BadCredentials implements BadCredentials {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is BadCredentials &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is BadCredentials &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -1264,6 +1519,25 @@ class _$BadCredentials implements BadCredentials {
     required TResult Function(String? message) unknown,
   }) {
     return badCredentials(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return badCredentials?.call(message);
   }
 
   @override
@@ -1310,6 +1584,25 @@ class _$BadCredentials implements BadCredentials {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return badCredentials?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignedIn value)? signedIn,
     TResult Function(SignedOut value)? signedOut,
@@ -1335,7 +1628,7 @@ class _$BadCredentials implements BadCredentials {
 abstract class BadCredentials implements AuthenticationStatus {
   const factory BadCredentials({String? message}) = _$BadCredentials;
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $BadCredentialsCopyWith<BadCredentials> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1370,7 +1663,8 @@ class _$Cancelled implements Cancelled {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is Cancelled);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Cancelled);
   }
 
   @override
@@ -1393,6 +1687,25 @@ class _$Cancelled implements Cancelled {
     required TResult Function(String? message) unknown,
   }) {
     return cancelled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return cancelled?.call();
   }
 
   @override
@@ -1435,6 +1748,25 @@ class _$Cancelled implements Cancelled {
     required TResult Function(Unknown value) unknown,
   }) {
     return cancelled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return cancelled?.call(this);
   }
 
   @override
@@ -1496,7 +1828,8 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CredentialsAlreadyUsed);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CredentialsAlreadyUsed);
   }
 
   @override
@@ -1519,6 +1852,25 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     required TResult Function(String? message) unknown,
   }) {
     return used();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return used?.call();
   }
 
   @override
@@ -1561,6 +1913,25 @@ class _$CredentialsAlreadyUsed implements CredentialsAlreadyUsed {
     required TResult Function(Unknown value) unknown,
   }) {
     return used(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return used?.call(this);
   }
 
   @override
@@ -1626,7 +1997,7 @@ class _$BadOtpCopyWithImpl<$Res>
 class _$BadOtp implements BadOtp {
   const _$BadOtp({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -1638,14 +2009,14 @@ class _$BadOtp implements BadOtp {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is BadOtp &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is BadOtp &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -1669,6 +2040,25 @@ class _$BadOtp implements BadOtp {
     required TResult Function(String? message) unknown,
   }) {
     return badOtp(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return badOtp?.call(message);
   }
 
   @override
@@ -1715,6 +2105,25 @@ class _$BadOtp implements BadOtp {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return badOtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignedIn value)? signedIn,
     TResult Function(SignedOut value)? signedOut,
@@ -1740,7 +2149,7 @@ class _$BadOtp implements BadOtp {
 abstract class BadOtp implements AuthenticationStatus {
   const factory BadOtp({String? message}) = _$BadOtp;
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $BadOtpCopyWith<BadOtp> get copyWith => throw _privateConstructorUsedError;
 }
@@ -1774,7 +2183,8 @@ class _$OtpSent implements OtpSent {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is OtpSent);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is OtpSent);
   }
 
   @override
@@ -1797,6 +2207,25 @@ class _$OtpSent implements OtpSent {
     required TResult Function(String? message) unknown,
   }) {
     return otpSent();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return otpSent?.call();
   }
 
   @override
@@ -1839,6 +2268,25 @@ class _$OtpSent implements OtpSent {
     required TResult Function(Unknown value) unknown,
   }) {
     return otpSent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return otpSent?.call(this);
   }
 
   @override
@@ -1917,14 +2365,14 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PhoneAutoLogin &&
-            (identical(other.smsCode, smsCode) ||
-                const DeepCollectionEquality().equals(other.smsCode, smsCode)));
+        (other.runtimeType == runtimeType &&
+            other is PhoneAutoLogin &&
+            const DeepCollectionEquality().equals(other.smsCode, smsCode));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(smsCode);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(smsCode));
 
   @JsonKey(ignore: true)
   @override
@@ -1948,6 +2396,25 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
     required TResult Function(String? message) unknown,
   }) {
     return autoLogin(smsCode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return autoLogin?.call(smsCode);
   }
 
   @override
@@ -1994,6 +2461,25 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return autoLogin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignedIn value)? signedIn,
     TResult Function(SignedOut value)? signedOut,
@@ -2019,7 +2505,7 @@ class _$PhoneAutoLogin implements PhoneAutoLogin {
 abstract class PhoneAutoLogin implements AuthenticationStatus {
   const factory PhoneAutoLogin({required String smsCode}) = _$PhoneAutoLogin;
 
-  String get smsCode => throw _privateConstructorUsedError;
+  String get smsCode;
   @JsonKey(ignore: true)
   $PhoneAutoLoginCopyWith<PhoneAutoLogin> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2055,7 +2541,8 @@ class _$InProgress implements InProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InProgress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InProgress);
   }
 
   @override
@@ -2078,6 +2565,25 @@ class _$InProgress implements InProgress {
     required TResult Function(String? message) unknown,
   }) {
     return inProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return inProgress?.call();
   }
 
   @override
@@ -2120,6 +2626,25 @@ class _$InProgress implements InProgress {
     required TResult Function(Unknown value) unknown,
   }) {
     return inProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return inProgress?.call(this);
   }
 
   @override
@@ -2187,7 +2712,7 @@ class _$ServerErrorCopyWithImpl<$Res>
 class _$ServerError implements ServerError {
   const _$ServerError({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -2199,14 +2724,14 @@ class _$ServerError implements ServerError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ServerError &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is ServerError &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -2230,6 +2755,25 @@ class _$ServerError implements ServerError {
     required TResult Function(String? message) unknown,
   }) {
     return serverError(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return serverError?.call(message);
   }
 
   @override
@@ -2276,6 +2820,25 @@ class _$ServerError implements ServerError {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return serverError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignedIn value)? signedIn,
     TResult Function(SignedOut value)? signedOut,
@@ -2301,7 +2864,7 @@ class _$ServerError implements ServerError {
 abstract class ServerError implements AuthenticationStatus {
   const factory ServerError({String? message}) = _$ServerError;
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $ServerErrorCopyWith<ServerError> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2342,7 +2905,7 @@ class _$UnknownCopyWithImpl<$Res>
 class _$Unknown implements Unknown {
   const _$Unknown({this.message = null});
 
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final String? message;
 
@@ -2354,14 +2917,14 @@ class _$Unknown implements Unknown {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Unknown &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is Unknown &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -2385,6 +2948,25 @@ class _$Unknown implements Unknown {
     required TResult Function(String? message) unknown,
   }) {
     return unknown(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? signedIn,
+    TResult Function()? signedOut,
+    TResult Function()? sessionExpired,
+    TResult Function(String? message)? badCredentials,
+    TResult Function()? cancelled,
+    TResult Function()? used,
+    TResult Function(String? message)? badOtp,
+    TResult Function()? otpSent,
+    TResult Function(String smsCode)? autoLogin,
+    TResult Function()? inProgress,
+    TResult Function(String? message)? serverError,
+    TResult Function(String? message)? unknown,
+  }) {
+    return unknown?.call(message);
   }
 
   @override
@@ -2431,6 +3013,25 @@ class _$Unknown implements Unknown {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(SignedIn value)? signedIn,
+    TResult Function(SignedOut value)? signedOut,
+    TResult Function(SessionExpired value)? sessionExpired,
+    TResult Function(BadCredentials value)? badCredentials,
+    TResult Function(Cancelled value)? cancelled,
+    TResult Function(CredentialsAlreadyUsed value)? used,
+    TResult Function(BadOtp value)? badOtp,
+    TResult Function(OtpSent value)? otpSent,
+    TResult Function(PhoneAutoLogin value)? autoLogin,
+    TResult Function(InProgress value)? inProgress,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(Unknown value)? unknown,
+  }) {
+    return unknown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SignedIn value)? signedIn,
     TResult Function(SignedOut value)? signedOut,
@@ -2456,7 +3057,7 @@ class _$Unknown implements Unknown {
 abstract class Unknown implements AuthenticationStatus {
   const factory Unknown({String? message}) = _$Unknown;
 
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @JsonKey(ignore: true)
   $UnknownCopyWith<Unknown> get copyWith => throw _privateConstructorUsedError;
 }

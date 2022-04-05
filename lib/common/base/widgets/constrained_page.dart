@@ -21,6 +21,8 @@ abstract class ConstrainedController extends GetxController {
 /// Constrained page to extends to use constraints
 abstract class ConstrainedPage<Controller extends ConstrainedController>
     extends GetView<Controller> {
+  /// Constructor
+  const ConstrainedPage({Key? key}) : super(key: key);
   @override
   @mustCallSuper
   Widget build(BuildContext context) => Obx(() => (controller.constraintList

@@ -33,6 +33,7 @@ import 'package:moony_app/flavors.dart';
 /// if possible, prefer add dependencies in page bindings (scoped to page)
 /// add only data source dependencies if needed
 void loadModule() {
+  const String userCreationLocalStorageTag = "userCreationLocalStorageTag";
   Get.lazyPut<IConnectivityDataSource>(() => ConnectivityService(),
       fenix: true);
   Get.lazyPut<IConnectivityRepository>(() => ConnectivityRepository(Get.find()),
@@ -48,8 +49,10 @@ void loadModule() {
       fenix: true);
 
   Get.lazyPut<ILocalStorage>(
-      () => LocalStorageService(UserLocalSourceImpl.userCreation),
-      fenix: true);
+    () => LocalStorageService(userCreationLocalStorageTag),
+    fenix: true,
+    tag: userCreationLocalStorageTag,
+  );
 
   // User creation
   switch (F.appFlavor) {
@@ -75,7 +78,8 @@ void loadModule() {
             fenix: true);
       }
   }
-  Get.lazyPut<UserLocalSource>(() => UserLocalSourceImpl(Get.find()),
+  Get.lazyPut<UserLocalSource>(
+      () => UserLocalSourceImpl(Get.find(tag: userCreationLocalStorageTag)),
       fenix: true);
   Get.lazyPut<PhotoRemoteSource>(() => PhotoRemoteSourceImpl(Get.find()),
       fenix: true);

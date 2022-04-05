@@ -25,7 +25,7 @@ class ActivityTitle extends ValueObject<ActivityTitleFailure, String> {
   final Either<ActivityTitleFailure, String> value;
 
   /// Max title char constraint
-  static const int maxChar = 50;
+  static const int maxChar = 100;
   /// Min title char constraint
   static const int minChar = 10;
 }

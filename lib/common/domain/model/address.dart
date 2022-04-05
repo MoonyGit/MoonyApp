@@ -10,27 +10,39 @@ class AddressFailure extends Failure {
 /// Address class
 class Address {
   /// Constructor
-  Address(
-      {this.streetNumber,
-        this.streetName,
-        required this.zipCode,
-        required this.city,
-        required this.region,
-        required this.country,
-      });
+  Address({
+    this.streetNumber,
+    this.streetName,
+    required this.zipCode,
+    required this.city,
+    required this.region,
+    required this.country,
+  });
 
   /// Street number, required for activity but optional for user
   final StreetNumber? streetNumber;
+
   /// Street name, required for activity but optional for user
   final StreetName? streetName;
+
   /// zip code
   final ZipCode zipCode;
+
   /// city
   final City city;
+
   /// region
   final Region region;
+
   /// country
   final Country country;
+
+  factory Address.defaultValue() => Address(
+        zipCode: ZipCode(input: "75000"),
+        city: City(input: "Paris"),
+        region: Region(input: "Ile de France"),
+        country: Country(input: "France"),
+      );
 }
 
 /// Address value object class
